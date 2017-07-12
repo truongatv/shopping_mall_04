@@ -14,12 +14,10 @@ class CreateModifiUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->increments('modifi_user_id');
             $table->string('fullname');
             $table->string('avatar_image_link');
             $table->string('phone');
-            $table->string('subcribe')->nullable();
-            $table->timestamps();    
+            $table->string('subcribe')->nullable();   
         });
     }
 

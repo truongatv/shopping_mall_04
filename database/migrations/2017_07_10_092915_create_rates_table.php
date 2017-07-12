@@ -15,8 +15,6 @@ class CreateRatesTable extends Migration
     {
         Schema::create('rates', function (Blueprint $table) {
             $table->increments('rate_id');
-            $table->int('user_id')->unsigned();
-            $table->foreign('user_id')->references('user_id')->on('users')->onDelete('cascade');
             $table->float('point');
             $table->timestamps();
         });
