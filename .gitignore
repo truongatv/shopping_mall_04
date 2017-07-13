@@ -10,6 +10,6 @@ Homestead.yaml
 npm-debug.log
 .env
 .DS_Store
-public/bower_components
-resources/views/layouts/css/fonts
-resources/views/layouts/js
+public/assets
+public/img
+public/js/helpers
