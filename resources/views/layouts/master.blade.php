@@ -7,12 +7,11 @@
     @yield('css')
 </head>
 <body role="document">
-    <div id="page-container">
+    <div id="navbar">
         @include('layouts.nav')
     </div>
-<div class="container theme-showcase" role="main">
+    @yield('text-center')
     @yield('content')
-    <hr>
 <div class="under_content">
 	@include('layouts.under-content')
 </div>
