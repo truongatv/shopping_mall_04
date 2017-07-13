@@ -16,6 +16,8 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name', 'email', 'password',
+        'fullname', 'phone', 'subcribe',
+
     ];
 
     /**
@@ -26,4 +28,29 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+        public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
+
+    public function notifications()
+    {
+        return $this->hasMany(Notification::class);
+    }
+
+    public function adresses()
+    {
+        return $this->hasMany(Address::class);
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
+
+    public function rates()
+    {
+        return $this->hasMany(Rate::class);
+    }
 }
