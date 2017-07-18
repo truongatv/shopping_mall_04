@@ -9,7 +9,7 @@ class Comment extends Model
     protected $fillable = [
         'content',
         'comment_parent_id',
-    ]
+    ];
 
     public function product()
     {

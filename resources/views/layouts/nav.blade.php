@@ -1,7 +1,7 @@
 <header>
     <div class="container">
         <!-- Site Logo -->
-        <a href="index.html" class="site-logo">
+        <a href="{{ url('/') }}" class="site-logo">
             <i class="gi gi-flash"></i> <strong>Shopping</strong>Mail
         </a>
         <form action="ecom_search_results.html" method="post" class="quick-search">

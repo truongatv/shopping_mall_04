@@ -12,7 +12,9 @@ class Product extends Model
         'rate_count',
         'total_quanity',
         'top_product',
-    ]
+        'category_id',
+        'shop_product_id',
+    ];
 
     public function order_details()
     {
