@@ -8,7 +8,7 @@ class Rate extends Model
 {
     protected $fillable = [
         'point'
-    ]
+    ];
 
     public function product()
     {

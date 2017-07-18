@@ -11,3 +11,5 @@ npm-debug.log
 .env
 .DS_Store
 public/assets
+public/img
+puclic/js/helpers

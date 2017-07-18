@@ -16,9 +16,59 @@ $factory->define(App\Models\User::class, function (Faker\Generator $faker) {
     static $password;
 
     return [
-        'name' => $faker->name,
-        'email' => $faker->unique()->safeEmail,
-        'password' => $password ?: $password = bcrypt('secret'),
-        'remember_token' => str_random(10),
+    	'name' => $faker->name,
+    	'email' => $faker->unique()->safeEmail,
+    	'password' => $password ?: $password = bcrypt('secret'),
+    	'remember_token' => str_random(10),
     ];
+});
+$factory->define(App\Models\Category::class, function($faker){
+	$name = $faker->unique()->word;
+	$id = rand(1,10);
+
+	return[
+		'name'=>$name,
+		'category_parent_id'=> $id
+	];
+});
+$factory->define(App\Models\ShopProduct::class,function($faker){
+	$name= $faker->unique()->word;
+	$link=$faker->unique()->word;
+	$intro = $faker->unique()->word;
+
+	return[
+		'shop_product_name' => $name,
+		'avata_image_link' => $link,
+		'introdution' => $intro
+	];
+});
+$factory->define(App\Models\Product::class,function($faker){
+	$name = $faker->unique()->word.' '.$faker->unique()->word;
+	$rate_count = rand(0,5);
+	$unit_price = 10000;
+	$total_quanity = 1000;
+	$top_product = 1000;
+	$category_id = rand(1,100);
+	$shop_product_id = rand(1,100);
+
+	return [
+	    'name'=>$name,
+	    'rate_count' => $rate_count,
+	    'unit_price' => $unit_price,
+	    'total_quanity' => $total_quanity,
+	    'top_product' => $top_product,
+	    'category_id' => $category_id,
+	    'shop_product_id'=> $shop_product_id
+
+	];
+});
+$factory->define(App\Models\Image::class,function($faker){
+	$link = 'https://parts.ippin.com/resized_images/shops/43/28d4ee6c49a9c0785b2a15b059e17c10.png';
+	$product_id = rand(1,20);
+	
+	return [
+		'link' => $link,	
+		'product_id'=>$product_id
+	];
+
 });

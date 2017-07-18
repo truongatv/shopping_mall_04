@@ -8,7 +8,7 @@ class Notification extends Model
 {
     protected $fillable = [
         'content'
-    ]
+    ];
 
     public function user()
     {

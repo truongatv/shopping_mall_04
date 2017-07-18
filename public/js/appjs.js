@@ -14,35 +14,6 @@ var App = function() {
         $('[data-toggle="tooltip"], .enable-tooltip').tooltip({container: 'body', animation: false});
         // Initialize Popovers
         $('[data-toggle="popover"], .enable-popover').popover({container: 'body', animation: true});
-        // Initialize single image lightbox
-        $('[data-toggle="lightbox-image"]').magnificPopup({type: 'image', image: {titleSrc: 'title'}});
-        // Initialize image gallery lightbox
-        $('[data-toggle="lightbox-gallery"]').each(function(){
-            $(this).magnificPopup({
-                delegate: 'a.gallery-link',
-                type: 'image',
-                gallery: {
-                    enabled: true,
-                    navigateByImgClick: true,
-                    arrowMarkup: '<button type="button" class="mfp-arrow mfp-arrow-%dir%" title="%title%"></button>',
-                    tPrev: 'Previous',
-                    tNext: 'Next',
-                    tCounter: '<span class="mfp-counter">%curr% of %total%</span>'
-                },
-                image: {titleSrc: 'title'}
-            });
-        });
-        // Initialize Placeholder
-        $('input, textarea').placeholder();
-        // Toggle animation class when an element appears with Jquery Appear plugin
-        $('[data-toggle="animation-appear"]').each(function(){
-            var $this       = $(this);
-            var $animClass  = $this.data('animation-class');
-            var $elemOff    = $this.data('element-offset');
-            $this.appear(function() {
-                $this.removeClass('visibility-none').addClass($animClass);
-            },{accY: $elemOff});
-        });
         // With CountTo (+ help of Jquery Appear plugin), Check out examples and documentation at https://github.com/mhuggins/jquery-countTo
         $('[data-toggle="countTo"]').each(function(){
             var $this = $(this);
@@ -57,15 +28,6 @@ var App = function() {
                     }
                 });
             });
-        });
-        // With jquery.videoBG, Check out examples and documentation at https://github.com/sydlawrence/jquery.videoBG
-         $('.js-video-bg').videoBG({
-            mp4: 'img/placeholders/videos/placeholder_video.mp4',
-            ogv: 'img/placeholders/videos/placeholder_video.ogv',
-            webm: 'img/placeholders/videos/placeholder_video.webm',
-            poster: 'img/placeholders/videos/placeholder_video.jpg',
-            scale: true,
-            zIndex: 0
         });
         // Toggles 'open' class on store menu
         $('.store-menu .submenu').on('click', function(){
