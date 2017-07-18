@@ -1,14 +1,13 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Comment extends Model
+class Rate extends Model
 {
     protected $fillable = [
-    'content',
-    'comment_parent_id',
+        'point'
     ]
 
     public function product()

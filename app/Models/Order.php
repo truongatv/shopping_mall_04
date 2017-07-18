@@ -1,15 +1,15 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
 class Order extends Model
 {
-    protected $fillable = [ 
-    'content',
-    'address',
-    'information',
+    protected $fillable = [
+        'content',
+        'address',
+        'information',
     ]
 
     public function order_details()

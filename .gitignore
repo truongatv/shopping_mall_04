@@ -11,5 +11,3 @@ npm-debug.log
 .env
 .DS_Store
 public/assets
-public/img
-public/js/helpers

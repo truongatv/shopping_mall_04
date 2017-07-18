@@ -11,7 +11,7 @@
                     <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
                 </div>
             </div>
-        </form> 
+        </form>
         <!-- Site Logo -->
 
         <!-- Site Navigation -->
@@ -41,16 +41,38 @@
                 <li>
                     <a href="about.html">{{ trans('title.about') }}</a>
                 </li>
+                @if (Auth::guest())
                 <li>
-                    <a href="login.html" class="btn btn-primary">{{ trans('title.login') }}</a>
+                    <a href="{{route('login')}}" class="btn btn-primary">{{ trans('title.login') }}</a>
                 </li>
                 <li>
-                    <a href="signup.html" class="btn btn-success">{{ trans('title.signup')  }}</a>
+                    <a href="{{route('register')}}" class="btn btn-success">{{ trans('title.signup')  }}</a>
                 </li>
+                @else
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                            {{ Auth::user()->name }} <span class="caret"></span>
+                        </a>
+
+                        <ul class="dropdown-menu" role="menu">
+                            <li>
+                                <a href="{{ route('logout') }}"
+                                    onclick="event.preventDefault();
+                                             document.getElementById('logout-form').submit();">
+                                    Logout
+                                </a>
+
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    {{ csrf_field() }}
+                                </form>
+                            </li>
+                        </ul>
+                    </li>
+                @endif
             </ul>
             <!-- END Main Menu -->
         </nav>
         <!-- END Site Navigation -->
     </div>
 </header>
-            
+

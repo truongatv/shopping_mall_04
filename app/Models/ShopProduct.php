@@ -1,15 +1,15 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Shop_Product extends Model
+class ShopProduct extends Model
 {
     protected $fillable = [
-    'shop_product_name',
-    'introdution',
-    ]   
+        'shop_product_name',
+        'introdution',
+    ]
 
 	public function products()
     {

@@ -1,17 +1,17 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
     protected $fillable = [
-    'name',
-    'unit_price',
-    'rate_count',
-    'total_quanity',
-    'top_product',
+        'name',
+        'unit_price',
+        'rate_count',
+        'total_quanity',
+        'top_product',
     ]
 
     public function order_details()

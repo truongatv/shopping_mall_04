@@ -1,22 +1,17 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Rate extends Model
+class Image extends Model
 {
     protected $fillable = [
-    'point'
+        'link'
     ]
 
     public function product()
     {
         return $this->belongsTo(Product::class);
-    }
-
-    public function user()
-    {
-        return $this->belongsTo(User::class);
     }
 }
