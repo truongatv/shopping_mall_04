@@ -15,12 +15,12 @@ class CreateRelationshipsTable extends Migration
     {
         Schema::table('addresses', function (Blueprint $table) {
             $table->integer('user_id')->unsigned();
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');   
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
 
         Schema::table('notifications', function (Blueprint $table) {
             $table->integer('user_id')->unsigned();
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade'); 
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
 
         Schema::table('order_details', function (Blueprint $table) {
@@ -32,14 +32,14 @@ class CreateRelationshipsTable extends Migration
 
         Schema::table('orders', function (Blueprint $table) {
             $table->integer('user_id')->unsigned();
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade'); 
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->integer('payment_id')->unsigned();
             $table->foreign('payment_id')->references('payment_id')->on('payments')->onDelete('cascade');
         });
 
         Schema::table('payments', function (Blueprint $table) {
             $table->integer('payment_type_id')->unsigned();
-            $table->foreign('payment_type_id')->references('payment_type_id')->on('payment_types')->onDelete('cascade'); 
+            $table->foreign('payment_type_id')->references('payment_type_id')->on('payment_types')->onDelete('cascade');
         });
 
         Schema::table('products', function (Blueprint $table) {

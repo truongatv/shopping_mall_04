@@ -1,14 +1,14 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Address extends Model
+class Notification extends Model
 {
     protected $fillable = [
-    'address'
-    ]  
+        'content'
+    ]
 
     public function user()
     {

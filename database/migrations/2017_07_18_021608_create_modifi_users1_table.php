@@ -1,10 +1,12 @@
 <?php
+
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
-class CreateModifiUsersTable extends Migration
+
+class CreateModifiUsers1Table extends Migration
 {
-    /**
+  /**
      * Run the migrations.
      *
      * @return void
@@ -12,12 +14,14 @@ class CreateModifiUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('fullname');
-            $table->string('avatar_image_link');
-            $table->string('phone');
-            $table->string('subcribe')->nullable();
+            $table->dropColumn('fullname');
+            $table->string('avatar_image_link')->nullable()->change();
+            $table->string('phone')->nullable()->change();
+            $table->integer('role')->default(0);
+            $table->string('password')->nullable()->change();
         });
     }
+
     /**
      * Reverse the migrations.
      *
@@ -25,11 +29,13 @@ class CreateModifiUsersTable extends Migration
      */
     public function down()
     {
-         Schema::table('modifi_users', function (Blueprint $table) {
-            $table->dropColumn('fullname');
+         Schema::table('users', function (Blueprint $table) {
             $table->dropColumn('avata_image_link');
             $table->dropColumn('phone');
             $table->dropColumn('subcribe');
+            $table->dropColumn('role');
+            $table->dropColumn('password')->change();
         });
     }
 }
+

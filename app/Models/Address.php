@@ -1,15 +1,15 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Notification extends Model
+class Address extends Model
 {
-    protected $fillable = [ 
-    'content'
-    ]  
-    
+    protected $fillable = [
+        'address'
+    ]
+
     public function user()
     {
         return $this->belongsTo(User::class);
