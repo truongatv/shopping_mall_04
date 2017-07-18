@@ -116,7 +116,7 @@
                         <div class="col-md-6 " data-toggle="animation-appear" data-animation-class="animation-fadeInQuick" data-element-offset="-100">
                             <div class="store-item">
                                 <div class="store-item-rating text-warning">
-                                    <input id="input-1" name="input-1" value="{{$product->rate_count}} "class="rating rating-loading" data-readonly = "true">
+                                    <input id="input-1" name="input-1" value="{{$product->rate_count}} " class="rating rating-loading" data-readonly = "true">
                                 </div>
                                 <div class="store-item-image">
                                     <a href="ecom_product.html">
