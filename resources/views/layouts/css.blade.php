@@ -7,3 +7,4 @@
 <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.css" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href={{ asset("assets/bootstrap-star-rating/css/star-rating.css")}}>
 <link rel="stylesheet" type="text/css" href={{ asset("assets/bootstrap-star-rating/css/theme-krajee-fa.min.css")}}>
+<link rel="stylesheet" type="text/css" href={{ asset("css/profile.css") }}>
