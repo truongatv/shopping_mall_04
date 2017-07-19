@@ -1,12 +1,12 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Model;
 use DB;
 use App\product;
-class Category extends Controller
+
+class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -22,7 +22,7 @@ class Category extends Controller
         return view('All_Product')->with('products',$products);
     }
     public function newArrival()
-    {   
+    {
         $products = DB::table('products')
                     ->join('images','products.product_id','=','images.product_id')
                     ->orderBy('products.created_at')
@@ -31,12 +31,12 @@ class Category extends Controller
         return view('All_Product')->with('products',$products);
     }
     public function topSell()
-    {   
+    {
         $products = DB::table('products')
                     ->join('images','products.product_id','=','images.product_id')
                     ->orderBy('products.top_product')
                     ->paginate(6);
-                    
+
         return view('All_Product')->with('products',$products);
     }
 
