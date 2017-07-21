@@ -18,7 +18,7 @@ class Product extends Model
 
     public function order_details()
     {
-        return $this->hasMany(Order_Detail::class);
+        return $this->hasMany(OrderDetail::class);
     }
 
     public function rates()
@@ -28,7 +28,7 @@ class Product extends Model
 
     public function images()
     {
-        return $this->hasMany(Image::class);
+        return $this->hasMany(Image::class, 'product_id', 'product_id');
     }
 
     public function comments()
@@ -38,11 +38,11 @@ class Product extends Model
 
     public function category()
     {
-        return $this->belongsTo(Categry::class);
+        return $this->belongsTo(Category::class);
     }
 
     public function shop_product()
     {
-        return $this->belongsTo(Shop_Products::class);
+        return $this->belongsTo(ShopProducts::class);
     }
 }

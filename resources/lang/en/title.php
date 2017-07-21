@@ -64,7 +64,11 @@ return [
     'Confirm_Password' => 'Confirm Password',
     'Save' => 'Save',
     'this-is-avatar' => 'this-is-avatar',
-    'Upload_a_different_photo...' => 'Upload a different photo...'
+    'Upload_a_different_photo...' => 'Upload a different photo...',
+    'All_Products'=>'All Products',
+    'New_Arrival'=>'New Arrival',
+    'Top_Sell'=>'Top Sell'
+
 
 
 

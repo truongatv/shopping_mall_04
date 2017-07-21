@@ -20,10 +20,12 @@ Route::get('/redirect/{social}', 'SocialAuthController@redirect');
 Route::get('/callback/{social}', 'SocialAuthController@callback');
 Route::prefix('admin')->middleware(['admin', 'auth'])->group(function () {
 });
-Route::get('category', 'category@index');
+Route::get('category', 'CategoryController@index');
 
 Route::get('category/NewArrival','CategoryController@newArrival');
 Route::get('category/TopSell','CategoryController@topSell');
+Route::get('category/{group}/{name}','CategoryController@typeCategory');
+Route::get('test/{id}', 'CategoryController@test');
 
 
 Route::post('upload', 'UploadController@upload');

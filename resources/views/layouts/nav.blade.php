@@ -4,7 +4,7 @@
         <a href="{{ url('/') }}" class="site-logo">
             <i class="gi gi-flash"></i> <strong>Shopping</strong>Mail
         </a>
-        <form action="ecom_search_results.html" method="post" class="quick-search">
+        <form action="{{ url('search') }}" method="post" class="quick-search">
             <div class="input-group input-group-lg input_quick_search">
                 <input type="text" id="ecom-search" name="ecom-search" class="form-control text-center" placeholder="Search Store..">
                 <div class="input-group-btn">

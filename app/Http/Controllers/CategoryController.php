@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Model;
 use DB;
-use App\product;
+use App\Models\Product;
+use App\Models\Category;
+use App\Models\Image;
 
 class CategoryController extends Controller
 {
@@ -18,8 +20,8 @@ class CategoryController extends Controller
         $products = DB::table('products')
                     ->join('images','products.product_id','=','images.product_id')
                     ->paginate(6);
-
-        return view('All_Product')->with('products',$products);
+        $type = tran('title.All_Products');
+        return view('All_Product')->with(compact('products','type'));
     }
     public function newArrival()
     {
@@ -27,8 +29,8 @@ class CategoryController extends Controller
                     ->join('images','products.product_id','=','images.product_id')
                     ->orderBy('products.created_at')
                     ->paginate(6);
-
-        return view('All_Product')->with('products',$products);
+        $type = tran('title.New_Arrival');
+        return view('All_Product')->with(compact('products','type'));
     }
     public function topSell()
     {
@@ -36,10 +38,22 @@ class CategoryController extends Controller
                     ->join('images','products.product_id','=','images.product_id')
                     ->orderBy('products.top_product')
                     ->paginate(6);
-
-        return view('All_Product')->with('products',$products);
+        $type = tran('title.Top_Sell');
+        return view('All_Product')->with(compact('products','type'));
     }
+    public function test($id)
+    {
+        return view('group_category')->with(compact('id'));
+    }
+    public function typeCategory($group,$name)
+    {
+        $products = Product::whereIn('category_id', function($query) use ($name) {
+            $query->select('category_id')->from('categories')->where('name', $name)->get();
+        })->paginate(6);
+        $type = $name;
 
+        return view('All_Product')->with(compact('products','type'));
+    }
     /**
      * Show the form for creating a new resource.
      *

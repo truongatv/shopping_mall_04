@@ -13,3 +13,5 @@ npm-debug.log
 public/assets
 public/img
 puclic/js/helpers
+storage/debugbar
+config/debugbar.php

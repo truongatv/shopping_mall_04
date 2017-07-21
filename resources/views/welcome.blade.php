@@ -18,71 +18,71 @@
                         <div class="sidebar-block">
                             <ul class="store-menu">
                                 <li>
-                                    <a href="javascript:void(0)" class="submenu"><i class="fa fa-angle-right"></i>{{ trans('title.beauty') }}</a>
+                                    <a href="#" class="submenu"><i class="fa fa-angle-right"></i>{{ trans('title.beauty') }}</a>
                                     <ul>
-                                        <li><a href="javascript:void(0)">{{ trans('title.cosmetics') }}</a></li>
-                                        <li><a href="javascript:void(0)">{{ trans('title.men') }}</a></li>
-                                        <li><a href="javascript:void(0)">{{ trans('title.vitamin') }}</a></li>
-                                        <li><a href="javascript:void(0)">{{ trans('title.health') }}</a></li>
-                                        <li><a href="javascript:void(0)">{{ trans('title.more Beauty') }}</a></li>
+                                        <li><a href="#">{{ trans('title.cosmetics') }}</a></li>
+                                        <li><a href="#">{{ trans('title.men') }}</a></li>
+                                        <li><a href="#">{{ trans('title.vitamin') }}</a></li>
+                                        <li><a href="#">{{ trans('title.health') }}</a></li>
+                                        <li><a href="#">{{ trans('title.more Beauty') }}</a></li>
                                     </ul>
                                 </li>
                                 <li>
-                                    <a href="javascript:void(0)" class="submenu"><i class="fa fa-angle-right"></i>{{ trans('title.food_drink') }}</a>
+                                    <a href="#" class="submenu"><i class="fa fa-angle-right"></i>{{ trans('title.food_drink') }}</a>
                                     <ul>
-                                        <li><a href="javascript:void(0)">{{ trans('title.rice_noodles') }}</a></li>
-                                        <li><a href="javascript:void(0)">{{ trans('title.spice_seasoning') }}</a></li>
-                                        <li><a href="javascript:void(0)">{{ trans('title.dried_canned_recooked') }}</a></li>
-                                        <li><a href="javascript:void(0)">{{ trans('title.sweets_snack') }}</a></li>
-                                        <li><a href="javascript:void(0)">{{ trans('title.tea_coffee') }}</a></li>
-                                        <li><a href="javascript:void(0)">{{ trans('title.sake') }}</a></li>
-                                        <li><a href="javascript:void(0)">{{ trans('title.more_food') }}</a></li>
+                                        <li><a href="#">{{ trans('title.rice_noodles') }}</a></li>
+                                        <li><a href="#">{{ trans('title.spice_seasoning') }}</a></li>
+                                        <li><a href="#">{{ trans('title.dried_canned_recooked') }}</a></li>
+                                        <li><a href="#">{{ trans('title.sweets_snack') }}</a></li>
+                                        <li><a href="#">{{ trans('title.tea_coffee') }}</a></li>
+                                        <li><a href="#">{{ trans('title.sake') }}</a></li>
+                                        <li><a href="#">{{ trans('title.more_food') }}</a></li>
                                     </ul>
                                 </li>
                                 <li>
-                                    <a href="javascript:void(0)" class="submenu"><i class="fa fa-angle-right"></i>{{ trans('title.fashion') }}</a>
+                                    <a href="#" class="submenu"><i class="fa fa-angle-right"></i>{{ trans('title.fashion') }}</a>
                                     <ul>
-                                        <li><a href="javascript:void(0)">{{ trans('title.women_fashion') }}</a></li>
-                                        <li><a href="javascript:void(0)">{{ trans('title.men_fashion') }}</a></li>
-                                        <li><a href="javascript:void(0)">{{ trans('title.kid_fashion') }}</a></li>
-                                        <li><a href="javascript:void(0)">{{ trans('title.baby_fashion') }}</a></li>
-                                        <li><a href="javascript:void(0)">{{ trans('title.luggage') }}</a></li>
-                                        <li><a href="javascript:void(0)">{{ trans('title.more_fashion') }}</a></li>
+                                        <li><a href="#">{{ trans('title.women_fashion') }}</a></li>
+                                        <li><a href="#">{{ trans('title.men_fashion') }}</a></li>
+                                        <li><a href="#">{{ trans('title.kid_fashion') }}</a></li>
+                                        <li><a href="#">{{ trans('title.baby_fashion') }}</a></li>
+                                        <li><a href="#">{{ trans('title.luggage') }}</a></li>
+                                        <li><a href="#">{{ trans('title.more_fashion') }}</a></li>
                                     </ul>
                                 </li>
                                 <li>
-                                    <a href="javascript:void(0)" class="submenu"><i class="fa fa-angle-right"></i>{{ trans('title.electronic') }}</a>
+                                    <a href="#" class="submenu"><i class="fa fa-angle-right"></i>{{ trans('title.electronic') }}</a>
                                     <ul>
-                                        <li><a href="javascript:void(0)">{{ trans('title.gaming') }}</a></li>
-                                        <li><a href="javascript:void(0)">{{ trans('title.camera') }}</a></li>
-                                        <li><a href="javascript:void(0)">{{ trans('title.home') }}</a></li>
-                                        <li><a href="javascript:void(0)">{{ trans('title.accessories') }}</a></li>
-                                        <li><a href="javascript:void(0)">{{ trans('title.more_electronic') }}</a></li>
+                                        <li><a href="#">{{ trans('title.gaming') }}</a></li>
+                                        <li><a href="#">{{ trans('title.camera') }}</a></li>
+                                        <li><a href="#">{{ trans('title.home') }}</a></li>
+                                        <li><a href="#">{{ trans('title.accessories') }}</a></li>
+                                        <li><a href="#">{{ trans('title.more_electronic') }}</a></li>
                                     </ul>
                                 </li>
                                 <li>
-                                    <a href="javascript:void(0)" class="submenu"><i class="fa fa-angle-right"></i>{{ trans('title.Home & Living') }}</a>
+                                    <a href="#" class="submenu"><i class="fa fa-angle-right"></i>{{ trans('title.Home_&_Living') }}</a>
                                     <ul>
-                                        <li><a href="javascript:void(0)">{{ trans('title.Home Decor') }}</a></li>
-                                        <li><a href="javascript:void(0)">{{ trans('title.Baby and Kids') }}</a></li>
-                                        <li><a href="javascript:void(0)">{{ trans('title.Kitchen & Dining') }}</a></li>
-                                        <li><a href="javascript:void(0)">{{ trans('title.Daily Necessities') }}</a></li>
-                                        <li><a href="javascript:void(0)">{{ trans('title.Books/Magazines & DVD') }}</a></li>
-                                        <li><a href="javascript:void(0)">{{ trans('title.Office Supplies') }}</a></li>
-                                        <li><a href="javascript:void(0)">{{ trans('title.Educational Supplies') }}</a></li>
-                                        <li><a href="javascript:void(0)">{{ trans('title.Pet Supplies') }}</a></li>
-                                        <li><a href="javascript:void(0)">{{ trans('title.More Home & Living') }}</a></li>
+                                        <li><a href="#">{{ trans('title.Home_Decor') }}</a></li>
+                                        <li><a href="#">{{ trans('title.Baby_and_Kids') }}</a></li>
+                                        <li><a href="#">{{ trans('title.Kitchen_&_Dining') }}</a></li>
+                                        <li><a href="#">{{ trans('title.Daily_Necessities') }}</a></li>
+                                        <li><a href="#">{{ trans('title.Books/Magazines_&_DVD') }}</a></li>
+                                        <li><a href="#">{{ trans('title.Office_Supplies') }}</a></li>
+                                        <li><a href="#">{{ trans('title.Educational_Supplies') }}</a></li>
+                                        <li><a href="#">{{ trans('title.Pet_Supplies') }}</a></li>
+                                        <li><a href="#">{{ trans('title.More_Home_&_Living') }}</a></li>
                                     </ul>
                                 </li>
                                 <li>
-                                    <a href="javascript:void(0)" class="submenu"><i class="fa fa-angle-right"></i>{{ trans('title.Hobby & Crafts') }}</a>
+                                    <a href="#" class="submenu"><i class="fa fa-angle-right"></i>{{ trans('title.Hobby_&_Crafts') }}</a>
                                     <ul>
-                                        <li><a href="javascript:void(0)">{{ trans('title.Stationery') }}</a></li>
-                                        <li><a href="javascript:void(0)">{{ trans('title.Craft Tools') }}</a></li>
-                                        <li><a href="javascript:void(0)">{{ trans('title.Plastic Models & Figures') }}</a></li>
-                                        <li><a href="javascript:void(0)">{{ trans('title.DIY Tools') }}</a></li>
-                                        <li><a href="javascript:void(0)">{{ trans('title.Cars & Motorcycles') }}</a></li>
-                                        <li><a href="javascript:void(0)">{{ trans('title.More Hobby & Crafts') }}</a></li>
+                                        <li><a href="#">{{ trans('title.Stationery') }}</a></li>
+                                        <li><a href="#">{{ trans('title.Craft_Tools') }}</a></li>
+                                        <li><a href="#">{{ trans('title.Plastic_Models_&_Figures') }}</a></li>
+                                        <li><a href="#">{{ trans('title.DIY_Tools') }}</a></li>
+                                        <li><a href="#">{{ trans('title.Cars_&_Motorcycles') }}</a></li>
+                                        <li><a href="#">{{ trans('title.More_Hobby_&_Crafts') }}</a></li>
                                     </ul>
                                 </li>
 
@@ -129,7 +129,7 @@
                                 <div class="store-item-info clearfix">
                                     <span class="store-item-price themed-color-dark pull-right">$ 79</span>
                                     <a href="ecom_product.html"><strong>Sport Shoes</strong></a><br>
-                                    <small><i class="fa fa-shopping-cart text-muted"></i> <a href="javascript:void(0)" class="text-muted">Add to cart</a></small>
+                                    <small><i class="fa fa-shopping-cart text-muted"></i> <a href="#" class="text-muted">Add to cart</a></small>
                                 </div>
                             </div>
                         </div>
@@ -150,7 +150,7 @@
                                 <div class="store-item-info clearfix">
                                     <span class="store-item-price themed-color-dark pull-right">$ 99</span>
                                     <a href="ecom_product.html"><strong>Jacket</strong></a><br>
-                                    <small><i class="fa fa-shopping-cart text-muted"></i> <a href="javascript:void(0)" class="text-muted">Add to cart</a></small>
+                                    <small><i class="fa fa-shopping-cart text-muted"></i> <a href="#" class="text-muted">Add to cart</a></small>
                                 </div>
                             </div>
                         </div>
@@ -171,7 +171,7 @@
                                 <div class="store-item-info clearfix">
                                     <span class="store-item-price themed-color-dark pull-right">$ 299</span>
                                     <a href="ecom_product.html"><strong>Watch</strong></a><br>
-                                    <small><i class="fa fa-shopping-cart text-muted"></i> <a href="javascript:void(0)" class="text-muted">Add to cart</a></small>
+                                    <small><i class="fa fa-shopping-cart text-muted"></i> <a href="#" class="text-muted">Add to cart</a></small>
                                 </div>
                             </div>
                         </div>
@@ -200,7 +200,7 @@
                                 <div class="store-item-info clearfix">
                                     <span class="store-item-price themed-color-dark pull-right">$ 109</span>
                                     <a href="ecom_product.html"><strong>Sunglasses</strong></a><br>
-                                    <small><i class="fa fa-shopping-cart text-muted"></i> <a href="javascript:void(0)" class="text-muted">Add to cart</a></small>
+                                    <small><i class="fa fa-shopping-cart text-muted"></i> <a href="#" class="text-muted">Add to cart</a></small>
                                 </div>
                             </div>
                         </div>
@@ -221,7 +221,7 @@
                                 <div class="store-item-info clearfix">
                                     <span class="store-item-price themed-color-dark pull-right">$ 59</span>
                                     <a href="ecom_product.html"><strong>Gloves</strong></a><br>
-                                    <small><i class="fa fa-shopping-cart text-muted"></i> <a href="javascript:void(0)" class="text-muted">Add to cart</a></small>
+                                    <small><i class="fa fa-shopping-cart text-muted"></i> <a href="#" class="text-muted">Add to cart</a></small>
                                 </div>
                             </div>
                         </div>
@@ -242,7 +242,7 @@
                                 <div class="store-item-info clearfix">
                                     <span class="store-item-price themed-color-dark pull-right">$ 99</span>
                                     <a href="ecom_product.html"><strong>Jacket</strong></a><br>
-                                    <small><i class="fa fa-shopping-cart text-muted"></i> <a href="javascript:void(0)" class="text-muted">Add to cart</a></small>
+                                    <small><i class="fa fa-shopping-cart text-muted"></i> <a href="#" class="text-muted">Add to cart</a></small>
                                 </div>
                             </div>
                         </div>
@@ -263,7 +263,7 @@
                                 <div class="store-item-info clearfix">
                                     <span class="store-item-price themed-color-dark pull-right">$ 79</span>
                                     <a href="ecom_product.html"><strong>Headset</strong></a><br>
-                                    <small><i class="fa fa-shopping-cart text-muted"></i> <a href="javascript:void(0)" class="text-muted">Add to cart</a></small>
+                                    <small><i class="fa fa-shopping-cart text-muted"></i> <a href="#" class="text-muted">Add to cart</a></small>
                                 </div>
                             </div>
                         </div>
@@ -284,7 +284,7 @@
                                 <div class="store-item-info clearfix">
                                     <span class="store-item-price themed-color-dark pull-right">$ 1.599</span>
                                     <a href="ecom_product.html"><strong>Laptop</strong></a><br>
-                                    <small><i class="fa fa-shopping-cart text-muted"></i> <a href="javascript:void(0)" class="text-muted">Add to cart</a></small>
+                                    <small><i class="fa fa-shopping-cart text-muted"></i> <a href="#" class="text-muted">Add to cart</a></small>
                                 </div>
                             </div>
                         </div>
@@ -305,7 +305,7 @@
                                 <div class="store-item-info clearfix">
                                     <span class="store-item-price themed-color-dark pull-right">$ 149</span>
                                     <a href="ecom_product.html"><strong>Sunglasses</strong></a><br>
-                                    <small><i class="fa fa-shopping-cart text-muted"></i> <a href="javascript:void(0)" class="text-muted">Add to cart</a></small>
+                                    <small><i class="fa fa-shopping-cart text-muted"></i> <a href="#" class="text-muted">Add to cart</a></small>
                                 </div>
                             </div>
                         </div>
