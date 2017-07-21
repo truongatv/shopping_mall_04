@@ -1,4 +1,7 @@
 @extends('layouts.master')
+@section('css')
+    {!! Html::style('css/profile.css') !!}
+    @endsection
 @section('text-center')
     <section class="site-section site-section-light site-section-top themed-background-dark">
         <div class="container text-center">

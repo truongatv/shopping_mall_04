@@ -93,7 +93,7 @@
                         <!-- Shopping Cart -->
                         <div class="sidebar-block">
                             <div class="row">
-                                <div class="col-xs-6 push-bit">
+                                <div class="col-xs-6">
                                     <span class="h3">$ 750<br><small><em>3 Items</em></small></span>
                                 </div>
                                 <div class="col-xs-6">
@@ -119,8 +119,8 @@
                                     <input id="input-1" name="input-1" value="{{$product->rate_count}} " class="rating rating-loading" data-readonly = "true">
                                 </div>
                                 <div class="store-item-image">
-                                    <a href="ecom_product.html">
-                                        <img src={{$product->images[0]->link}} alt="" class="img-responsive">
+                                    <a href="{{ route('product_details', $product->product_id) }}">
+                                        <img src={{$product->link}} alt="" class="img-responsive">
                                     </a>
                                 </div>
                                 <div class="store-item-info clearfix">

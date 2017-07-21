@@ -2,7 +2,7 @@
 @section('text-center')
 	<section class="site-section site-section-light site-section-top themed-background-dark">
         <div class="container text-center">
-            <h1 class="animation-slideDown"><strong>Explore over 5.000 products!</strong></h1>
+            <h1 class="animation-slideDown"><strong>Explore over {{ $counts }} products!</strong></h1>
         </div>
     </section>
    	@endsection
@@ -112,6 +112,7 @@
                     <h2 class="site-heading"><strong>New</strong> Arrivals</h2>
                     <hr>
                     <div class="row store-items">
+                    @foreach($newArrivals as $product)
                         <div class="col-md-4 " data-toggle="animation-appear" data-animation-class="animation-fadeInQuick" data-element-offset="-100">
                             <div class="store-item">
                                 <div class="store-item-rating text-warning">
@@ -122,67 +123,27 @@
                                     <i class="fa fa-star-half-o"></i>
                                 </div>
                                 <div class="store-item-image">
-                                    <a href="ecom_product.html">
-                                        <img src="img/placeholders/photos/photo26.jpg" alt="" class="img-responsive">
+                                    <a href="{{ route('product_details', $product->product_id) }}">
+                                    <img src="{{ $product -> images[0] -> link }}" alt="" class="img-responsive">
                                     </a>
                                 </div>
                                 <div class="store-item-info clearfix">
-                                    <span class="store-item-price themed-color-dark pull-right">$ 79</span>
-                                    <a href="ecom_product.html"><strong>Sport Shoes</strong></a><br>
-                                    <small><i class="fa fa-shopping-cart text-muted"></i> <a href="#" class="text-muted">Add to cart</a></small>
+                                    <span class="store-item-price themed-color-dark pull-right" {{ $product -> unit_price }}></span>
+                                    <a href=""><strong>{{ $product -> name }}</strong></a><br>
+                                    <small><i class="fa fa-shopping-cart text-muted"></i> <a href="javascript:void(0)" class="text-muted">Add to cart</a></small>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4" data-toggle="animation-appear" data-animation-class="animation-fadeInQuick" data-element-offset="-100">
-                            <div class="store-item">
-                                <div class="store-item-rating text-warning">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star-half-o"></i>
-                                </div>
-                                <div class="store-item-image">
-                                    <a href="ecom_product.html">
-                                        <img src="img/placeholders/photos/photo29.jpg" alt="" class="img-responsive">
-                                    </a>
-                                </div>
-                                <div class="store-item-info clearfix">
-                                    <span class="store-item-price themed-color-dark pull-right">$ 99</span>
-                                    <a href="ecom_product.html"><strong>Jacket</strong></a><br>
-                                    <small><i class="fa fa-shopping-cart text-muted"></i> <a href="#" class="text-muted">Add to cart</a></small>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4" data-toggle="animation-appear" data-animation-class="animation-fadeInQuick" data-element-offset="-100">
-                            <div class="store-item">
-                                <div class="store-item-rating text-warning">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star-half-o"></i>
-                                </div>
-                                <div class="store-item-image">
-                                    <a href="ecom_product.html">
-                                        <img src="img/placeholders/photos/photo27.jpg" alt="" class="img-responsive">
-                                    </a>
-                                </div>
-                                <div class="store-item-info clearfix">
-                                    <span class="store-item-price themed-color-dark pull-right">$ 299</span>
-                                    <a href="ecom_product.html"><strong>Watch</strong></a><br>
-                                    <small><i class="fa fa-shopping-cart text-muted"></i> <a href="#" class="text-muted">Add to cart</a></small>
-                                </div>
-                            </div>
-                        </div>
+                        @endforeach
                         <div class="col-md-12 text-right">
-                            <a href="{{ url('category/TopSell')}}"><strong>View All</strong> <i class="fa fa-arrow-right"></i></a>
+                            <a href="{{ url('category/NewArrival')}}"><strong>View All</strong> <i class="fa fa-arrow-right"></i></a>
                         </div>
                     </div>
                     <!-- END New Arrivals -->
                     <h2 class="site-heading"><strong>Best</strong> Sellers</h2>
                     <hr>
                     <div class="row store-items">
+                    @foreach($topSells as $product)
                         <div class="col-md-4" data-toggle="animation-appear" data-animation-class="animation-fadeInQuick" data-element-offset="-100">
                             <div class="store-item">
                                 <div class="store-item-rating text-warning">
@@ -193,124 +154,20 @@
                                     <i class="fa fa-star-half-o"></i>
                                 </div>
                                 <div class="store-item-image">
-                                    <a href="ecom_product.html">
-                                        <img src="img/placeholders/photos/photo25.jpg" alt="" class="img-responsive">
+                                    <a href="{{ route('product_details', $product->product_id) }}">
+                                        <img src="{{ $product -> images[0] -> link }}" alt="" class="img-responsive">
                                     </a>
                                 </div>
                                 <div class="store-item-info clearfix">
-                                    <span class="store-item-price themed-color-dark pull-right">$ 109</span>
-                                    <a href="ecom_product.html"><strong>Sunglasses</strong></a><br>
-                                    <small><i class="fa fa-shopping-cart text-muted"></i> <a href="#" class="text-muted">Add to cart</a></small>
+                                    <span class="store-item-price themed-color-dark pull-right">{{ $product->unit_price }}</span>
+                                    <a href=""><strong>{{ $product->name }}</strong></a><br>
+                                    <small><i class="fa fa-shopping-cart text-muted"></i> <a href="javascript:void(0)" class="text-muted">Add to cart</a></small>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4" data-toggle="animation-appear" data-animation-class="animation-fadeInQuick" data-element-offset="-100">
-                            <div class="store-item">
-                                <div class="store-item-rating text-warning">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star-half-o"></i>
-                                </div>
-                                <div class="store-item-image">
-                                    <a href="ecom_product.html">
-                                        <img src="img/placeholders/photos/photo28.jpg" alt="" class="img-responsive">
-                                    </a>
-                                </div>
-                                <div class="store-item-info clearfix">
-                                    <span class="store-item-price themed-color-dark pull-right">$ 59</span>
-                                    <a href="ecom_product.html"><strong>Gloves</strong></a><br>
-                                    <small><i class="fa fa-shopping-cart text-muted"></i> <a href="#" class="text-muted">Add to cart</a></small>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4" data-toggle="animation-appear" data-animation-class="animation-fadeInQuick" data-element-offset="-100">
-                            <div class="store-item">
-                                <div class="store-item-rating text-warning">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star-half-o"></i>
-                                </div>
-                                <div class="store-item-image">
-                                    <a href="ecom_product.html">
-                                        <img src="img/placeholders/photos/photo30.jpg" alt="" class="img-responsive">
-                                    </a>
-                                </div>
-                                <div class="store-item-info clearfix">
-                                    <span class="store-item-price themed-color-dark pull-right">$ 99</span>
-                                    <a href="ecom_product.html"><strong>Jacket</strong></a><br>
-                                    <small><i class="fa fa-shopping-cart text-muted"></i> <a href="#" class="text-muted">Add to cart</a></small>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4" data-toggle="animation-appear" data-animation-class="animation-fadeInQuick" data-element-offset="-100">
-                            <div class="store-item">
-                                <div class="store-item-rating text-warning">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star-half-o"></i>
-                                </div>
-                                <div class="store-item-image">
-                                    <a href="ecom_product.html">
-                                        <img src="img/placeholders/photos/photo32.jpg" alt="" class="img-responsive">
-                                    </a>
-                                </div>
-                                <div class="store-item-info clearfix">
-                                    <span class="store-item-price themed-color-dark pull-right">$ 79</span>
-                                    <a href="ecom_product.html"><strong>Headset</strong></a><br>
-                                    <small><i class="fa fa-shopping-cart text-muted"></i> <a href="#" class="text-muted">Add to cart</a></small>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4" data-toggle="animation-appear" data-animation-class="animation-fadeInQuick" data-element-offset="-100">
-                            <div class="store-item">
-                                <div class="store-item-rating text-warning">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star-half-o"></i>
-                                </div>
-                                <div class="store-item-image">
-                                    <a href="ecom_product.html">
-                                        <img src="img/placeholders/photos/photo35.jpg" alt="" class="img-responsive">
-                                    </a>
-                                </div>
-                                <div class="store-item-info clearfix">
-                                    <span class="store-item-price themed-color-dark pull-right">$ 1.599</span>
-                                    <a href="ecom_product.html"><strong>Laptop</strong></a><br>
-                                    <small><i class="fa fa-shopping-cart text-muted"></i> <a href="#" class="text-muted">Add to cart</a></small>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4" data-toggle="animation-appear" data-animation-class="animation-fadeInQuick" data-element-offset="-100">
-                            <div class="store-item">
-                                <div class="store-item-rating text-warning">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star-half-o"></i>
-                                </div>
-                                <div class="store-item-image">
-                                    <a href="ecom_product.html">
-                                        <img src="img/placeholders/photos/photo33.jpg" alt="" class="img-responsive">
-                                    </a>
-                                </div>
-                                <div class="store-item-info clearfix">
-                                    <span class="store-item-price themed-color-dark pull-right">$ 149</span>
-                                    <a href="ecom_product.html"><strong>Sunglasses</strong></a><br>
-                                    <small><i class="fa fa-shopping-cart text-muted"></i> <a href="#" class="text-muted">Add to cart</a></small>
-                                </div>
-                            </div>
-                        </div>
+                    @endforeach
                         <div class="col-md-12 text-right">
-                            <a href="{{url('category/NewArrival')}}"><strong>View All</strong> <i class="fa fa-arrow-right"></i></a>
+                            <a href="{{url('category/TopSell')}}"><strong>View All</strong> <i class="fa fa-arrow-right"></i></a>
                         </div>
                     </div>
                     <!-- END Best Sellers -->
