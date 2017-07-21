@@ -67,9 +67,6 @@ return [
     'Upload_a_different_photo...' => 'Upload a different photo...',
     'All_Products'=>'All Products',
     'New_Arrival'=>'New Arrival',
-    'Top_Sell'=>'Top Sell'
-
-
-
-
+    'Top_Sell'=>'Top Sell',
+    'keep_camp_and_love_shopping!' => 'KEEP CAMP AND LOVE SHOPPING!',
 ];

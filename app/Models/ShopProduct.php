@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class ShopProduct extends Model
 {
+    protected $primaryKey = 'shop_product_id';
+
     protected $fillable = [
         'shop_product_name',
         'introdution',

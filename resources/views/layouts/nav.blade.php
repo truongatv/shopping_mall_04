@@ -33,7 +33,7 @@
                 </li>
                 <!-- END Menu Toggle -->
                 <li>
-                    <a href="#"></i>{{ trans('title.home') }}</a>
+                    <a href="/"></i>{{ trans('title.home') }}</a>
                 </li>
                 <li>
                     <a href="contact.html">{{ trans('title.contact') }}</a>
@@ -64,7 +64,7 @@
                                 <a href="{{ route('logout') }}"
                                     onclick="event.preventDefault();
                                              document.getElementById('logout-form').submit();">
-                                    Logout
+                                    {{ trans('auth.logout')  }}
                                 </a>
 
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

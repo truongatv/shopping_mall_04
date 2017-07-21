@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
+    protected $primaryKey = 'product_id';
+
     protected $fillable = [
         'name',
         'unit_price',
@@ -41,8 +43,8 @@ class Product extends Model
         return $this->belongsTo(Category::class);
     }
 
-    public function shop_product()
+    public function shopProduct()
     {
-        return $this->belongsTo(ShopProducts::class);
+        return $this->belongsTo(ShopProduct::class, 'shop_product_id', 'shop_product_id');
     }
 }
