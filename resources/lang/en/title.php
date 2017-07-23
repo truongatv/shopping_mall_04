@@ -69,4 +69,15 @@ return [
     'New_Arrival'=>'New Arrival',
     'Top_Sell'=>'Top Sell',
     'keep_camp_and_love_shopping!' => 'KEEP CAMP AND LOVE SHOPPING!',
+    'Price_Range' => 'Price Range',
+    'filtes' => 'Filters',
+    'Categories' => 'Categories',
+    'Rating'=>'Rating',
+    'Clothes'=>'Clothes',
+    'Electronics'=>'Electronics',
+    'Games'=>'Gamges',
+    'Sports'=>'Sports'
+
+
+
 ];

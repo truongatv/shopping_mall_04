@@ -15,78 +15,7 @@
                     <aside class="sidebar site-block">
                         <!-- Store Menu -->
                         <!-- Store Menu functionality is initialized in js/app.js -->
-                        <div class="sidebar-block">
-                            <ul class="store-menu">
-                                <li>
-                                    <a href="javascript:void(0)" class="submenu"><i class="fa fa-angle-right"></i>{{ trans('title.beauty') }}</a>
-                                    <ul>
-                                        <li><a href="javascript:void(0)">{{ trans('title.cosmetics') }}</a></li>
-                                        <li><a href="javascript:void(0)">{{ trans('title.men') }}</a></li>
-                                        <li><a href="javascript:void(0)">{{ trans('title.vitamin') }}</a></li>
-                                        <li><a href="javascript:void(0)">{{ trans('title.health') }}</a></li>
-                                        <li><a href="javascript:void(0)">{{ trans('title.more Beauty') }}</a></li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0)" class="submenu"><i class="fa fa-angle-right"></i>{{ trans('title.food_drink') }}</a>
-                                    <ul>
-                                        <li><a href="javascript:void(0)">{{ trans('title.rice_noodles') }}</a></li>
-                                        <li><a href="javascript:void(0)">{{ trans('title.spice_seasoning') }}</a></li>
-                                        <li><a href="javascript:void(0)">{{ trans('title.dried_canned_recooked') }}</a></li>
-                                        <li><a href="javascript:void(0)">{{ trans('title.sweets_snack') }}</a></li>
-                                        <li><a href="javascript:void(0)">{{ trans('title.tea_coffee') }}</a></li>
-                                        <li><a href="javascript:void(0)">{{ trans('title.sake') }}</a></li>
-                                        <li><a href="javascript:void(0)">{{ trans('title.more_food') }}</a></li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0)" class="submenu"><i class="fa fa-angle-right"></i>{{ trans('title.fashion') }}</a>
-                                    <ul>
-                                        <li><a href="javascript:void(0)">{{ trans('title.women_fashion') }}</a></li>
-                                        <li><a href="javascript:void(0)">{{ trans('title.men_fashion') }}</a></li>
-                                        <li><a href="javascript:void(0)">{{ trans('title.kid_fashion') }}</a></li>
-                                        <li><a href="javascript:void(0)">{{ trans('title.baby_fashion') }}</a></li>
-                                        <li><a href="javascript:void(0)">{{ trans('title.luggage') }}</a></li>
-                                        <li><a href="javascript:void(0)">{{ trans('title.more_fashion') }}</a></li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0)" class="submenu"><i class="fa fa-angle-right"></i>{{ trans('title.electronic') }}</a>
-                                    <ul>
-                                        <li><a href="javascript:void(0)">{{ trans('title.gaming') }}</a></li>
-                                        <li><a href="javascript:void(0)">{{ trans('title.camera') }}</a></li>
-                                        <li><a href="javascript:void(0)">{{ trans('title.home') }}</a></li>
-                                        <li><a href="javascript:void(0)">{{ trans('title.accessories') }}</a></li>
-                                        <li><a href="javascript:void(0)">{{ trans('title.more_electronic') }}</a></li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0)" class="submenu"><i class="fa fa-angle-right"></i>{{ trans('title.Home & Living') }}</a>
-                                    <ul>
-                                        <li><a href="javascript:void(0)">{{ trans('title.Home Decor') }}</a></li>
-                                        <li><a href="javascript:void(0)">{{ trans('title.Baby and Kids') }}</a></li>
-                                        <li><a href="javascript:void(0)">{{ trans('title.Kitchen & Dining') }}</a></li>
-                                        <li><a href="javascript:void(0)">{{ trans('title.Daily Necessities') }}</a></li>
-                                        <li><a href="javascript:void(0)">{{ trans('title.Books/Magazines & DVD') }}</a></li>
-                                        <li><a href="javascript:void(0)">{{ trans('title.Office Supplies') }}</a></li>
-                                        <li><a href="javascript:void(0)">{{ trans('title.Educational Supplies') }}</a></li>
-                                        <li><a href="javascript:void(0)">{{ trans('title.Pet Supplies') }}</a></li>
-                                        <li><a href="javascript:void(0)">{{ trans('title.More Home & Living') }}</a></li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0)" class="submenu"><i class="fa fa-angle-right"></i>{{ trans('title.Hobby & Crafts') }}</a>
-                                    <ul>
-                                        <li><a href="javascript:void(0)">{{ trans('title.Stationery') }}</a></li>
-                                        <li><a href="javascript:void(0)">{{ trans('title.Craft Tools') }}</a></li>
-                                        <li><a href="javascript:void(0)">{{ trans('title.Plastic Models & Figures') }}</a></li>
-                                        <li><a href="javascript:void(0)">{{ trans('title.DIY Tools') }}</a></li>
-                                        <li><a href="javascript:void(0)">{{ trans('title.Cars & Motorcycles') }}</a></li>
-                                        <li><a href="javascript:void(0)">{{ trans('title.More Hobby & Crafts') }}</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </div>
+                        @include('layouts.side_bar')
                         <!-- END Store Menu -->
                         <div class="sidebar-block">
                             <div class="row">

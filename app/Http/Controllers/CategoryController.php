@@ -17,35 +17,30 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $products = DB::table('products')
-                    ->join('images','products.product_id','=','images.product_id')
-                    ->paginate(6);
-        $type = tran('title.All_Products');
-        return view('All_Product')->with(compact('products','type'));
+        $products = Product::paginate(6);
+        $type = trans('title.All_Products');
+
+        return view('All_Product')->with(compact('products', 'type'));
     }
     public function newArrival()
     {
-        $products = DB::table('products')
-                    ->join('images','products.product_id','=','images.product_id')
-                    ->orderBy('products.created_at')
-                    ->paginate(6);
-        $type = tran('title.New_Arrival');
-        return view('All_Product')->with(compact('products','type'));
+        $products = Product::orderBy('products.created_at')->paginate(6);
+        $type = trans('title.New_Arrival');
+
+        return view('All_Product')->with(compact('products', 'type'));
     }
     public function topSell()
     {
-        $products = DB::table('products')
-                    ->join('images','products.product_id','=','images.product_id')
-                    ->orderBy('products.top_product')
-                    ->paginate(6);
-        $type = tran('title.Top_Sell');
-        return view('All_Product')->with(compact('products','type'));
+        $type = trans('title.Top_Sell');
+        $products = Product::orderBy('products.top_product')->paginate(6);
+
+        return view('All_Product')->with(compact('products', 'type'));
     }
     public function test($id)
     {
         return view('group_category')->with(compact('id'));
     }
-    public function typeCategory($group,$name)
+    public function typeCategory($group, $name)
     {
         $products = Product::whereIn('category_id', function($query) use ($name) {
             $query->select('category_id')->from('categories')->where('name', $name)->get();
@@ -53,6 +48,19 @@ class CategoryController extends Controller
         $type = $name;
 
         return view('All_Product')->with(compact('products','type'));
+    }
+    public function search(Request $request)
+    {
+        $name = $request->input('ecom-search');
+        $products = Product::where('name', $name)->paginate(6);
+        if (count($products) == 0) {
+            $products = Product::whereIn('shop_product_id', function($query) use ($name) {
+                $query->select('shop_product_id')->from('shop_products')->where('shop_product_name', $name)->get();
+            })->paginate(6);
+        }
+        $type = $name;
+
+        return view('search_product')->with(compact('products', 'type'));
     }
     /**
      * Show the form for creating a new resource.

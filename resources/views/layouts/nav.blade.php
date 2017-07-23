@@ -5,6 +5,7 @@
             <i class="gi gi-flash"></i> <strong>Shopping</strong>Mail
         </a>
         <form action="{{ url('search') }}" method="post" class="quick-search">
+            {{ csrf_field() }}
             <div class="input-group input-group-lg input_quick_search">
                 <input type="text" id="ecom-search" name="ecom-search" class="form-control text-center" placeholder="Search Store..">
                 <div class="input-group-btn">
@@ -33,7 +34,7 @@
                 </li>
                 <!-- END Menu Toggle -->
                 <li>
-                    <a href="/"></i>{{ trans('title.home') }}</a>
+                    <a href="#"></i>{{ trans('title.home') }}</a>
                 </li>
                 <li>
                     <a href="contact.html">{{ trans('title.contact') }}</a>
@@ -64,7 +65,7 @@
                                 <a href="{{ route('logout') }}"
                                     onclick="event.preventDefault();
                                              document.getElementById('logout-form').submit();">
-                                    {{ trans('auth.logout')  }}
+                                    Logout
                                 </a>
 
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
