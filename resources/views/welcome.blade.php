@@ -14,80 +14,8 @@
                 <div class="col-md-4 col-lg-3">
                     <aside class="sidebar site-block">
                         <!-- Store Menu -->
+                        @include('layouts.side_bar')
                         <!-- Store Menu functionality is initialized in js/app.js -->
-                        <div class="sidebar-block">
-                            <ul class="store-menu">
-                                <li>
-                                    <a href="#" class="submenu"><i class="fa fa-angle-right"></i>{{ trans('title.beauty') }}</a>
-                                    <ul>
-                                        <li><a href="#">{{ trans('title.cosmetics') }}</a></li>
-                                        <li><a href="#">{{ trans('title.men') }}</a></li>
-                                        <li><a href="#">{{ trans('title.vitamin') }}</a></li>
-                                        <li><a href="#">{{ trans('title.health') }}</a></li>
-                                        <li><a href="#">{{ trans('title.more Beauty') }}</a></li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a href="#" class="submenu"><i class="fa fa-angle-right"></i>{{ trans('title.food_drink') }}</a>
-                                    <ul>
-                                        <li><a href="#">{{ trans('title.rice_noodles') }}</a></li>
-                                        <li><a href="#">{{ trans('title.spice_seasoning') }}</a></li>
-                                        <li><a href="#">{{ trans('title.dried_canned_recooked') }}</a></li>
-                                        <li><a href="#">{{ trans('title.sweets_snack') }}</a></li>
-                                        <li><a href="#">{{ trans('title.tea_coffee') }}</a></li>
-                                        <li><a href="#">{{ trans('title.sake') }}</a></li>
-                                        <li><a href="#">{{ trans('title.more_food') }}</a></li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a href="#" class="submenu"><i class="fa fa-angle-right"></i>{{ trans('title.fashion') }}</a>
-                                    <ul>
-                                        <li><a href="#">{{ trans('title.women_fashion') }}</a></li>
-                                        <li><a href="#">{{ trans('title.men_fashion') }}</a></li>
-                                        <li><a href="#">{{ trans('title.kid_fashion') }}</a></li>
-                                        <li><a href="#">{{ trans('title.baby_fashion') }}</a></li>
-                                        <li><a href="#">{{ trans('title.luggage') }}</a></li>
-                                        <li><a href="#">{{ trans('title.more_fashion') }}</a></li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a href="#" class="submenu"><i class="fa fa-angle-right"></i>{{ trans('title.electronic') }}</a>
-                                    <ul>
-                                        <li><a href="#">{{ trans('title.gaming') }}</a></li>
-                                        <li><a href="#">{{ trans('title.camera') }}</a></li>
-                                        <li><a href="#">{{ trans('title.home') }}</a></li>
-                                        <li><a href="#">{{ trans('title.accessories') }}</a></li>
-                                        <li><a href="#">{{ trans('title.more_electronic') }}</a></li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a href="#" class="submenu"><i class="fa fa-angle-right"></i>{{ trans('title.Home_&_Living') }}</a>
-                                    <ul>
-                                        <li><a href="#">{{ trans('title.Home_Decor') }}</a></li>
-                                        <li><a href="#">{{ trans('title.Baby_and_Kids') }}</a></li>
-                                        <li><a href="#">{{ trans('title.Kitchen_&_Dining') }}</a></li>
-                                        <li><a href="#">{{ trans('title.Daily_Necessities') }}</a></li>
-                                        <li><a href="#">{{ trans('title.Books/Magazines_&_DVD') }}</a></li>
-                                        <li><a href="#">{{ trans('title.Office_Supplies') }}</a></li>
-                                        <li><a href="#">{{ trans('title.Educational_Supplies') }}</a></li>
-                                        <li><a href="#">{{ trans('title.Pet_Supplies') }}</a></li>
-                                        <li><a href="#">{{ trans('title.More_Home_&_Living') }}</a></li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a href="#" class="submenu"><i class="fa fa-angle-right"></i>{{ trans('title.Hobby_&_Crafts') }}</a>
-                                    <ul>
-                                        <li><a href="#">{{ trans('title.Stationery') }}</a></li>
-                                        <li><a href="#">{{ trans('title.Craft_Tools') }}</a></li>
-                                        <li><a href="#">{{ trans('title.Plastic_Models_&_Figures') }}</a></li>
-                                        <li><a href="#">{{ trans('title.DIY_Tools') }}</a></li>
-                                        <li><a href="#">{{ trans('title.Cars_&_Motorcycles') }}</a></li>
-                                        <li><a href="#">{{ trans('title.More_Hobby_&_Crafts') }}</a></li>
-                                    </ul>
-                                </li>
-
-                            </ul>
-                        </div>
                         <!-- END Store Menu -->
 
                         <!-- Shopping Cart -->
