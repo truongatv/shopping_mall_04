@@ -62,6 +62,11 @@
                                 </a>
                             </li>
                             <li>
+                                <a href="{{ action('HistoryOrdersController@showHistory') }}">
+                                    Your orders
+                                </a>
+                            </li>
+                            <li>
                                 <a href="{{ route('logout') }}"
                                     onclick="event.preventDefault();
                                              document.getElementById('logout-form').submit();">

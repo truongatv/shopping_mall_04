@@ -50,3 +50,7 @@ Route::get('/shop_details/{shop_product_id}', 'ShopDetailsController@getDetails'
 //search
 Route::post('search', 'CategoryController@search');
 
+//add cart
+Route::post('/add_cart/{produc_id}', 'AddCartController@create')->name('add_cart');
+
+Route::get('view_cart/{user_id}', 'ViewCartController@viewCart')->name('view_cart');

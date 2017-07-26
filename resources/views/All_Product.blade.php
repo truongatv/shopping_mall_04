@@ -2,7 +2,7 @@
 @section('text-center')
     <section class="site-section site-section-light site-section-top themed-background-dark">
         <div class="container text-center">
-            <h1 class="animation-slideDown"><strong>Explore over {{$products->total()}} products!</strong></h1>
+            <h1 class="animation-slideDown"><strong>Explore over {{ $products->total() }} products!</strong></h1>
         </div>
     </section>
     @endsection
@@ -17,20 +17,6 @@
                         <!-- Store Menu functionality is initialized in js/app.js -->
                         @include('layouts.side_bar')
                         <!-- END Store Menu -->
-
-                        <!-- Shopping Cart -->
-                        <div class="sidebar-block">
-                            <div class="row">
-                                <div class="col-xs-6">
-                                    <span class="h3">$ 750<br><small><em>3 Items</em></small></span>
-                                </div>
-                                <div class="col-xs-6">
-                                    <a href="ecom_shopping_cart.html" class="btn btn-sm btn-block btn-success">VIEW CART</a>
-                                    <a href="ecom_checkout.html" class="btn btn-sm btn-block btn-danger">CHECKOUT</a>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- END Shopping Cart -->
                     </aside>
                 </div>
                 <!-- END Sidebar -->
