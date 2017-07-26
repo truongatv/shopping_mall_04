@@ -10,15 +10,15 @@ class OrderDetail extends Model
         'content',
         'unit_price',
         'quality',
-    ]
+    ];
 
  	public function product()
     {
-        return $this->belongsTo(Product::class);
+        return $this->belongsTo(Product::class,'product_id','product_id');
     }
 
     public function oder()
     {
-        return $this->belongsTo(Order::class);
+        return $this->belongsTo(Order::class,'order_id','order_id');
     }
 }
