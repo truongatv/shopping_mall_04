@@ -75,7 +75,7 @@ return [
     'Rating'=>'Rating',
     'Clothes'=>'Clothes',
     'Electronics'=>'Electronics',
-    'Games'=>'Gamges',
+    'Games'=>'Games',
     'Sports'=>'Sports'
 
 

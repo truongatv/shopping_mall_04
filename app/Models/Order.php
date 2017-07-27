@@ -6,15 +6,17 @@ use Illuminate\Database\Eloquent\Model;
 
 class Order extends Model
 {
+    protected $primaryKey = 'order_id';
+    
     protected $fillable = [
         'content',
         'address',
         'information',
-    ]
+    ];
 
     public function order_details()
     {
-        return $this->hasMany(Order_Detail::class);
+        return $this->hasMany(OrderDetail::class,'order_id','order_id');
     }
 
     public function user()

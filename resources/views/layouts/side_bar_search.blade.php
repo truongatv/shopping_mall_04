@@ -41,11 +41,11 @@
             </div>
             <div class="col-xs-12">
                 <label class="checkbox-inline" for="ecom-filter-category3">
-                    <input type="checkbox" id="ecom-filter-category3" name="ecom-filter-category3" value="3" > <strong>{{ trans('title.fashion') }}</strong> (564)
+                    <input type="checkbox" id="ecom-filter-category3" name="ecom-filter-category3" value="3"> <strong>{{ trans('title.Games') }}</strong> (564)
                 </label>
             </div>
-            <div class="col-xs-12">
-                <label class="checkbox-inline" for="ecom-filter-category4">
+             <div class="col-xs-12">
+                <label>
                     <input type="checkbox" id="ecom-filter-category4" name="ecom-filter-category4" value="4" > <strong>{{ trans('title.electronic') }}</strong> (754)
                 </label>
             </div>
@@ -61,4 +61,27 @@
             </div>
         </div>
     </form>
+</div>
+<div class="sidebar-block">
+    @if(Auth::check())
+        <div class="row">
+            <div class="col-xs-6">
+                <span class="h3">$ {{ $order->total_price }}<br><small><em>{{ $order->order_details()->count() }} Items</em></small></span>
+            </div>
+            <div class="col-xs-6">
+                <a href="{{ route('view_cart', Auth::user()->id) }}" class="btn btn-sm btn-block btn-success">VIEW CART</a>
+                <a href="#" class="btn btn-sm btn-block btn-danger">CHECKOUT</a>
+            </div>
+        </div>
+    @else
+        <div class="row">
+            <div class="col-xs-6">
+                <span class="h3">$0 <br><small> <em>0 Items</em></small></span>
+            </div>
+            <div class="col-xs-6">
+                <a href="{{ route('login') }}" class="btn btn-sm btn-block btn-success">VIEW CART</a>
+                <a href="{{ route('login') }}" class="btn btn-sm btn-block btn-danger">CHECKOUT</a>
+            </div>
+        </div>
+    @endif
 </div>
