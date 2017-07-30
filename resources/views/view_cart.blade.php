@@ -41,8 +41,10 @@
                                     </td>
                                     <td class="text-center">
                                         <strong>{{ $order_detail->quality }}</strong>
-                                        <a href="{{ route('add_product', $order_detail->order_detail_id) }}" class="btn btn-xs btn-success" data-toggle="tooltip" title="Add"><i class="fa fa-plus"></i></a>
-                                        <a href="{{ route('minus_product', $order_detail->order_detail_id) }}" class="btn btn-xs btn-danger" data-toggle="tooltip" title="Remove"><i class="fa fa-minus"></i></a>
+                                        @if( $order->status == 0 )
+                                            <a href="{{ route('add_product', $order_detail->order_detail_id) }}" class="btn btn-xs btn-success" data-toggle="tooltip" title="Add"><i class="fa fa-plus"></i></a>
+                                            <a href="{{ route('minus_product', $order_detail->order_detail_id) }}" class="btn btn-xs btn-danger" data-toggle="tooltip" title="Remove"><i class="fa fa-minus"></i></a>
+                                        @endif
                                     </td>
                                     <td class="text-right">${{ $order_detail->product->unit_price }}</td>
                                         <?php
@@ -74,7 +76,9 @@
                             <a href="{{ url('/') }}" class="btn btn-block btn-primary">Continue Shopping</a>
                         </div>
                         <div class="col-xs-5 col-md-3 col-md-offset-6">
+                        @if($order->status == 0)
                             <a href="{{ route('checkout_addresses', $order->order_id) }}" class="btn btn-block btn-danger">Checkout</a>
+                        @endif
                         </div>
                     </div>
                 </div>
