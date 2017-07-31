@@ -10,7 +10,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/', 'WelcomeController@index');
+Route::get('/', 'WelcomeController@index')->name('welcome');
 
 Auth::routes();
 Route::get('/redirect/{social}', 'SocialAuthController@redirect');
@@ -55,7 +55,6 @@ Route::post('/add_cart/{produc_id}', 'AddCartController@create')->name('add_cart
 
 
 Route::get('view_cart/{user_id}', 'ViewCartController@viewCart')->name('view_cart');
-
 
 // Route to admin
 Route::group(['prefix' => 'admin'],function(){
@@ -102,3 +101,24 @@ Route::group(['prefix' => 'admin'],function(){
 
     });
 });
+
+//checkout
+Route::get('checkout_addresses/{order_id}', function() {
+    return view('checkout/checkout_addresses');
+})->name('checkout_addresses')->middleware(['auth','cart']);
+
+Route::post('checkout_addresses/{user_id}/{order_id}','CheckOutController@checkout_addresses' )->name('checkout_addresses_confirm');
+
+Route::get('checkout_payment/{order_id}', function() {
+    return view('checkout/checkout_payment');
+})->name('checkout_payment');
+
+Route::post('checkout_payment/{user_id}/{order_id}', 'CheckOutController@checkout_payment')->name('checkout_payment_confirm');
+
+Route::get('checkout_confirm/{order_id}', 'CheckOutController@checkout_confirm')->name('checkout_confirm');
+
+Route::post('checkout_confirm/{user_id}/{order_id}', 'CheckOutController@checkout_comfirm_done')->name('checkout_confirm_done');
+//add product 
+Route::get('plus_product/{order_detail_id}', 'AddCartController@plus_product')->name('add_product');
+
+Route::get('minus_prodct/{order_detail_id}', 'AddCartController@minus_product')->name('minus_product');

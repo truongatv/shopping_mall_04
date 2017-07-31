@@ -8,14 +8,21 @@
     @endsection
 @section('content')
     <section class="site-content site-section">
-    @if(session('minus_error'))
-        <div class="alert alert-danger">
-            {{session('minus_error')}}
-        </div>
-    @endif
-                <div class="container">
-                    <div class="table-responsive">
-                        <table class="table table-bordered table-vcenter">
+        <div class="container">
+            <div class="site-block">
+                <form id="checkout-wizard" action="{{ route('checkout_confirm_done',['user_id'=>Auth::user()->id,'order_id' => Request::segment(2)]) }}" method="post">
+                {{ csrf_field() }}
+                    <!-- Fourth Step -->
+                    <div id="checkout-fourth" class="step">
+                        <!-- Step Info -->
+                        <ul class="nav nav-pills nav-justified checkout-steps push-bit">
+                            <li><a href="javascript:void(0)" data-gotostep="checkout-second"><i class="fa fa-check"></i> <strong>2. ADDRESSES</strong></a></li>
+                            <li><a href="javascript:void(0)" data-gotostep="checkout-third"><i class="fa fa-check"></i> <strong>3. PAYMENT</strong></a></li>
+                            <li class="active"><a href="javascript:void(0)" data-gotostep="checkout-fourth"><strong>4. CONFIRM ORDER</strong></a></li>
+                        </ul>
+                        <!-- END Step Info -->
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-vcenter">
                             <thead>
                                 <tr>
                                     <th colspan="2">Product</th>
@@ -41,8 +48,6 @@
                                     </td>
                                     <td class="text-center">
                                         <strong>{{ $order_detail->quality }}</strong>
-                                        <a href="{{ route('add_product', $order_detail->order_detail_id) }}" class="btn btn-xs btn-success" data-toggle="tooltip" title="Add"><i class="fa fa-plus"></i></a>
-                                        <a href="{{ route('minus_product', $order_detail->order_detail_id) }}" class="btn btn-xs btn-danger" data-toggle="tooltip" title="Remove"><i class="fa fa-minus"></i></a>
                                     </td>
                                     <td class="text-right">${{ $order_detail->product->unit_price }}</td>
                                         <?php
@@ -68,51 +73,18 @@
                                 </tr>
                             </tbody>
                         </table>
-                    </div>
-                    <div class="row">
-                        <div class="col-xs-7 col-md-3">
-                            <a href="{{ url('/') }}" class="btn btn-block btn-primary">Continue Shopping</a>
-                        </div>
-                        <div class="col-xs-5 col-md-3 col-md-offset-6">
-                            <a href="{{ route('checkout_addresses', $order->order_id) }}" class="btn btn-block btn-danger">Checkout</a>
                         </div>
                     </div>
-                </div>
-            </section>
-            <!-- END Shopping Cart -->
-
-            <!-- Best Sellers -->
-            <section class="site-content site-section">
-                <div class="container">
-                    <h2 class="site-heading"><strong>Best</strong> Sellers</h2>
-                    <hr>
-                    <div class="row store-items">
-                    @foreach($topSells as $product)
-                        <div class="col-md-4" data-toggle="animation-appear" data-animation-class="animation-fadeInQuick" data-element-offset="-100">
-                            <div class="store-item">
-                                <div class="store-item-rating text-warning">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star-half-o"></i>
-                                </div>
-                                <div class="store-item-image">
-                                    <a href="{{ route('product_details', $product->product_id) }}">
-                                        <img src="{{ $product -> images[0] -> link }}" alt="" class="img-responsive">
-                                    </a>
-                                </div>
-                                <div class="store-item-info clearfix">
-                                    <span class="store-item-price themed-color-dark pull-right">{{ $product->unit_price }}</span>
-                                    <a href=""><strong>{{ $product->name }}</strong></a><br>
-                                    <small><i class="fa fa-shopping-cart text-muted"></i> <a href="javascript:void(0)" class="text-muted">Add to cart</a></small>
-                                </div>
-                            </div>
-                        </div>
-                    @endforeach
-                </div>
-            </section>
-    @endsection
-
-
-
+                    <!-- END Fourth Step -->
+                    <!-- Form Buttons -->
+                    <div class="form-group text-right">
+                        <a href="{{ URL::previous() }}" type="reset" class="btn btn-danger" id="back" value="Previous Step">Previous Step</a>
+                        <input type="submit" class="btn btn-primary" id="next" value="Confirm Order">
+                    </div>
+                    <!-- END Form Buttons -->
+                </form>
+                <!-- END Checkout Wizard Content -->
+            </div>
+        </div>
+    </section>
+@endsection

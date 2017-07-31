@@ -8,6 +8,11 @@
    	@endsection
 @section('content')
 	<section class="site-content site-section">
+    @if(session('done_payment'))
+                <div class = "alert alert-success">
+                    {{ session('done_payment') }}
+                </div>
+            @endif
         <div class="container">
             <div class="row">
                 <!-- Sidebar -->
@@ -17,20 +22,6 @@
                         <!-- Store Menu -->
                         <!-- Store Menu functionality is initialized in js/app.js -->
                         <!-- END Store Menu -->
-
-                        <!-- Shopping Cart -->
-                        <div class="sidebar-block">
-                            <div class="row">
-                                <div class="col-xs-6 ">
-                                    <span class="h3">$ 750<br><small><em>3 Items</em></small></span>
-                                </div>
-                                <div class="col-xs-6">
-                                    <a href="ecom_shopping_cart.html" class="btn btn-sm btn-block btn-success">VIEW CART</a>
-                                    <a href="ecom_checkout.html" class="btn btn-sm btn-block btn-danger">CHECKOUT</a>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- END Shopping Cart -->
                     </aside>
                 </div>
                 <!-- END Sidebar -->
@@ -56,8 +47,8 @@
                                     </a>
                                 </div>
                                 <div class="store-item-info clearfix">
-                                    <span class="store-item-price themed-color-dark pull-right" {{ $product -> unit_price }}></span>
-                                    <a href=""><strong>{{ $product -> name }}</strong></a><br>
+                                    <span class="store-item-price themed-color-dark pull-right">{{ $product->unit_price }}</span>
+                                    <a href=""><strong>{{ $product->name }}</strong></a><br>
                                     <small><i class="fa fa-shopping-cart text-muted"></i> <a href="javascript:void(0)" class="text-muted">Add to cart</a></small>
                                 </div>
                             </div>
