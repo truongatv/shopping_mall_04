@@ -17,6 +17,20 @@
                         <!-- Store Menu -->
                         <!-- Store Menu functionality is initialized in js/app.js -->
                         <!-- END Store Menu -->
+
+                        <!-- Shopping Cart -->
+                        <div class="sidebar-block">
+                            <div class="row">
+                                <div class="col-xs-6 ">
+                                    <span class="h3">$ 750<br><small><em>3 Items</em></small></span>
+                                </div>
+                                <div class="col-xs-6">
+                                    <a href="ecom_shopping_cart.html" class="btn btn-sm btn-block btn-success">VIEW CART</a>
+                                    <a href="ecom_checkout.html" class="btn btn-sm btn-block btn-danger">CHECKOUT</a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END Shopping Cart -->
                     </aside>
                 </div>
                 <!-- END Sidebar -->
@@ -69,7 +83,9 @@
                                 </div>
                                 <div class="store-item-image">
                                     <a href="{{ route('product_details', $product->product_id) }}">
-                                        <img src="{{ $product -> images[0] -> link }}" alt="" class="img-responsive">
+                                        {{ Html::image(($product->images[0]->hasImage()) ? '/assets/uploads/' . $product->images[0]->link : $product->images[0]->link, trans('title.this-is-image'), [
+                                            'class' => 'img-responsive',
+                                        ]) }}
                                     </a>
                                 </div>
                                 <div class="store-item-info clearfix">

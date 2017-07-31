@@ -1864,6 +1864,10 @@ p, .table, .alert, .carousel {
     outline: 0 !important;
 }
 
+.img-responsive{
+    max-height: 245px;
+    }
+
 /*
 =================================================================
 (#m07res) RESPONSIVE

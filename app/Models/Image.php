@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Image extends Model
 {
+
+    protected $primaryKey = 'image_id';
+
     protected $fillable = [
         'link',
         // 'product_id',
@@ -13,6 +16,13 @@ class Image extends Model
 
     public function product()
     {
-        return $this->belongsTo(Product::class);
+        return $this->belongsTo(Product::class, 'product_id', 'product_id');
+    }
+
+    public function hasImage()
+    {
+        $filePath = config('settings.upload_path') . $this->link;
+
+        return file_exists($filePath);
     }
 }

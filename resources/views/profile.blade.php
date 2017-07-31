@@ -19,7 +19,7 @@
                     @if(count($errors) > 0)
                         <div class="alert alert-danger">
                             @foreach($errors->all() as $err)
-                            {{$err}} <br>
+                            {{ $err }} <br>
                             @endforeach
                         </div>
                     @endif
@@ -33,34 +33,43 @@
                         <a href="img/placeholders/photos/photo35.jpg" data-toggle="lightbox-image">
                             <!-- <img src="{{$profile->avatar_image_link}}" alt="avatra" class="push-bit" style="width: 220px;"> -->
                             {{ Html::image('/assets/uploads/' . $profile->avatar_image_link, trans('title.this-is-avatar'), [
-                                    'class' => 'push-bit',
+                                    'class' => 'push-bit2 ',
                             ]) }}
                         </a>
-                        <div class="h1 text-primary"><strong>{{$profile->name}}</strong></div>
+                        <div class="h1 text-primary"><strong>{{ $profile->name }}</strong></div>
                     </th>
 
                     </div>
                     </thead>
-                <table class="table table-vcenter">
+                <table class="table table-vcenter nav-style-table">
                     <tbody>
                         <tr>
                             <th class="h3" colspan="4">{{ trans('title.Acount') }}</th>
                         </tr>
                         <tr >
                             <td class="active col-md-3 col-xs-12">{{ trans('title.Name') }}</td>
-                            <td class="text-center col-xs-12 ">{{$profile->name}}</td>
+                            <td class="text-center col-xs-12 ">{{ $profile->name }}</td>
                         </tr>
                         <tr>
                             <td class="active col-md-3 col-xs-12">{{ trans('title.Email') }}</td>
-                            <td class="text-center col-xs-12">{{$profile->email}}</td>
+                            <td class="text-center col-xs-12">{{ $profile->email }}</td>
                         </tr>
                         <tr>
                             <td class="active col-md-3 col-xs-12">{{ trans('title.Address') }}</td>
                             <td class="text-center col-xs-12"> </td>
                         </tr>
+
+                        @foreach($address as $add)
+
+                            <tr>
+                                <td class="active col-md-3 col-xs-12 customize"></td>
+                                <td class="text-center col-xs-12">{{ $add->address }} </td>
+                            </tr>
+                         @endforeach
+
                         <tr>
                             <td class="active col-md-3 col-xs-12">{{ trans('title.Phone') }}</td>
-                            <td class="text-center col-xs-12">{{$profile->phone}}</td>
+                            <td class="text-center col-xs-12">{{ $profile->phone }}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -70,7 +79,7 @@
                             <th class="h3" colspan="4">{{ trans('title.Subcribe') }}</th>
                         </tr>
                         <tr>
-                            <td class="text-center">{{$profile->subcribe}}</td>
+                            <td class="text-center">{{ $profile->subcribe }}</td>
                         </tr>
                     </tbody>
                 </table>
