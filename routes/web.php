@@ -53,4 +53,52 @@ Route::post('search', 'CategoryController@search');
 //add cart
 Route::post('/add_cart/{produc_id}', 'AddCartController@create')->name('add_cart');
 
+
 Route::get('view_cart/{user_id}', 'ViewCartController@viewCart')->name('view_cart');
+
+
+// Route to admin
+Route::group(['prefix' => 'admin'],function(){
+    Route::get('/', function () {
+        return view('admin.category_master');
+    });
+    Route::group(['prefix' => 'category'],function(){
+        //admin/category/cate_list
+        Route::get('cate_list', 'AdminController@getList');
+        Route::get('cate_list_child/{category_id}','AdminController@getListChild')->name('cate_list_child');
+        Route::get('add', 'AdminController@getAdd');
+        Route::post('add_cate', 'AdminController@postAdd')->name('add_cate');
+        Route::get('cate_list/{id}/edit', 'AdminController@getEdit');
+        Route::post('edit_category/{id}', 'AdminController@postEdit');
+        Route::get('delete/{id}', 'AdminController@getDelete');
+    });
+    Route::group(['prefix' => 'product'],function(){
+        //admin/product/product_list
+        Route::get('product_list','AdminController@getProductList');
+        Route::get('edit_product','AdminController@getEditProduct');
+        Route::get('add_product','AdminController@getAddProduct');
+        Route::post('add_product_post', 'AdminController@postAddProduct')->name('add_product_post');
+        Route::get('product_list/{id}/edit_product', 'AdminController@getEditProduct');
+        Route::post('edit_product_post/{id}', 'AdminController@postEditProduct');
+        Route::get('delete/{id}', 'AdminController@getDeleteProduct');
+        Route::get('category_child/{id}', 'AjaxController@getCategory');
+    });
+    Route::group(['prefix' => 'user'],function(){
+        //admin/user/user_list
+        Route::get('user_list','AdminController@getUserList');
+        Route::get('edit_user','AdminController@getEditUser');
+        Route::get('add_user','AdminController@getAddUser');
+        Route::post('add_user', 'AdminController@postAddUser');
+        Route::get('delete/{id}','AdminController@getDeleteUser');
+    });
+    Route::group(['prefix' => 'order'],function(){
+        //admin/order/order_list
+        Route::get('order_list','AdminController@getOrderList');
+        Route::get('edit_order','AdminController@getEditOrder');
+        Route::get('add_order','AdminController@getAddOrder');
+        Route::post('add_order', 'AdminController@postAddOrder');
+    });
+    Route::group(['prefix' => 'ajax'],function(){
+
+    });
+});

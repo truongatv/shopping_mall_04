@@ -6,14 +6,18 @@ use Illuminate\Http\Request;
 use Illuminate\Support\facades\Auth;
 use App\Models\User;
 use Illuminate\Support\Facades\File;
+use App\Models\Address;
 
 class ProfileController extends Controller
 {
     public function getProfile()
     {
         $profile = Auth::user();
+        $address = Address::where('user_id',$profile->id)->get();
 
-        return view('profile', compact('profile'));
+
+
+        return view('profile', compact('profile','address'));
     }
 
     public function getEditProfile()
