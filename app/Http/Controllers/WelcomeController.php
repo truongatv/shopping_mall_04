@@ -43,12 +43,16 @@ class WelcomeController extends Controller
                 $order->payment_id = $payment->payment_id;
                 $order->save();
             }
+            $group = "";
+            $name = "";
 
-            return view('welcome',  compact('counts',  'newArrivals',  'topSells', 'order'));
+            return view('welcome',  compact('counts',  'newArrivals',  'topSells', 'order', 'group', 'name'));
         }
         else {
+            $group = "";
+            $name = "";
 
-            return view('welcome', compact('counts', 'newArrivals', 'topSells'));
+            return view('welcome', compact('counts', 'newArrivals', 'topSells', 'group', 'name'));
         }
     }
 

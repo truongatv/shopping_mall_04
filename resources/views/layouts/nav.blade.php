@@ -62,7 +62,8 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="{{ action('HistoryOrdersController@showHistory') }}">
+                                {{-- <a href="{{ action('HistoryOrdersController@showHistory') }}"> --}}
+                                <a href="#"></a>
                                     Your orders
                                 </a>
                             </li>

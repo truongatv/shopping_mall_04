@@ -17,7 +17,6 @@ class checkCart
     public function handle($request, Closure $next)
     {
         $order = Order::where('order_id', $request->order_id)->first();;
-        // dd($order->total_price);
         if($order->total_price == 0){
             return redirect()->back()->with('error', trans('errors.checkout'));
         }
