@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\Product;
 use App\Models\Order;
 use App\Models\Payment;
+use App\Models\PaymentType;
 
 class WelcomeController extends Controller
 {
@@ -27,8 +28,12 @@ class WelcomeController extends Controller
         if (Auth::check()) {
             $order = Order::where('user_id', Auth::user()->id)->orderBy('order_id',  'DESC')->first();
             if (count($order) == 0 || $order->status == 1) {
+                $payment_type = new PaymentType;
+                $payment_type->information = "1";
+                $payment_type->save();
+                $payment_type = PaymentType::orderBy('payment_type_id', 'DESC')->first();
                 $payment = new Payment;
-                $payment->payment_type_id = 1;
+                $payment->payment_type_id = $payment_type->payment_type_id;
                 $payment->save();
                 $payment = Payment::orderBy('payment_id', 'desc')->first();
                 $order = new Order;

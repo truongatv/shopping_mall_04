@@ -9,7 +9,8 @@ use App\Models\Product;
 use App\Models\Category;
 use App\Models\Image;
 use App\Models\Order;
-use App\Models\payment;
+use App\Models\Payment;
+use App\Models\PaymentType;
 
 class CategoryController extends Controller
 {
@@ -29,8 +30,12 @@ class CategoryController extends Controller
             $order = Order::where('user_id', Auth::user()->id)->orderBy('order_id',  'DESC')->first();
             if (count($order) == config('settings.done') || $order->status == config('settings.error')) {
                 DB::transaction(function () {
+                    $payment_type = new PaymentType;
+                    $payment_type->information = "1";
+                    $payment_type->save();
+                    $payment_type = PaymentType::orderBy('payment_type_id', 'DESC')->first();
                     $payment = new Payment;
-                    $payment->payment_type_id = 1;
+                    $payment->payment_type_id = $payment_type->payment_type_id;
                     $payment->save();
                     $payment = Payment::orderBy('payment_id', 'desc')->first();
                     $order = new Order;
@@ -58,8 +63,12 @@ class CategoryController extends Controller
             $order = Order::where('user_id', Auth::user()->id)->orderBy('order_id',  'DESC')->first();
             if (count($order) == config('settings.done') || $order->status == config('settings.error')) {
                 DB::transaction(function () {
+                    $payment_type = new PaymentType;
+                    $payment_type->information = "1";
+                    $payment_type->save();
+                    $payment_type = PaymentType::orderBy('payment_type_id', 'DESC')->first();
                     $payment = new Payment;
-                    $payment->payment_type_id = 1;
+                    $payment->payment_type_id = $payment_type->payment_type_id;
                     $payment->save();
                     $payment = Payment::orderBy('payment_id', 'desc')->first();
                     $order = new Order;
@@ -86,8 +95,12 @@ class CategoryController extends Controller
             $order = Order::where('user_id', Auth::user()->id)->orderBy('order_id',  'DESC')->first();
             if (count($order) == config('settings.done') || $order->status == config('settings.error')) {
                 DB::transaction(function () {
+                    $payment_type = new PaymentType;
+                    $payment_type->information = "1";
+                    $payment_type->save();
+                    $payment_type = PaymentType::orderBy('payment_type_id', 'DESC')->first();
                     $payment = new Payment;
-                    $payment->payment_type_id = 1;
+                    $payment->payment_type_id = $payment_type->payment_type_id;
                     $payment->save();
                     $payment = Payment::orderBy('payment_id', 'desc')->first();
                     $order = new Order;
@@ -120,8 +133,12 @@ class CategoryController extends Controller
             $order = Order::where('user_id', Auth::user()->id)->orderBy('order_id',  'DESC')->first();
             if (count($order) == config('settings.done') || $order->status == config('settings.error')) {
                 DB::transaction(function () {
+                    $payment_type = new PaymentType;
+                    $payment_type->information = "1";
+                    $payment_type->save();
+                    $payment_type = PaymentType::orderBy('payment_type_id', 'DESC')->first();
                     $payment = new Payment;
-                    $payment->payment_type_id = 1;
+                    $payment->payment_type_id = $payment_type->payment_type_id;
                     $payment->save();
                     $payment = Payment::orderBy('payment_id', 'desc')->first();
                     $order = new Order;
@@ -154,8 +171,12 @@ class CategoryController extends Controller
             $order = Order::where('user_id', Auth::user()->id)->orderBy('order_id',  'DESC')->first();
             if (count($order) == config('settings.done') || $order->status == config('settings.error')) {
                 DB::transaction(function () {
+                    $payment_type = new PaymentType;
+                    $payment_type->information = "1";
+                    $payment_type->save();
+                    $payment_type = PaymentType::orderBy('payment_type_id', 'DESC')->first();
                     $payment = new Payment;
-                    $payment->payment_type_id = 1;
+                    $payment->payment_type_id = $payment_type->payment_type_id;
                     $payment->save();
                     $payment = Payment::orderBy('payment_id', 'desc')->first();
                     $order = new Order;

@@ -1994,6 +1994,18 @@ p, .table, .alert, .carousel {
     .site-nav ul a.active:hover {
         background-color: #454545;
     }
+    /* centered columns styles */
+    .row-centered {
+        text-align:center;
+    }
+    .col-centered {
+        display:inline-block;
+        float:none;
+        /* reset the text-align */
+        text-align:left;
+        /* inline-block space fix */
+        margin-right:-4px;
+    }
 }
 
 /* Large devices, Desktops (>1199px) */

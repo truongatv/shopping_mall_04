@@ -125,7 +125,7 @@
     padding-left: 52px;
 }
 
-@media(min-width:768px) {
+@media(max-width:768px) {
     .sidebar {
         z-index: 1;
         position: absolute;

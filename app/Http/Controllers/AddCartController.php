@@ -65,6 +65,43 @@ class AddCartController extends Controller
         }
     }
 
+    public function plus_product($order_detail_id)
+    {
+        try {
+            $order_detail = OrderDetail::where('order_detail_id', $order_detail_id)->first();
+            $order = Order::where('user_id', Auth::user()->id)->orderBy('order_id', 'DESC')->first();
+            $order->total_price = $order->total_price + $order_detail->unit_price;
+            $order_detail->quality = $order_detail->quality + 1;
+            DB::transaction(function () use($order_detail, $order) {
+                $order->save();
+                $order_detail->save();
+            });
+        
+            return redirect()->back();    
+        } catch(\Exception $e) {
+            return redirect()->back()->withErrors(trans('errors.plus_product'));
+        }   
+    }
+
+    public function minus_product($order_detail_id)
+    {
+        $order_detail = OrderDetail::where('order_detail_id', $order_detail_id)->first();
+        $order = Order::where('user_id', Auth::user()->id)->orderBy('order_id', 'DESC')->first();
+        if($order_detail->quality > 0) {
+            $order_detail->quality -= 1;
+            $order->total_price = $order->total_price - $order_detail->unit_price;
+            DB::transaction(function () use($order_detail, $order) {
+                $order_detail->save();
+                $order->save();
+            });
+
+            return redirect()->back();
+        }
+
+        if($order_detail->quality == 0) {
+            return redirect()->back()->with('minus_error', trans('errors.minus_product'));
+        }
+    }
     /**
      * Store a newly created resource in storage.
      *

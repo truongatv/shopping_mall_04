@@ -70,7 +70,7 @@
             </div>
             <div class="col-xs-6">
                 <a href="{{ route('view_cart', Auth::user()->id) }}" class="btn btn-sm btn-block btn-success">VIEW CART</a>
-                <a href="#" class="btn btn-sm btn-block btn-danger">CHECKOUT</a>
+                <a href="{{ route('checkout_addresses', $order->order_id) }}" class="btn btn-sm btn-block btn-danger">CHECKOUT</a>
             </div>
         </div>
     @else
