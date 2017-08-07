@@ -34,6 +34,31 @@ class ViewCartController extends Controller
     	$order_details = $order->order_details()->get();
     	$topSells = Product::orderBy('products.top_product')
                     ->paginate(3);
-    	return view('view_cart',compact('order_details', 'topSells', 'order'));
+
+    	return view('view_cart', compact('order_details', 'topSells', 'order'));
+
+    }
+
+    public function viewCartWithId($id)
+    {
+            $order = Order::where('order_id', $id)->orderBy('order_id', 'DESC')->first();
+            if(count($order) == 0) {
+                DB::transaction(function () {
+                    $payment = new Payment;
+                    $payment->payment_type_id = 1;
+                    $payment->save();
+                    $payment = Payment::orderBy('payment_id', 'desc')->first();
+                    $order = new Order;
+                    $order->total_price = 0;
+                    $order->content = 'null';
+                    $order->user_id = Auth::user()->id;
+                    $order->payment_id = $payment->payment_id;
+                    $order->save();
+                });
+            }
+        $order_details = $order->order_details()->get();
+        $topSells = Product::orderBy('products.top_product')
+                    ->paginate(3);
+        return view('view_cart',compact('order_details', 'topSells', 'order'));
     }
 }
