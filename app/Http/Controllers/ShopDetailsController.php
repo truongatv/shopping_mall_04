@@ -17,8 +17,10 @@ class ShopDetailsController extends Controller
     public function getDetails($shop_product_id)
     {
         $shop_product = ShopProduct::findOrFail($shop_product_id);
+        $group = "";
+        $name = "";
 
-        return view('shop_details', compact('shop_product'));
+        return view('shop_details', compact('shop_product', 'group', 'name'));
     }
 
 }

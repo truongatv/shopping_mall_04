@@ -48,7 +48,9 @@ Route::get('/shop_details/{shop_product_id}', 'ShopDetailsController@getDetails'
 
 
 //search
-Route::post('search', 'CategoryController@search');
+Route::post('search', 'CategoryController@search')->name('search');
+Route::get('search/{name}', 'CategoryController@searchName')->name('search_name');
+// Route::get('/test', 'CategoryController@searchFilter')->name('search_filter');
 
 //add cart
 Route::post('/add_cart/{produc_id}', 'AddCartController@create')->name('add_cart');

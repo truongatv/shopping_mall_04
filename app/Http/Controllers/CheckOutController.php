@@ -13,7 +13,6 @@ use App\Models\Product;
 
 class CheckOutController extends Controller
 {
-    //
     public function checkout_addresses(Request $request,$user_id,$order_id)
     {
     	$this->validate($request, [
@@ -140,5 +139,4 @@ class CheckOutController extends Controller
     	} catch(\Exception $e) {
     		return redirect()->back()->withErrors(trans('errors.confirm'));
     	}
-    }
 }

@@ -19,8 +19,10 @@ class ProductDetailsController extends Controller
     {
         $product = Product::findOrFail($product_id);
         $order = Order::orderBy('order_id','desc')->first();
+        $group = "";
+        $name = "";
 
-        return view('product_details', compact('product','order'));
+        return view('product_details', compact('product', 'order', 'group', 'name'));
     }
 
 }

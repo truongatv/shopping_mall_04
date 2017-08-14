@@ -2,6 +2,7 @@
 namespace App\Http\Controllers;
 
 use Auth;
+use Log;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Model;
 use DB;
@@ -23,8 +24,9 @@ class CategoryController extends Controller
     {
         $products = Product::paginate(6);
         $type = trans('title.All_Products');
+        $group = $name = "";
         if (!Auth::check()) {
-            return view('All_Product')->with(compact('products',  'type'));
+            return view('All_Product')->with(compact('products',  'type', 'group', 'name'));
         }
         else {
             $order = Order::where('user_id', Auth::user()->id)->orderBy('order_id',  'DESC')->first();
@@ -47,7 +49,7 @@ class CategoryController extends Controller
                 });
             }
 
-            return view('All_Product')->with(compact('products', 'type', 'order'));
+            return view('All_Product')->with(compact('products', 'type', 'order','group', 'name'));
         }
     }
 
@@ -55,9 +57,10 @@ class CategoryController extends Controller
     {
         $products = Product::orderBy('products.created_at')->paginate(6);
         $type = trans('title.New_Arrival');
+        $group = $name = "";
 
         if (!Auth::check()) {
-            return view('All_Product')->with(compact('products',  'type'));
+            return view('All_Product')->with(compact('products',  'type', 'group', 'name'));
         }
         else {
             $order = Order::where('user_id', Auth::user()->id)->orderBy('order_id',  'DESC')->first();
@@ -80,16 +83,17 @@ class CategoryController extends Controller
                 });
             }
 
-            return view('All_Product')->with(compact('products', 'type', 'order'));
+            return view('All_Product')->with(compact('products', 'type', 'order', 'group', 'name'));
         }
     }
     public function topSell()
     {
         $type = trans('title.Top_Sell');
         $products = Product::orderBy('products.top_product')->paginate(6);
+        $group = $name = "";
 
         if (!Auth::check()) {
-            return view('All_Product')->with(compact('products',  'type'));
+            return view('All_Product')->with(compact('products',  'type', 'group', 'name'));
         }
         else {
             $order = Order::where('user_id', Auth::user()->id)->orderBy('order_id',  'DESC')->first();
@@ -112,13 +116,14 @@ class CategoryController extends Controller
                 });
             }
 
-            return view('All_Product')->with(compact('products', 'type', 'order'));
+            return view('All_Product')->with(compact('products', 'type', 'order', 'group', 'name'));
         }
     }
     public function test($id)
     {
         return view('group_category')->with(compact('id'));
     }
+
     public function typeCategory($group, $name)
     {
         $products = Product::whereIn('category_id',  function($query) use ($name) {
@@ -127,7 +132,7 @@ class CategoryController extends Controller
         $type = $name;
 
         if (!Auth::check()) {
-            return view('All_Product')->with(compact('products',  'type'));
+            return view('All_Product')->with(compact('products',  'type', 'group', 'name'));
         }
         else {
             $order = Order::where('user_id', Auth::user()->id)->orderBy('order_id',  'DESC')->first();
@@ -150,22 +155,94 @@ class CategoryController extends Controller
                 });
             }
 
-            return view('All_Product')->with(compact('products', 'type', 'order'));
+            return view('All_Product')->with(compact('products', 'type', 'order', 'group', 'name'));
         }
     }
     public function search(Request $request)
     {
         $name = $request->input('ecom-search');
-        $products = Product::where('name',  $name)->paginate(6);
+
+        return redirect()->route('search_name',$name);
+    }
+
+    public function searchName(Request $request, $name)
+    {
+        if($request->ajax()) {
+            $type = $request['keyword'];
+            $min = $request['min'];
+            $max = $request['max'];
+            $star = $request['star'];
+            $beauty = $request['beauty'];
+            $drink = $request['drink'];
+            $game = $request['game'];
+            $electronic = $request['electronic'];
+            $home = $request['home'];
+            $hobby = $request['hobby'];
+            if($star == 0) {
+                if($beauty != null || $drink != null || $game != null || $electronic != null || $home != null || $home != null || $hobby != null){
+                    $products = Product::whereIn('category_id',  function($query) use ($beauty, $drink, $game, $electronic, $home, $hobby) {
+                                    $query->select('category_id')->from('categories')->where('name',  $beauty)
+                                                    ->orWhere('name', $drink)
+                                                    ->orWhere('name', $game)
+                                                    ->orWhere('name', $electronic)
+                                                    ->orWhere('name', $home)
+                                                    ->orWhere('name', $hobby)->get();
+                                })
+                                ->where('name', $type)
+                                ->where('unit_price', '>', $min)
+                                ->where('unit_price', '<', $max)
+                                ->paginate(6);
+                }
+                else {
+                    $products = Product::where('name', $type)
+                                ->where('unit_price', '>', $min)
+                                ->where('unit_price', '<', $max)
+                                ->paginate(6);
+                }
+            }
+            else {
+                if($beauty != null || $drink != null || $game != null || $electronic != null || $home != null || $home != null || $hobby != null){
+                    $products = Product::whereIn('category_id',  function($query) use ($beauty, $drink, $game, $electronic, $home, $hobby) {
+                                    $query->select('category_id')->from('categories')->where('name',  $beauty)
+                                                    ->orWhere('name', $drink)
+                                                    ->orWhere('name', $game)
+                                                    ->orWhere('name', $electronic)
+                                                    ->orWhere('name', $home)
+                                                    ->orWhere('name', $hobby)->get();
+                                })
+                                ->where('name', $type)
+                                ->where('unit_price', '>', $min)
+                                ->where('unit_price', '<', $max)
+                                ->where('rate_count', $star)
+                                ->paginate(6);
+                }
+                else {
+                    $products = Product::where('name', $type)
+                                ->where('unit_price', '>', $min)
+                                ->where('unit_price', '<', $max)
+                                ->where('rate_count', $star)
+                                ->paginate(6);
+                }
+            }
+            $htmlFilter = view('search.filter', compact('type', 'products'))->render();
+            $result = [
+                    'success' => true,
+                    'search_result' => $htmlFilter
+            ];
+
+            return response()->json($result);
+        }
+       $products = Product::where('name',  $name)->paginate(6);
         if (count($products) == config('settings.error')) {
             $products = Product::whereIn('shop_product_id',  function($query) use ($name) {
                 $query->select('shop_product_id')->from('shop_products')->where('shop_product_name',  $name)->get();
             })->paginate(6);
         }
         $type = $name;
+        $group = $name = "";
 
         if (!Auth::check()) {
-            return view('search_product')->with(compact('products',  'type'));
+            return view('search_product')->with(compact('products',  'type', 'group', 'name'));
         }
         else {
             $order = Order::where('user_id', Auth::user()->id)->orderBy('order_id',  'DESC')->first();
@@ -188,7 +265,26 @@ class CategoryController extends Controller
                 });
             }
 
-            return view('search_product')->with(compact('products', 'type', 'order'));
+            return view('search_product')->with(compact('products', 'type', 'order', 'group', 'name'));
+        }
+    }
+
+    public function searchFilter(Request $request)
+    {
+        if($request->ajax()) {
+            $range = $request['range'];
+            // $key = $request['keyword'];
+            $products = Product::where('name','nemo unde')->paginate(6);
+                                // ->where('unit_price','<',10)
+                                // ->paginate(6);
+            $htmlFilter = view('search.filter', compact('products'));
+            $result = [
+                    'success' => true,
+                    // 'keyword' => key,
+                    'search_result' => $htmlFilter
+            ];
+
+            return response()->json($result);
         }
     }
     /**
