@@ -89,7 +89,36 @@
                             <th class="h3" colspan="4">{{ trans('title.Order') }} </th>
                         </tr>
                         <tr>
-                            <td class="text-center"></td>
+                            <table class="table table-striped table-bordered table-hover" id="">
+                                <thead>
+                                    <tr align="center">
+                                        <th>Date</th>
+                                        <th>Total Price</th>
+                                        <th>Content</th>
+                                        <th>Status</th>
+                                        <th>Edit</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach($order as $order)
+                                    <tr class="odd gradeX" align="center">
+                                        <td class="center">{{ $order->created_at }}</td>
+                                        <td class="center">{{ $order->total_price }}</td>
+                                        <td class="center"><a href="{{ route('orderdetail_list', $order->order_id) }}">{{ $order->content }}</a></td>
+                                        @if($order->status == 1)
+                                        <td class="center">
+                                            Done
+                                        </td>
+                                        @else
+                                        <td class="center">
+                                            Doing
+                                        </td>
+                                        @endif
+                                        <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="#"> Edit</a></td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
                         </tr>
                    </tbody>
                 </table>

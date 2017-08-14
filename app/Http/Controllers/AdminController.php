@@ -9,6 +9,8 @@ use App\Models\Category;
 use App\Models\User;
 use App\Models\ShopProduct;
 use App\Models\Image;
+use App\Models\Order;
+use App\Models\OrderDetail;
 use Illuminate\Support\Facades\File;
 use Illuminate\Contracts\Filesystem\Filesystem;
 
@@ -145,13 +147,18 @@ class AdminController extends Controller
         $file = $request->file('image_link');
         $name = time() . '_' . $file->getClientOriginalName();
         $file->move('assets/uploads', $name);
-        $image = Image::create([
-            'link' => $name,
-            'product_id' => $product->product_id,
-            ]);
 
+        // $image = Image::create([
+        //     'link' => $name,
+        //     'product_id' => $product->product_id,
+        //     ]);
+        $image = new Image;
+        $image['link'] = $name;
+        $image['product_id'] = $product->product_id;
+        $image->save();
         $category->save();
         $shop_product->save();
+
 
         return redirect('admin/product/product_list')->with('thongbao', 'add sucess !');
     }
@@ -186,10 +193,14 @@ class AdminController extends Controller
             $file = $request->file('image_link');
             $name = time() . '_' . $file->getClientOriginalName();
             $file->move('assets/uploads', $name);
-            $image = Image::create([
-                'link' => $name,
-                'product_id' => $id,
-                ]);
+            // $image = Image::create([
+            //     'link' => $name,
+            //     'product_id' => $id,
+            //     ]);
+            $image = new Image;
+            $image['link'] = $name;
+            $image['product_id'] = $id;
+            $image->save();
 
         }
 
@@ -215,10 +226,6 @@ class AdminController extends Controller
         return view('admin.user_list', ['user'=>$user]);
     }
 
-    public function getAddUser()
-    {
-        return view('admin.add_user');
-    }
     public function getDeleteUser($id)
     {
         $user =  User::find($id);
@@ -227,26 +234,27 @@ class AdminController extends Controller
         return redirect('admin/user/user_list')->with('thongbao1', 'Delete Success !');
     }
 
-    public function postAddUser()
-    {
-        return view('admin.add_user');
-    }
-
     //Controller Order
-    public function getOderList()
+    public function getOrderList()
     {
         $order = Order::all();
 
         return view('admin.order_list', ['order'=>$order]);
     }
 
-    public function getAddOrder()
+    public function getDetailOrder($id)
     {
-        return view('admin.add_order');
+        $orderdetail = OrderDetail::where('order_id', $id)->get();
+        $order = Order::where('order_id',$id)->get();
+        return view('admin.detail_order', ['orderdetail' => $orderdetail, 'order' => $order]);
     }
 
-    public function postAddOrder()
+    public function getDeleteOrder($id)
     {
-        return view('<admin class="add_order">  </admin>');
+        $order =  Order::find($id);
+        $order->delete();
+
+        return redirect('admin/order/order_list')->with('thongbao1', 'Delete Success !');
     }
+
 }

@@ -38,9 +38,9 @@
                     <td>{{ $sp->name }}</td>
                     <td>{{ $sp->unit_price }}</td>
                     <td>{{ $sp->total_quanity }}</td>
-                    <td>{{ $sp->category->name }} </td>
-                    <td>{{ $sp->shopProduct->shop_product_name }}</td>
 
+                    <td>{{ ($sp->category) ? $sp->category->name : ''}} </td>
+                    <td>{{ ($sp->shopProduct) ? $sp->shopProduct->shop_product_name : ''}}</td>
                     <td>
                         {{ Html::image(($sp->images[0]->hasImage()) ? '/assets/uploads/' . $sp->images[0]->link : $sp->images[0]->link, trans('title.this-is-image'), [
                             'class' => 'image_product',

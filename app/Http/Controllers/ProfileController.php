@@ -7,6 +7,7 @@ use Illuminate\Support\facades\Auth;
 use App\Models\User;
 use Illuminate\Support\Facades\File;
 use App\Models\Address;
+use App\Models\Order;
 
 class ProfileController extends Controller
 {
@@ -14,10 +15,10 @@ class ProfileController extends Controller
     {
         $profile = Auth::user();
         $address = Address::where('user_id',$profile->id)->get();
+        $order = Order::where('user_id',$profile->id)->get();
 
 
-
-        return view('profile', compact('profile','address'));
+        return view('profile', compact('profile', 'address', 'order'));
     }
 
     public function getEditProfile()

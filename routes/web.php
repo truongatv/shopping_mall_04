@@ -84,18 +84,17 @@ Route::group(['prefix' => 'admin'], function(){
     });
     Route::group(['prefix' => 'user'], function(){
         //admin/user/user_list
-        Route::get('user_list', 'AdminController@getUserList');
-        Route::get('edit_user', 'AdminController@getEditUser');
-        Route::get('add_user', 'AdminController@getAddUser');
-        Route::post('add_user', 'AdminController@postAddUser');
-        Route::get('delete/{id}', 'AdminController@getDeleteUser');
+        Route::get('user_list','AdminController@getUserList');
+        Route::get('edit_user','AdminController@getEditUser');
+        Route::get('delete/{id}','AdminController@getDeleteUser');
+
     });
     Route::group(['prefix' => 'order'], function(){
         //admin/order/order_list
-        Route::get('order_list', 'AdminController@getOrderList');
-        Route::get('edit_order', 'AdminController@getEditOrder');
-        Route::get('add_order', 'AdminController@getAddOrder');
-        Route::post('add_order', 'AdminController@postAddOrder');
+        Route::get('order_list','AdminController@getOrderList');
+        Route::get('orderdetail_list/{order_id}','AdminController@getDetailOrder')->name('orderdetail_list');
+        Route::get('delete/{id}','AdminController@getDeleteOrder');
+        Route::get('edit_order','AdminController@getEditOrder');
     });
     Route::group(['prefix' => 'ajax'],function(){
 
@@ -117,7 +116,9 @@ Route::post('checkout_payment/{user_id}/{order_id}', 'CheckOutController@checkou
 Route::get('checkout_confirm/{order_id}', 'CheckOutController@checkout_confirm')->name('checkout_confirm');
 
 Route::post('checkout_confirm/{user_id}/{order_id}', 'CheckOutController@checkout_comfirm_done')->name('checkout_confirm_done');
-//add product 
+
+//add product
+
 Route::get('plus_product/{order_detail_id}', 'AddCartController@plus_product')->name('add_product');
 
 Route::get('minus_prodct/{order_detail_id}', 'AddCartController@minus_product')->name('minus_product');

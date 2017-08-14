@@ -1,4 +1,4 @@
-/*!
+in/*!
  * Start Bootstrap - SB Admin 2 Bootstrap Admin Theme (http://startbootstrap.com)
  * Code licensed under the Apache License v2.0.
  * For details, see http://www.apache.org/licenses/LICENSE-2.0.
@@ -83,50 +83,51 @@
     left: auto;
 }
 
-.sidebar .sidebar-nav.navbar-collapse {
+.sidebar_admin .sidebar-nav.navbar-collapse {
     padding-right: 0;
     padding-left: 0;
 }
 
-.sidebar .sidebar-search {
+.sidebar_admin .sidebar-search {
     padding: 15px;
 }
 
-.sidebar ul li {
+.sidebar_admin ul li {
     border-bottom: 1px solid #e7e7e7;
 }
 
-.sidebar ul li a.active {
+.sidebar_admin ul li a.active {
     background-color: #eee;
 }
 
-.sidebar .arrow {
+.sidebar_admin .arrow {
     float: right;
 }
 
-.sidebar .fa.arrow:before {
+.sidebar_admin .fa.arrow:before {
     content: "\f104";
 }
 
-.sidebar .active>a>.fa.arrow:before {
+.sidebar_admin .active>a>.fa.arrow:before {
     content: "\f107";
 }
 
-.sidebar .nav-second-level li,
-.sidebar .nav-third-level li {
+.sidebar_admin .nav-second-level li,
+.sidebar_admin .nav-third-level li {
     border-bottom: 0!important;
 }
 
-.sidebar .nav-second-level li a {
+.sidebar_admin .nav-second-level li a {
     padding-left: 37px;
 }
 
-.sidebar .nav-third-level li a {
+.sidebar_admin .nav-third-level li a {
     padding-left: 52px;
 }
 
-@media(max-width:768px) {
-    .sidebar {
+
+@media(min-width:768px) {
+    .sidebar_admin {
         z-index: 1;
         position: absolute;
         width: 250px;
