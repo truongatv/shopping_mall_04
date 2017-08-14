@@ -11,7 +11,7 @@
         <div class="container">
             <div id="wrapper">
                 <!-- Navigation -->
-                <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+                <nav class="navbar_admin navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
                     <div class="navbar-header">
                         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                             <span class="sr-only">Toggle navigation</span>
@@ -23,7 +23,7 @@
                     </div>
                     <!-- /.navbar-header -->
                     <!-- /.navbar-top-links -->
-                    <div class="navbar-default sidebar" role="navigation">
+                    <div class="navbar-default sidebar_admin" role="navigation">
                         <div class="sidebar-nav navbar-collapse">
                             <ul class="nav" id="side-menu">
                                 <li class="sidebar-search">
@@ -70,9 +70,6 @@
                                         <li>
                                             <a href="{{ action('AdminController@getUserList') }}">List User</a>
                                         </li>
-                                        <li>
-                                            <a href="{{ action('AdminController@getAddUser') }}">Add User</a>
-                                        </li>
                                     </ul>
                                     <!-- /.nav-second-level -->
                                 </li>
@@ -81,9 +78,6 @@
                                     <ul class="nav nav-second-level">
                                         <li>
                                             <a href="{{ action('AdminController@getOrderList') }}">List Order</a>
-                                        </li>
-                                        <li>
-                                            <a href="{{ action('AdminController@getAddOrder') }}">Add Order</a>
                                         </li>
                                     </ul>
                                     <!-- /.nav-second-level -->
