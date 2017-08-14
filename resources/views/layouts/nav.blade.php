@@ -34,7 +34,7 @@
                 </li>
                 <!-- END Menu Toggle -->
                 <li>
-                    <a href="#"></i>{{ trans('title.home') }}</a>
+                    <a href="{{ url('/') }}"></i>{{ trans('title.home') }}</a>
                 </li>
                 <li>
                     <a href="contact.html">{{ trans('title.contact') }}</a>

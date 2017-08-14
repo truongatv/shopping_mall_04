@@ -1,0 +1,28 @@
+.namecut{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 17px;
+}
+
+.rating-xs {
+    font-size: 1em;
+    display: inline;
+}
+
+.rating-container .filled-stars {
+    color: #e67e22;
+    -webkit-text-stroke: 0px;
+    text-shadow: 0px 0px;
+
+}
+
+.rating-container .empty-stars {
+    color: #e67e22;
+}
+
+.customer-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}

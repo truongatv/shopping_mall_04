@@ -105,15 +105,50 @@ $factory->define(App\Models\OrderDetail::class, function($faker){
 });
 $factory->define(App\Models\Payment::class, function($faker){
     $payment_type_id = rand(0,3);
-
-    return [
+        return [
         'payment_type_id' => $payment_type_id
     ];
 });
+
+$factory->define(App\Models\Product::class,function($faker){
+	$name = $faker->unique()->word.' '.$faker->unique()->word;
+	$rate_count = rand(0,5);
+	$unit_price = 10000;
+	$total_quanity = 1000;
+	$top_product = 1000;
+	$category_id = rand(1,100);
+	$shop_product_id = rand(1,100);
+	$information = ('Sed porttitor pretium venenatis. Suspendisse potenti. Aliquam quis ligula elit. Aliquam at orci ac neque semper dictum. Sed tincidunt scelerisque ligula, et facilisis nulla hendrerit non. Suspendisse potenti. Pellentesque non accumsan orci.
+
+		Sed porttitor pretium venenatis. Suspendisse potenti. Aliquam quis ligula elit. Aliquam at orci
+		ac neque semper dictum. Sed tincidunt scelerisque ligula, et facilisis nulla hendrerit non.
+		Suspendisse potenti. Pellentesque non accumsan orci.');
+
+	return [
+	    'name'=>$name,
+	    'rate_count' => $rate_count,
+	    'unit_price' => $unit_price,
+	    'total_quanity' => $total_quanity,
+	    'top_product' => $top_product,
+	    'category_id' => $category_id,
+	    'shop_product_id'=> $shop_product_id,
+	    'information'=> $information
+        ];
+});
+
 $factory->define(App\Models\PaymentType::class, function($faker){
     $information = $faker->unique()->word;
-
-    return [
+        return [
         'information' => $information
     ];
+});
+
+$factory->define(App\Models\Image::class,function($faker){
+	$link = 'https://parts.ippin.com/resized_images/shops/43/28d4ee6c49a9c0785b2a15b059e17c10.png';
+	$product_id = rand(1,20);
+
+	return [
+		'link' => $link,
+		'product_id'=>$product_id
+	];
 });
