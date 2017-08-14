@@ -22,6 +22,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
+        $order = Order::orderBy('order_id', 'desc')->first();
         $products = Product::paginate(6);
         $type = trans('title.All_Products');
         $group = $name = "";
@@ -48,13 +49,13 @@ class CategoryController extends Controller
                     $order->save();
                 });
             }
-
             return view('All_Product')->with(compact('products', 'type', 'order','group', 'name'));
         }
     }
 
     public function newArrival()
     {
+        $order = Order::orderBy('order_id', 'desc')->first();
         $products = Product::orderBy('products.created_at')->paginate(6);
         $type = trans('title.New_Arrival');
         $group = $name = "";
@@ -88,6 +89,7 @@ class CategoryController extends Controller
     }
     public function topSell()
     {
+        $order = Order::orderBy('order_id', 'desc')->first();
         $type = trans('title.Top_Sell');
         $products = Product::orderBy('products.top_product')->paginate(6);
         $group = $name = "";
@@ -121,7 +123,8 @@ class CategoryController extends Controller
     }
     public function test($id)
     {
-        return view('group_category')->with(compact('id'));
+        $order = Order::orderBy('order_id', 'desc')->first();
+        return view('group_category')->with(compact('id', 'oder'));
     }
 
     public function typeCategory($group, $name)
@@ -160,6 +163,7 @@ class CategoryController extends Controller
     }
     public function search(Request $request)
     {
+        $order = Order::orderBy('order_id', 'desc')->first();
         $name = $request->input('ecom-search');
 
         return redirect()->route('search_name',$name);

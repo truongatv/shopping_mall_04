@@ -63,7 +63,7 @@ return [
     'Password' => 'Password',
     'Confirm_Password' => 'Confirm Password',
     'Save' => 'Save',
-    'this-is-avatar' => 'this-is-avatar',
+    'this-is-avatar' => 'this is avatar',
     'Upload_a_different_photo...' => 'Upload a different photo...',
     'All_Products'=>'All Products',
     'New_Arrival'=>'New Arrival',
@@ -75,9 +75,10 @@ return [
     'Rating'=>'Rating',
     'Clothes'=>'Clothes',
     'Electronics'=>'Electronics',
-    'Games'=>'Games',
-    'Sports'=>'Sports'
-
-
-
+    'Games'=>'Gamges',
+    'Sports'=>'Sports',
+    'delete_comment_successfully' => 'delete comment successfully',
+    'delete_comment_fail' => 'delete comment fail',
+    'edit_comment_fail' => 'edit comment fail',
+    'comment' => 'comment',
 ];

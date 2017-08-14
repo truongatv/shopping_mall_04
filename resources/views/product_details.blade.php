@@ -55,23 +55,39 @@
                                 <div class="pull-right">
                                     <span class="h2"><strong>${{ $product -> unit_price }}</strong></span>
                                 </div>
-                                <span class="h4"><strong class="text-success">{{ $product->name }}</strong><br>
+                                <span class="h4">
+                                    <strong class="text-success">{{ $product->name }}</strong><br>
                                 <a href="{{ route('shop_details', $product->shop_product_id) }}">
-                                {{ ($product->shopProduct) ? $product->shopProduct->shop_product_name : trans('title.Name') }}</a><br></span>
+                                {{ ($product->shopProduct) ? $product->shopProduct->shop_product_name : trans('title.Name') }} shop</a><br></span>
                                 <span>
-                                    <a href="#"class="text-warning pull-left">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class = "review" href="#">(0 review)</i>
+                                    @if (auth()->check())
+                                    <div>
+                                        {!! Form::open() !!}
+                                            <div class="hide" data-route="{{ url('rate') }}"></div>
+                                            {!! Form::text('rate', $product->rate_count, [
+                                                'id' => 'input-2',
+                                                'class' => 'rating rating-xs rating-loading',
+                                                'data-size' => "xs",
+                                                'data-step' => "0.5",
+                                                'data-show-caption' => "false",
+                                                'data-show-clear' => "false",
+                                            ]) !!}
+                                            {!! Form::hidden('product_id', $product->product_id, [
+                                                'id' => 'product_id',
+                                            ]) !!}
+                                            {!! Form::hidden('user_id', Auth::user()->id, [
+                                                'id' => 'user_id',
+                                            ]) !!}
+                                        {!! Form::close() !!}
+                                    </div>
+                                    @endif
+                                    <a href="#reviews"class="text-warning">
+                                        <i>({{ $comments->count()}} review)</i>
                                     </a>
                                 </span>
                             </div>
                             <hr>
-                            <p>Sed porttitor pretium venenatis. Suspendisse potenti. Aliquam quis ligula elit. Aliquam at orci ac neque semper dictum. Sed tincidunt scelerisque ligula, et facilisis nulla hendrerit non. Suspendisse potenti. Pellentesque non accumsan orci.</p>
-                            <p>Sed porttitor pretium venenatis. Suspendisse potenti. Aliquam quis ligula elit. Aliquam at orci ac neque semper dictum. Sed tincidunt scelerisque ligula, et facilisis nulla hendrerit non. Suspendisse potenti. Pellentesque non accumsan orci.</p>
+                            <p>{{ $product->information }}</p>
                             <hr>
                             <form action="{{ route('add_cart', $product->product_id) }}" method="post" class="form-inline push-bit text-right">
                             {{ csrf_field() }}
@@ -89,135 +105,59 @@
                             </form>
                         </div>
                         <!-- END Info -->
-
+                        <!-- More Info Tabs -->
                         <!-- More Info Tabs -->
                         <div class="col-xs-12 site-block">
-                            <ul class="nav nav-tabs push-bit" data-toggle="tabs">
-                                <li class="active"><a href="#product-specs">Specs</a></li>
-                                <li><a href="#product-description">Description</a></li>
-                                <li><a href="#product-reviews">Reviews (3)</a></li>
-                            </ul>
-                            <div class="tab-content">
-                                <div class="tab-pane active" id="product-specs">
-                                    <table class="table table-borderless table-striped table-vcenter">
-                                        <thead>
-                                            <tr>
-                                                <th colspan="2">Main Features</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td style="width: 120px;"><strong>Feature #1</strong></td>
-                                                <td>Details</td>
-                                            </tr>
-                                            <tr>
-                                                <td><strong>Feature #2</strong></td>
-                                                <td>Details</td>
-                                            </tr>
-                                            <tr>
-                                                <td><strong>Feature #3</strong></td>
-                                                <td>Details</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                    <table class="table table-borderless table-striped table-vcenter">
-                                        <thead>
-                                            <tr>
-                                                <th colspan="2">Dimensions</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td style="width: 120px;"><strong>Height</strong></td>
-                                                <td>85cm</td>
-                                            </tr>
-                                            <tr>
-                                                <td><strong>Width</strong></td>
-                                                <td>40cm</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                    <table class="table table-borderless table-striped table-vcenter">
-                                        <thead>
-                                            <tr>
-                                                <th colspan="2">More Info</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td style="width: 120px;"><strong>Info #1</strong></td>
-                                                <td>Details</td>
-                                            </tr>
-                                            <tr>
-                                                <td><strong>Info #2</strong></td>
-                                                <td>Details</td>
-                                            </tr>
-                                            <tr>
-                                                <td><strong>Info #3</strong></td>
-                                                <td>Details</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <div class="tab-pane" id="product-description">
-                                    <p>Maecenas ultrices, justo vel imperdiet gravida, urna ligula hendrerit nibh, ac cursus nibh sapien in purus. Mauris tincidunt tincidunt turpis in porta. Integer fermentum tincidunt auctor. Vestibulum ullamcorper, odio sed rhoncus imperdiet, enim elit sollicitudin orci, eget dictum leo mi nec lectus. Nam commodo turpis id lectus scelerisque vulputate. Integer sed dolor erat. Fusce erat ipsum, varius vel euismod sed, tristique et lectus? Etiam egestas fringilla enim, id convallis lectus laoreet at. Fusce purus nisi, gravida sed consectetur ut, interdum quis nisi. Quisque egestas nisl id lectus facilisis scelerisque? Proin rhoncus dui at ligula vestibulum ut facilisis ante sodales! Suspendisse potenti. Aliquam tincidunt sollicitudin sem nec ultrices. Sed at mi velit. Ut egestas tempor est, in cursus enim venenatis eget!</p>
-                                    <p>Mauris tincidunt tincidunt turpis in porta. Integer fermentum tincidunt auctor. Vestibulum ullamcorper, odio sed rhoncus imperdiet, enim elit sollicitudin orci, eget dictum leo mi nec lectus. Nam commodo turpis id lectus scelerisque vulputate. Integer sed dolor erat. Fusce erat ipsum, varius vel euismod sed, tristique et lectus? Etiam egestas fringilla enim, id convallis lectus laoreet at. Fusce purus nisi, gravida sed consectetur ut, interdum quis nisi. Quisque egestas nisl id lectus facilisis scelerisque? Proin rhoncus dui at ligula vestibulum ut facilisis ante sodales! Suspendisse potenti. Aliquam tincidunt sollicitudin sem nec ultrices. Sed at mi velit. Ut egestas tempor est, in cursus enim venenatis eget! Nulla quis ligula ipsum.</p>
-                                    <p>Vestibulum ullamcorper, odio sed rhoncus imperdiet, enim elit sollicitudin orci, eget dictum leo mi nec lectus. Nam commodo turpis id lectus scelerisque vulputate. Integer sed dolor erat. Fusce erat ipsum, varius vel euismod sed, tristique et lectus? Etiam egestas fringilla enim, id convallis lectus laoreet at. Fusce purus nisi, gravida sed consectetur ut, interdum quis nisi. Quisque egestas nisl id lectus facilisis scelerisque? Proin rhoncus dui at ligula vestibulum ut facilisis ante sodales!</p>
-                                </div>
-                                <div class="tab-pane" id="product-reviews">
-                                    <ul class="media-list push">
-                                        <li class="media">
+                            <div class="nav nav-tabs push-bit" data-toggle="">
+                                <strong class ="text-warning pull-left" id="reviews">Reviews</strong>
+                            </div>
+                            <div class="push-bit">
+                            @if (auth()->check())
+                            {!! Form::open() !!}
+                            <div class="urlcomment" data-route="{{ url('comment') }}"></div>
+                            {!! Form::hidden('user_id', Auth::user()->id, [
+                                'id' => 'user_id',
+                            ]) !!}
+                            {!! Form::hidden('product_id', $product["product_id"], [
+                                'id' => 'product_id',
+                            ]) !!}
+                            {!! Form::textarea('content', null, [
+                                'class' => 'form-control fix-comment',
+                                'id' => "comment1",
+                                'placeholder' =>trans('auth.type-comment'),
+                                'cols' => '50',
+                                'rows' => '3',
+                            ]) !!}
+                            {!! Form::close() !!}
+                            @endif
+                            </div>
+                            <div class="line fix-line"></div>
+                            <div class="content">
+                                <div class="tab-pane active" id="product-reviews">
+                                    <div id="edit-comment-aria"></div>
+                                    <div id="before-comment"></div>
+                                    @foreach($comments as $comment)
+                                    <div id='location-comment{{ $comment->comment_id }}'>
+                                        <div class="media">
                                             <a href="javascript:void(0)" class="pull-left">
-                                                <img src="" alt="Avatar" class=" img-circle">
+                                            {{ Html::image(($comment->user->avatar_image_link) ? '/assets/uploads/' . $comment->user->avatar_image_link : config('settings.avatar_default_path'), trans('title.this-is-avatar'), ['class' => 'customer-avatar ',]) }}
                                             </a>
-                                            <div class="media-body">
-                                                <div class="text-warning pull-right">
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                </div>
-                                                <a href="javascript:void(0)"><strong>Customer</strong></a><br>
-                                                <span class="text-muted"><small><em>2 hours ago</em></small></span>
-                                                <p>Sed porttitor pretium venenatis. Suspendisse potenti. Aliquam quis ligula elit. Aliquam at orci ac neque semper dictum. Donec lacinia venenatis metus at bibendum? In hac habitasse platea dictumst. Proin ac nibh rutrum lectus rhoncus eleifend. Sed porttitor pretium venenatis. Suspendisse potenti. Aliquam quis ligula elit. Aliquam at orci ac neque semper dictum. Sed tincidunt scelerisque ligula, et facilisis nulla hendrerit non. Suspendisse potenti.</p>
-                                            </div>
-                                        </li>
-                                        <li class="media">
-                                            <a href="javascript:void(0)" class="pull-left">
-                                                <img src="img/placeholders/avatars/avatar10.jpg" alt="Avatar" class="img-circle">
-                                            </a>
-                                            <div class="media-body">
-                                                <div class="text-warning pull-right">
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                </div>
-                                                <a href="javascript:void(0)"><strong>Customer</strong></a><br>
-                                                <span class="text-muted"><small><em>2 hours ago</em></small></span>
-                                                <p>Sed porttitor pretium venenatis. Suspendisse potenti. Aliquam quis ligula elit. Aliquam at orci ac neque semper dictum. Donec lacinia venenatis metus at bibendum? In hac habitasse platea dictumst. Proin ac nibh rutrum lectus rhoncus eleifend. Sed porttitor pretium venenatis. Suspendisse potenti. Aliquam quis ligula elit. Aliquam at orci ac neque semper dictum. Sed tincidunt scelerisque ligula, et facilisis nulla hendrerit non. Suspendisse potenti.</p>
-                                            </div>
-                                        </li>
-                                        <li class="media">
-                                            <a href="javascript:void(0)" class="pull-left">
-                                                <img src="img/placeholders/avatars/avatar14.jpg" alt="Avatar" class="img-circle">
-                                            </a>
-                                            <div class="media-body">
-                                                <div class="text-warning pull-right">
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                </div>
-                                                <a href="javascript:void(0)"><strong>Customer</strong></a><br>
-                                                <span class="text-muted"><small><em>2 hours ago</em></small></span>
-                                                <p>Sed porttitor pretium venenatis. Suspendisse potenti. Aliquam quis ligula elit. Aliquam at orci ac neque semper dictum. Donec lacinia venenatis metus at bibendum? In hac habitasse platea dictumst. Proin ac nibh rutrum lectus rhoncus eleifend. Sed porttitor pretium venenatis. Suspendisse potenti. Aliquam quis ligula elit. Aliquam at orci ac neque semper dictum. Sed tincidunt scelerisque ligula, et facilisis nulla hendrerit non. Suspendisse potenti.</p>
-                                            </div>
-                                        </li>
-                                    </ul>
+                                            <a href="">
+                                                <strong>{{ $comment->user->name }}</strong>
+                                            </a><br>
+                                            <span class="text-muted pull-right">
+                                            @if (auth()->check() && (Auth::user()->id == $comment->user_id))
+                                            <a href="" class=" text-muted edit-comment" id="{{ $comment->comment_id }}"> <i class="fa fa-pencil"></i></a>
+                                            <a href="{{ action('CommentController@destroy', $comment->comment_id) }}" class="delete-comment text-muted"> <i class="fa fa-trash"></i></a>
+                                            @endif
+                                            </span>
+                                            <span class="text-muted"><small><em>{{ $comment->created_at }}</em></small></span>
+                                            <div id='content-comment' data-content-comment = "{{ $comment->content }}"></div>
+                                            <p id="content-comment{{ $comment->comment_id }}">{{ $comment->content }}</p>
+                                        </div>
+                                    </div>
+                                    @endforeach
+                                    <div>{{ $comments->render() }}</div>
                                 </div>
                             </div>
                         </div>

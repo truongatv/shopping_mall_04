@@ -26,4 +26,10 @@ return [
     'password' => 'Password',
     'name' => 'Name',
     'verify_password' => 'Verify Password',
+    'edit' => 'edit',
+    'delete' => 'delete',
+    'delete-comment-successfully' => 'delete comment successfully',
+    'delete-comment-fail' => 'delete comment fail',
+    'edit_comment_fail' => 'edit comment fail',
+    'type-comment' => 'type your review',
 ];

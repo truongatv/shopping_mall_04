@@ -15,9 +15,6 @@ Route::get('/', 'WelcomeController@index')->name('welcome');
 Auth::routes();
 Route::get('/redirect/{social}', 'SocialAuthController@redirect');
 Route::get('/callback/{social}', 'SocialAuthController@callback');
-Route::prefix('admin')->middleware(['admin', 'auth'])->group(function () {
-
-});
 Route::get('category', 'CategoryController@index');
 Route::get('category/NewArrival', 'CategoryController@newArrival');
 Route::get('category/TopSell', 'CategoryController@topSell');
@@ -120,7 +117,6 @@ Route::get('checkout_confirm/{order_id}', 'CheckOutController@checkout_confirm')
 Route::post('checkout_confirm/{user_id}/{order_id}', 'CheckOutController@checkout_comfirm_done')->name('checkout_confirm_done');
 
 //add product
-
 Route::get('plus_product/{order_detail_id}', 'AddCartController@plus_product')->name('add_product');
 
 Route::get('minus_prodct/{order_detail_id}', 'AddCartController@minus_product')->name('minus_product');
@@ -130,3 +126,16 @@ Route::get('view_cart/order/{id}', 'ViewCartController@viewCartWithId')->name('v
 
 //show history orders
 Route::get('history_orders', 'HistoryOrdersController@showHistory');
+
+//comment
+Route::resource('comment', 'CommentController');
+Route::get('comment/{comment_id}/delete', [
+        'as' => 'comment.delete',
+        'uses' => 'CommentController@destroy',
+    ]);
+Route::post ( '/editComment', 'CommentController@updateComment' );
+
+//rate
+Route::resource('rate', 'RateController', [
+        'only' => ['store']
+    ]);
