@@ -9,12 +9,12 @@
 {!! Html::style('assets/bootstrap-star-rating/css/star-rating.css') !!}
 {!! Html::style('assets/bootstrap-star-rating/css/theme-krajee-fa.css') !!}
 {!! Html::style('assets/bootstrap-star-rating/css/theme-krajee-svg.css') !!}
-{!! Html::style('assets/bootstrap-star-rating/css/theme-theme-krajee-uni.css') !!}
+{!! Html::style('assets/bootstrap-star-rating/css/theme-krajee-uni.css') !!}
 {!! Html::style('css/product.css') !!}
 {!! Html::style('css/sb-admin-2.css') !!}
+{!! Html::style('assets/datatables-responsive/css/responsive.dataTables.scss')}
+{!! Html::style('assets/metisMenu/dist/metisMenu.min.css')}
+{!! Html::style('assets/font-awesome/css/font-awesome.min.css')}
+{!! Html::style('assets/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.css')}
 
-<link href={{ asset("assets/metisMenu/dist/metisMenu.min.css") }} rel="stylesheet">
-<link href={{ asset("assets/font-awesome/css/font-awesome.min.css") }} rel="stylesheet">
-<link href={{ asset("assets/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.css") }} rel="stylesheet">
-<link href={{ asset("assets/datatables-responsive/css/dataTables.responsive.css") }} rel="stylesheet">
 

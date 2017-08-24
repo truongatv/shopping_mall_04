@@ -130,7 +130,7 @@ class CategoryController extends Controller
     public function typeCategory($group, $name)
     {
         $products = Product::whereIn('category_id',  function($query) use ($name) {
-            $query->select('category_id')->from('categories')->where('name',  $name)->get();
+            $query->select('category_id')->from('categories')->where('name', 'LIKE', "% & {$name}")->get();
         })->paginate(6);
         $type = $name;
 
@@ -185,20 +185,20 @@ class CategoryController extends Controller
             if($star == 0) {
                 if($beauty != null || $drink != null || $game != null || $electronic != null || $home != null || $home != null || $hobby != null){
                     $products = Product::whereIn('category_id',  function($query) use ($beauty, $drink, $game, $electronic, $home, $hobby) {
-                                    $query->select('category_id')->from('categories')->where('name',  $beauty)
-                                                    ->orWhere('name', $drink)
-                                                    ->orWhere('name', $game)
-                                                    ->orWhere('name', $electronic)
-                                                    ->orWhere('name', $home)
-                                                    ->orWhere('name', $hobby)->get();
+                                    $query->select('category_id')->from('categories')->where('name','LIKE',"{$beauty} & %")
+                                                    ->orWhere('name','LIKE',"{$drink} & %")
+                                                    ->orWhere('name', 'name','LIKE',"{$game} & %")
+                                                    ->orWhere('name', 'name','LIKE',"{$electronic} & %")
+                                                    ->orWhere('name', 'name','LIKE',"{$home} & %")
+                                                    ->orWhere('name', 'name','LIKE',"{$hobby} & %")->get();
                                 })
-                                ->where('name', $type)
+                                ->where('name','LIKE', "%$type%")
                                 ->where('unit_price', '>', $min)
                                 ->where('unit_price', '<', $max)
                                 ->paginate(6);
                 }
                 else {
-                    $products = Product::where('name', $type)
+                    $products = Product::where('name','LIKE', "%$type%")
                                 ->where('unit_price', '>', $min)
                                 ->where('unit_price', '<', $max)
                                 ->paginate(6);
@@ -207,21 +207,21 @@ class CategoryController extends Controller
             else {
                 if($beauty != null || $drink != null || $game != null || $electronic != null || $home != null || $home != null || $hobby != null){
                     $products = Product::whereIn('category_id',  function($query) use ($beauty, $drink, $game, $electronic, $home, $hobby) {
-                                    $query->select('category_id')->from('categories')->where('name',  $beauty)
-                                                    ->orWhere('name', $drink)
-                                                    ->orWhere('name', $game)
-                                                    ->orWhere('name', $electronic)
-                                                    ->orWhere('name', $home)
-                                                    ->orWhere('name', $hobby)->get();
+                                    $query->select('category_id')->from('categories')->where('name','LIKE',"{$beauty} & %")
+                                                    ->orWhere('name','LIKE',"{$drink} & %")
+                                                    ->orWhere('name', 'LIKE',"{$game} & %")
+                                                    ->orWhere('name','LIKE',"{$electronic} & %")
+                                                    ->orWhere('name','LIKE',"{$home} & %")
+                                                    ->orWhere('name','LIKE',"{$hobby} & %")->get();
                                 })
-                                ->where('name', $type)
+                                ->where('name','LIKE', "%$type%")
                                 ->where('unit_price', '>', $min)
                                 ->where('unit_price', '<', $max)
                                 ->where('rate_count', $star)
                                 ->paginate(6);
                 }
                 else {
-                    $products = Product::where('name', $type)
+                    $products = Product::where('name','LIKE', "%$type%")
                                 ->where('unit_price', '>', $min)
                                 ->where('unit_price', '<', $max)
                                 ->where('rate_count', $star)
@@ -236,7 +236,7 @@ class CategoryController extends Controller
 
             return response()->json($result);
         }
-       $products = Product::where('name',  $name)->paginate(6);
+       $products = Product::where('name','LIKE', "%$name%")->paginate(6);
         if (count($products) == config('settings.error')) {
             $products = Product::whereIn('shop_product_id',  function($query) use ($name) {
                 $query->select('shop_product_id')->from('shop_products')->where('shop_product_name',  $name)->get();

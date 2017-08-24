@@ -172,6 +172,7 @@ var App = function() {
 
         filter_rating.addEventListener('change', function() {
             var star = filter_rating.value;
+            // console.log(star);
             array_cost = check_cost_filter(cost_filter1, cost_filter2, cost_filter3);
             min = array_cost[0];
             max = array_cost[1];
@@ -204,19 +205,23 @@ var App = function() {
         });
 
         category_beauty.addEventListener('change', function() {
+            var star = filter_rating.value;
             if(category_beauty.checked){
-                console.log('check');
                 array_cost = check_cost_filter(cost_filter1, cost_filter2, cost_filter3);
                 min = array_cost[0];
                 max = array_cost[1];
                 array_category = check_category(category_beauty, category_drink, category_game, category_electronic, category_home, category_hobby);
                 console.log(max);
-                if(filter_rating.selected){
-                    star = filter_rating.value;
-                }
-                else {
-                    star = 0;
-                }
+                console.log("star");
+                console.log(star);
+                // if(filter_rating.selected){
+                //     console.log("star");
+                //     star = filter_rating.value;
+                // }
+                // else {
+                //     star = 0;
+                // }
+                console.log(star);
                 $.ajax({
                     type: "GET",
                     url: "{{route('search_name')}}",
@@ -248,13 +253,6 @@ var App = function() {
                 min = array_cost[0];
                 max = array_cost[1];
                 array_category = check_category(category_beauty, category_drink, category_game, category_electronic, category_home, category_hobby);
-                console.log(max);
-                if(filter_rating.selected){
-                    star = filter_rating.value;
-                }
-                else {
-                    star = 0;
-                }
                 $.ajax({
                     type: "GET",
                     url: "{{route('search_name')}}",
@@ -262,7 +260,7 @@ var App = function() {
                         min: min,
                         max: max,
                         star: star,
-                        beauty: "null",
+                        beauty: array_category[0],
                         drink: array_category[1],
                         game: array_category[2],
                         electronic: array_category[3],
@@ -282,19 +280,12 @@ var App = function() {
         });
 
         category_drink.addEventListener('change', function() {
+            var star = filter_rating.value;
             if(category_drink.checked){
-                console.log('check');
                 array_cost = check_cost_filter(cost_filter1, cost_filter2, cost_filter3);
                 min = array_cost[0];
                 max = array_cost[1];
                 array_category = check_category(category_beauty, category_drink, category_game, category_electronic, category_home, category_hobby);
-                console.log(max);
-                if(filter_rating.selected){
-                    star = filter_rating.value;
-                }
-                else {
-                    star = 0;
-                }
                 $.ajax({
                     type: "GET",
                     url: "{{route('search_name')}}",
@@ -327,12 +318,6 @@ var App = function() {
                 max = array_cost[1];
                 array_category = check_category(category_beauty, category_drink, category_game, category_electronic, category_home, category_hobby);
                 console.log(max);
-                if(filter_rating.selected){
-                    star = filter_rating.value;
-                }
-                else {
-                    star = 0;
-                }
                 $.ajax({
                     type: "GET",
                     url: "{{route('search_name')}}",
@@ -341,7 +326,7 @@ var App = function() {
                         max: max,
                         star: star,
                         beauty: array_category[0],
-                        drink: "null",
+                        drink: array_category[1] ,
                         game: array_category[2],
                         electronic: array_category[3],
                         home: array_category[4],
@@ -360,6 +345,7 @@ var App = function() {
         });
 
         category_game.addEventListener('change', function() {
+            var star = filter_rating.value;
             if(category_game.checked){
                 console.log('check');
                 array_cost = check_cost_filter(cost_filter1, cost_filter2, cost_filter3);
@@ -367,12 +353,6 @@ var App = function() {
                 max = array_cost[1];
                 array_category = check_category(category_beauty, category_drink, category_game, category_electronic, category_home, category_hobby);
                 console.log(max);
-                if(filter_rating.selected){
-                    star = filter_rating.value;
-                }
-                else {
-                    star = 0;
-                }
                 $.ajax({
                     type: "GET",
                     url: "{{route('search_name')}}",
@@ -404,13 +384,6 @@ var App = function() {
                 min = array_cost[0];
                 max = array_cost[1];
                 array_category = check_category(category_beauty, category_drink, category_game, category_electronic, category_home, category_hobby);
-                console.log(max);
-                if(filter_rating.selected){
-                    star = filter_rating.value;
-                }
-                else {
-                    star = 0;
-                }
                 $.ajax({
                     type: "GET",
                     url: "{{route('search_name')}}",
@@ -420,7 +393,7 @@ var App = function() {
                         star: star,
                         beauty: array_category[0],
                         drink: array_category[1],
-                        game: "null",
+                        game: array_category[2] ,
                         electronic: array_category[3],
                         home: array_category[4],
                         hobby: array_category[5],
@@ -438,19 +411,13 @@ var App = function() {
         });
 
         category_electronic.addEventListener('change', function() {
+            var star = filter_rating.value;
             if(category_electronic.checked){
                 console.log('check');
                 array_cost = check_cost_filter(cost_filter1, cost_filter2, cost_filter3);
                 min = array_cost[0];
                 max = array_cost[1];
                 array_category = check_category(category_beauty, category_drink, category_game, category_electronic, category_home, category_hobby);
-                console.log(max);
-                if(filter_rating.selected){
-                    star = filter_rating.value;
-                }
-                else {
-                    star = 0;
-                }
                 $.ajax({
                     type: "GET",
                     url: "{{route('search_name')}}",
@@ -482,13 +449,6 @@ var App = function() {
                 min = array_cost[0];
                 max = array_cost[1];
                 array_category = check_category(category_beauty, category_drink, category_game, category_electronic, category_home, category_hobby);
-                console.log(max);
-                if(filter_rating.selected){
-                    star = filter_rating.value;
-                }
-                else {
-                    star = 0;
-                }
                 $.ajax({
                     type: "GET",
                     url: "{{route('search_name')}}",
@@ -499,7 +459,7 @@ var App = function() {
                         beauty: array_category[0],
                         drink: array_category[1],
                         game: array_category[2],
-                        electronic: "null",
+                        electronic: array_category[3] ,
                         home: array_category[4],
                         hobby: array_category[5],
                         keyword: name
@@ -516,19 +476,13 @@ var App = function() {
         });
 
         category_home.addEventListener('change', function() {
+            var star = filter_rating.value;
             if(category_home.checked){
                 console.log('check');
                 array_cost = check_cost_filter(cost_filter1, cost_filter2, cost_filter3);
                 min = array_cost[0];
                 max = array_cost[1];
                 array_category = check_category(category_beauty, category_drink, category_game, category_electronic, category_home, category_hobby);
-                console.log(max);
-                if(filter_rating.selected){
-                    star = filter_rating.value;
-                }
-                else {
-                    star = 0;
-                }
                 $.ajax({
                     type: "GET",
                     url: "{{route('search_name')}}",
@@ -560,13 +514,6 @@ var App = function() {
                 min = array_cost[0];
                 max = array_cost[1];
                 array_category = check_category(category_beauty, category_drink, category_game, category_electronic, category_home, category_hobby);
-                console.log(max);
-                if(filter_rating.selected){
-                    star = filter_rating.value;
-                }
-                else {
-                    star = 0;
-                }
                 $.ajax({
                     type: "GET",
                     url: "{{route('search_name')}}",
@@ -578,7 +525,7 @@ var App = function() {
                         drink: array_category[1],
                         game: array_category[2],
                         electronic: array_category[3],
-                        home: "null",
+                        home: array_category[4] ,
                         hobby: array_category[5],
                         keyword: name
                     },
@@ -657,7 +604,7 @@ var App = function() {
                         game: array_category[2],
                         electronic: array_category[3],
                         home: array_category[4],
-                        hobby: "null",
+                        hobby: array_category[5] ,
                         keyword: name
                     },
                      success :function (result) {
@@ -708,7 +655,7 @@ var App = function() {
                .parent('li')
                .toggleClass('open');
         });
-        // var group = 
+        // var group =
         // $("#").addClass("open");
     };
     /* Handles Header */

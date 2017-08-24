@@ -1,13 +1,13 @@
 @extends('layouts.master')
 @section('text-center')
-	<section class="site-section site-section-light site-section-top themed-background-dark">
+    <section class="site-section site-section-light site-section-top themed-background-dark">
         <div class="container text-center">
             <h1 class="animation-slideDown"><strong>{{ $product -> name }}</strong></h1>
         </div>
     </section>
-   	@endsection
+    @endsection
 @section('content')
-	<section class="site-content site-section">
+    <section class="site-content site-section">
         <div class="container">
             <div class="row">
             @if(session('errors'))
@@ -35,16 +35,48 @@
                     <div class="row" data-toggle="lightbox-gallery">
                         <!-- Images -->
                         <div class="col-sm-6 push-bit">
-                            <a href="{{ $product -> images[0] -> link }}" class="gallery-link"><img src="{{ $product -> images[0] -> link }}" alt="" class="img-responsive push-bit"></a>
+                            <a href="{{ $product -> images[0] -> link }}" class="gallery-link">@if(isset($product -> images[0]))
+                                {{ Html::image(($product->images[0]->hasImage()) ? '/assets/uploads/' . $product->images[0]->link : $product->images[0]->link, trans('title.this-is-image'), [
+                                                'class' => 'img-responsive',
+                                            ]) }}
+                            @else
+                                <img src="https://parts.ippin.com/resized_images/shops/43/28d4ee6c49a9c0785b2a15b059e17c10.png" alt="" class="img-responsive">
+                            @endif
+                            </a>
                             <div class="row push-bit">
                                 <div class="col-xs-4">
-                                    <a href="{{ $product -> images[0] -> link }}" class="gallery-link"><img src="{{ $product -> images[0] -> link }}" alt="" class="img-responsive"></a>
+                                    <a href="{{ $product -> images[0] -> link }}" class="gallery-link">
+                                    @if(isset($product -> images[0]))
+                                        {{ Html::image(($product->images[0]->hasImage()) ? '/assets/uploads/' . $product->images[0]->link : $product->images[0]->link, trans('title.this-is-image'), [
+                                            'class' => 'img-responsive',
+                                        ]) }}
+                                    @else
+                                        <img src="https://parts.ippin.com/resized_images/shops/43/28d4ee6c49a9c0785b2a15b059e17c10.png" alt="" class="img-responsive">
+
+                                    @endif
+                                    </a>
                                 </div>
                                 <div class="col-xs-4">
-                                    <a href="{{ $product -> images[0] -> link }}" class="gallery-link"><img src="{{ $product -> images[0] -> link }}" alt="" class="img-responsive"></a>
+                                    <a href="{{ $product -> images[0] -> link }}" class="gallery-link">
+                                    @if(isset($product -> images[0]))
+                                        {{ Html::image(($product->images[0]->hasImage()) ? '/assets/uploads/' . $product->images[0]->link : $product->images[0]->link, trans('title.this-is-image'), [
+                                                'class' => 'img-responsive',
+                                            ]) }}
+                                    @else
+                                        <img src="https://parts.ippin.com/resized_images/shops/43/28d4ee6c49a9c0785b2a15b059e17c10.png" alt="" class="img-responsive">
+                                    @endif
+                                    </a>
                                 </div>
                                 <div class="col-xs-4">
-                                    <a href="{{ $product -> images[0] -> link }}" class="gallery-link"><img src="{{ $product -> images[0] -> link }}" alt="" class="img-responsive"></a>
+                                    <a href="{{ $product -> images[0] -> link }}" class="gallery-link">
+                                        @if(isset($product -> images[0]))
+                                            {{ Html::image(($product->images[0]->hasImage()) ? '/assets/uploads/' . $product->images[0]->link : $product->images[0]->link, trans('title.this-is-image'), [
+                                                'class' => 'img-responsive',
+                                            ]) }}
+                                        @else
+                                            <img src="https://parts.ippin.com/resized_images/shops/43/28d4ee6c49a9c0785b2a15b059e17c10.png" alt="" class="img-responsive">
+                                        @endif
+                                    </a>
                                 </div>
                             </div>
                         </div>

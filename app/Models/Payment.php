@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Payment extends Model
 {
+    protected $primaryKey = 'payment_id';
+
     protected $fillable=[];
 
  	public function order()

@@ -37,10 +37,10 @@
                     <a href="{{ url('/') }}"></i>{{ trans('title.home') }}</a>
                 </li>
                 <li>
-                    <a href="contact.html">{{ trans('title.contact') }}</a>
+                    <a href="#">{{ trans('title.contact') }}</a>
                 </li>
                 <li>
-                    <a href="about.html">{{ trans('title.about') }}</a>
+                    <a href="#">{{ trans('title.about') }}</a>
                 </li>
                 @if (Auth::guest())
                 <li>
@@ -62,8 +62,7 @@
                                 </a>
                             </li>
                             <li>
-                                {{-- <a href="{{ action('HistoryOrdersController@showHistory') }}"> --}}
-                                <a href="#"></a>
+                                <a href="{{ action('HistoryOrdersController@showHistory') }}">
                                     Your orders
                                 </a>
                             </li>

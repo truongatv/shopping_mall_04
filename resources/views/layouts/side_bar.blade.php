@@ -37,9 +37,9 @@
         <li class="{{ $group == "electronic" ? 'open':'' }}">
             <a href="#" class="submenu"><i class="fa fa-angle-right"></i>{{ trans('title.electronic') }}</a>
             <ul>
-                <li><a href="{{ url('category/electronic/voluptatem') }}" class="{{ $name == "voluptatem" ? 'active':'' }}">{{ trans('title.gaming') }}</a></li>
-                <li><a href="{{ url('category/electronic/voluptatem') }}" class="{{ $name == "voluptatem" ? 'active':'' }}">{{ trans('title.camera') }}</a></li>
-                <li><a href="{{ url('category/electronic/voluptatem') }}" class="{{ $name == "voluptatem" ? 'active':'' }}">{{ trans('title.home') }}</a></li>
+                <li><a href="{{ url('category/electronic/gaming') }}" class="{{ $name == "gaming" ? 'active':'' }}">{{ trans('title.gaming') }}</a></li>
+                <li><a href="{{ url('category/electronic/camera') }}" class="{{ $name == "camera" ? 'active':'' }}">{{ trans('title.camera') }}</a></li>
+                <li><a href="{{ url('category/electronic/electronic_home') }}" class="{{ $name == "electronic_home" ? 'active':'' }}">{{ trans('title.home') }}</a></li>
                 <li><a href="{{ url('category/electronic/voluptatem') }}" class="{{ $name == "voluptatem" ? 'active':'' }}">{{ trans('title.accessories') }}</a></li>
                 <li><a href="{{ url('category/electronic/voluptatem') }}" class="{{ $name == "voluptatem" ? 'active':'' }}">{{ trans('title.more_electronic') }}</a></li>
             </ul>
