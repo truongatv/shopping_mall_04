@@ -12,4 +12,4 @@ const { mix } = require('laravel-mix');
  */
 
 mix.js('resources/assets/js/app.js', 'public/js')
-   .sass('resources/assets/sass/app.scss', 'public/css');
+   .sass('public/assets/datatables-responsive/css/responsive.dataTables.scss', 'public/assets/datatables-responsive/css');

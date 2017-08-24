@@ -1,5 +1,5 @@
 {!! Html::script('/assets/jquery/dist/jquery.min.js') !!}
-{!! Html::script('//assets/bootstrap/dist/js/bootstrap.min.js') !!}
+{!! Html::script('/assets/bootstrap/dist/js/bootstrap.min.js') !!}
 {!! Html::script('/js/app.js') !!}
 {!! Html::script('/js/appjs.js') !!}
 {!! Html::script('/js/plugins.js') !!}
@@ -7,5 +7,5 @@
 {!! Html::script('/assets/metisMenu/dist/metisMenu.min.js') !!}
 {!! Html::script('/assets/datatables/media/js/jquery.dataTables.min.js') !!}
 {!! Html::script('/assets/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js') !!}
-{!! Html::script(('/assets/bootstrap-star-rating/js/star-rating.min.js') !!}
+{!! Html::script('/assets/bootstrap-star-rating/js/star-rating.min.js') !!}
 {!! Html::script('/js/comment.js') !!}
