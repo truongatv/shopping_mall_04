@@ -2,7 +2,7 @@
     <div class="container">
         <!-- Site Logo -->
         <a href="{{ url('/') }}" class="site-logo">
-            <i class="gi gi-flash"></i> <strong>Shopping</strong>Mail
+            <i class="gi gi-flash"></i> <strong>Shopping</strong>Mall
         </a>
         <form action="{{ url('search') }}" method="post" class="quick-search">
             {{ csrf_field() }}

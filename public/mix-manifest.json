@@ -1,4 +1,8 @@
 {
   "/js/app.js": "/js/app.js",
-  "/css/app.css": "/css/app.css"
+  "/css/app.css": "/css/app.css",
+  "/mix.js": "/mix.js",
+  "/assets/datatables-responsive/css/responsive.dataTables.css": "/assets/datatables-responsive/css/responsive.dataTables.css",
+  "/assets/datatables-responsive/css/all.css": "/assets/datatables-responsive/css/all.css",
+  "/assets/datatables-responsive/css/responsive.foundation.css": "/assets/datatables-responsive/css/responsive.foundation.css"
 }

@@ -18,7 +18,6 @@
  * http://jqueryui.com
  * Includes: core.js, widget.js, mouse.js, draggable.js, resizable.js, sortable.js
  * Copyright 2015 jQuery Foundation and other contributors; Licensed MIT */
-< script >
     (function(e) { "function" == typeof define && define.amd ? define(["jquery"], e) : e(jQuery) })(function(e) {
         function t(t, s) {
             var n, a, o, r = t.nodeName.toLowerCase();
@@ -1569,4 +1568,4 @@
                 return i.canPlayType('video/ogg; codecs="theora, vorbis"') }
         return !1 }, e.fn.videoBG.wrapper = function() {
         var t = e("<div/>");
-        return t.addClass("videoBG_wrapper").css("position", "absolute").css("top", 0).css("left", 0), t }, e.fn.videoBG.defaults = { mp4: "", ogv: "", webm: "", poster: "", autoplay: !0, loop: !0, scale: !1, position: "absolute", opacity: 1, textReplacement: !1, zIndex: 0, width: 0, height: 0, fullscreen: !1, imgFallback: !0 } }(jQuery); < /script>
+        return t.addClass("videoBG_wrapper").css("position", "absolute").css("top", 0).css("left", 0), t }, e.fn.videoBG.defaults = { mp4: "", ogv: "", webm: "", poster: "", autoplay: !0, loop: !0, scale: !1, position: "absolute", opacity: 1, textReplacement: !1, zIndex: 0, width: 0, height: 0, fullscreen: !1, imgFallback: !0 } }(jQuery);
