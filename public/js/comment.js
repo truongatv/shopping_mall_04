@@ -14,7 +14,7 @@ $(document).ready(function () {
         //alert(productId);
         var userId = $('#user_id').val();
         console.log(userId);
-        alert(userId);
+        //alert(userId);
         $.ajax({
             type: 'POST',
             url: route,

@@ -14,7 +14,7 @@ class CreateModifiCommentsTable extends Migration
     public function up()
     {
         Schema::table('comments', function (Blueprint $table) {
-            $table->string('comment_parent_id')->nullable()->change();
+            $table->integer('comment_parent_id')->nullable()->change();
         });
     }
 

@@ -1,11 +1,11 @@
-<script src={{ asset('assets/jquery/dist/jquery.min.js')}}></script>
-<script src={{ asset('assets/bootstrap/dist/js/bootstrap.min.js') }}></script>
-<script src="/js/app.js"></script>
-<script src={{ asset('js/appjs.js')}}></script>
-<script src={{ asset('js/plugins.js')}}></script>
-<script src={{ asset('js/sb-admin-2.js')}}></script>
-<script src={{ asset('assets/metisMenu/dist/metisMenu.min.js') }}></script>
-<script src={{ asset('assets/DataTables/media/js/jquery.dataTables.min.js') }}></script>
-<script src={{ asset('assets/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js') }}></script>
-<script type="text/javascript" src={{asset('assets/bootstrap-star-rating/js/star-rating.min.js')}}></script>
-<script src={{ asset('js/comment.js')}}></script>
+{!! Html::script('/assets/jquery/dist/jquery.min.js') !!}
+{!! Html::script('//assets/bootstrap/dist/js/bootstrap.min.js') !!}
+{!! Html::script('/js/app.js') !!}
+{!! Html::script('/js/appjs.js') !!}
+{!! Html::script('/js/plugins.js') !!}
+{!! Html::script('/js/sb-admin-2.js') !!}
+{!! Html::script('/assets/metisMenu/dist/metisMenu.min.js') !!}
+{!! Html::script('/assets/datatables/media/js/jquery.dataTables.min.js') !!}
+{!! Html::script('/assets/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js') !!}
+{!! Html::script(('/assets/bootstrap-star-rating/js/star-rating.min.js') !!}
+{!! Html::script('/js/comment.js') !!}

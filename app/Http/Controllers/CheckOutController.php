@@ -139,4 +139,5 @@ class CheckOutController extends Controller
     	} catch(\Exception $e) {
     		return redirect()->back()->withErrors(trans('errors.confirm'));
     	}
+    }
 }

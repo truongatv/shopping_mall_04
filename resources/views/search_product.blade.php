@@ -33,7 +33,9 @@
                                 </div>
                                 <div class="store-item-image">
                                     <a href="{{ route('product_details', $product->product_id) }}">
-                                        <img src={{$product->images[0]->link}} alt="" class="img-responsive">
+                                        {{ Html::image(($product->images[0]->hasImage()) ? '/assets/uploads/' . $product->images[0]->link : $product->images[0]->link, trans('title.this-is-image'), [
+                                            'class' => 'img-responsive',
+                                        ]) }}
                                     </a>
                                 </div>
                                 <div class="store-item-info clearfix">

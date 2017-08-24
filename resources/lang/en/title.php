@@ -81,4 +81,5 @@ return [
     'delete_comment_fail' => 'delete comment fail',
     'edit_comment_fail' => 'edit comment fail',
     'comment' => 'comment',
+    'Add_category_success' => 'add category success',
 ];

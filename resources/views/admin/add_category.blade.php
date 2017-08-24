@@ -30,7 +30,7 @@
                     <!-- <select class="form-control">
                         <option value="">NONE</option>
                     </select> -->
-                    {!! Form::select('category_parent_id', $categoryParent, null, [
+                    {!! Form::select('category_parent_id', $categoryParent, 0, [
                         'class' => 'form-control',
                     ]) !!}
                 </div>
