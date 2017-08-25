@@ -133,7 +133,8 @@ Route::get('comment/{comment_id}/delete', [
         'as' => 'comment.delete',
         'uses' => 'CommentController@destroy',
     ]);
-Route::post ( '/editComment', 'CommentController@updateComment' );
+Route::post('/editComment', 'CommentController@updateComment');
+Route::get('/replyComment', 'CommentController@replyComment');
 
 //rate
 Route::resource('rate', 'RateController', [

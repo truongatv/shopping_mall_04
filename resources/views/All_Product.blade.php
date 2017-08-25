@@ -52,7 +52,7 @@
                                     <div class="col-sm-04">
                                         <span class="store-item-price themed-color-dark pull-right" >{{ $product->unit_price }}</span>
                                     </div>
-                                    <small><i class="fa fa-shopping-cart text-muted"></i> <a href="javascript:void(0)" class="text-muted">Add to cart</a></small>
+                                    <small><i class="fa fa-shopping-cart text-muted bigicon"></i> <a href="javascript:void(0)" class="text-muted">Add to cart</a></small>
                                 </div>
                             </div>
                         </div>

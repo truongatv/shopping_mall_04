@@ -16,7 +16,7 @@
         <div class="container">
             <div class="row">
                 <!-- Sidebar -->
-                <div class="col-md-4 col-lg-3">
+                <div class="col-md-5 col-lg-3">
                     <aside class="sidebar site-block">
                         @include('layouts.side_bar')
                         <!-- Store Menu -->
@@ -27,7 +27,7 @@
                 <!-- END Sidebar -->
 
                 <!-- Products -->
-                <div class="col-md-8 col-lg-9">
+                <div class="col-md-5 col-lg-9">
                     <h2 class="site-heading"><strong>New</strong> Arrivals</h2>
                     <hr>
                     <div class="row store-items">
@@ -55,7 +55,7 @@
                                     <div class="col-sm-04">
                                         <span class="store-item-price themed-color-dark pull-right" >${{ $product->unit_price }}</span>
                                     </div>
-                                    <small><i class="fa fa-shopping-cart text-muted"></i> <a href="javascript:void(0)" class="text-muted">Add to cart</a></small>
+                                    <i class="fa fa-shopping-cart text-muted bigicon"></i> <small><a href="javascript:void(0)" class="text-muted">Add to cart</a></small>
                                 </div>
                             </div>
                         </div>
@@ -90,9 +90,9 @@
                                     <a href="{{ route('product_details', $product->product_id) }}"><strong>{{ $product->name }}</strong></a><br>
                                     </div>
                                     <div class="col-sm-04">
-                                        <span class="store-item-price themed-color-dark pull-right" >{{ $product->unit_price }}</span>
+                                        <span class="store-item-price themed-color-dark pull-right" >${{ $product->unit_price }}</span>
                                     </div>
-                                    <small><i class="fa fa-shopping-cart text-muted"></i> <a href="javascript:void(0)" class="text-muted">Add to cart</a></small>
+                                    <small><i class="fa fa-shopping-cart text-muted bigicon"></i> <a href="javascript:void(0)" class="text-muted">Add to cart</a></small>
                                 </div>
                             </div>
                         </div>
