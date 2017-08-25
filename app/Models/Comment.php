@@ -11,7 +11,11 @@ class Comment extends Model
     protected $fillable = [
         'content',
         'comment_parent_id',
+        'product_id',
+        'user_id'
     ];
+
+    protected $dates = ['created_at', 'updated_at'];
 
     public function product()
     {
@@ -22,4 +26,9 @@ class Comment extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function replies()
+   {
+       return $this->hasMany('App\Models\Comment','comment_parent_id', 'comment_id')->orderBy('created_at', 'desc');
+   }
 }

@@ -6,15 +6,12 @@ $(document).ready(function () {
     });
 
     $('#input-2').on('change', function (e) {
-
-        // e.preventDefault();
         var route = $('.hide').data('route');
         var point = $('input[name="rate"]').val();
         var productId = $('#product_id').val();
-        //alert(productId);
         var userId = $('#user_id').val();
         console.log(userId);
-        //alert(userId);
+
         $.ajax({
             type: 'POST',
             url: route,
@@ -39,9 +36,7 @@ $(document).ready(function () {
     $(document).on('click','.edit-comment', function(e) {
         e.preventDefault();
         var id = $(this).attr('id');
-        // alert(id);
         var content = $('#content-comment' + id).text();
-        // alert(content);
         var html ="<textarea class='form-control aria-edit-comment fix-comment' cols='50' rows='3' id=" + id + "></textarea>" ;
         $('#edit-comment-aria').html(html);
         $('.aria-edit-comment').focus().val(content);
@@ -50,7 +45,6 @@ $(document).ready(function () {
     $(document).on('keydown', '#comment1', function (e){
         if(e.keyCode == 13){
             var route2 = $('.urlcomment').data('route');
-            // alert(route2);
             var content = $('#comment1').val();
             var productId = $('#product_id').val();
             var userId = $('#user_id').val();
@@ -92,8 +86,44 @@ $(document).ready(function () {
                 $('.aria-edit-comment').remove();
                 } else {
                     alert("Sorry. Comment fail");
-                    // $('#result').removeClass().addClass('alert alert-danger').html(data.message);
                 }
+            }});
+        }
+    });
+
+    $(document).on('click','.reply-comment', function(e) {
+        e.preventDefault();
+        var id = $(this).attr('id');
+        var content = $('#content-comment' + id).text();
+        var html ="<textarea class='form-control aria-reply-comment' cols='50' rows='3' id=" + id + "></textarea>" ;
+        $('#reply-comment-aria' + id).html(html);
+    });
+
+    $(document).on('keydown', '.aria-reply-comment', function (e){
+        if(e.keyCode == 13){
+            var route2 = $('.urlreplycomment').data('route');
+            var content = $('.aria-reply-comment ').val();
+            var productId = $('#product_id').val();
+            var commentParentId = $('#comment_parent_id').val();
+            var userId = $('#user_reply_id').val();
+
+            $.ajax({
+                type: 'GET',
+                url: route2,
+                dataType: 'JSON',
+                data: {
+                    'product_id': productId,
+                    'comment_parent_id': commentParentId,
+                    'content' : content,
+                    'user_id': userId
+                },
+                success: function(data){
+                    if (data.success) {
+                        $('#before-reply-comment' + commentParentId).prepend(data.htmlComment);
+                        $('.aria-reply-comment').remove();
+                    } else {
+                        alert("Sorry. Comment fail");
+                    }
             }});
         }
     });

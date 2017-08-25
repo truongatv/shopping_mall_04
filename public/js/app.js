@@ -7980,7 +7980,7 @@ jQuery.Deferred.exceptionHook = function( error, stack ) {
 
 jQuery.readyException = function( error ) {
 	window.setTimeout( function() {
-		throw error;
+
 	} );
 };
 
@@ -32235,7 +32235,7 @@ if (true) {
     if (config.warnHandler) {
       config.warnHandler.call(null, msg, vm, trace);
     } else if (hasConsole && (!config.silent)) {
-      console.error(("[Vue warn]: " + msg + trace));
+
     }
   };
 

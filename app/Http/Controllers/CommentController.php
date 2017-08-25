@@ -37,7 +37,7 @@ class CommentController extends Controller
     public function store(Request $request)
     {
         if ($request->ajax()) {
-            $input = $request->only('user_id', 'product_id', 'content');
+            $input = $request->only('product_id', 'user_id', 'content');
             try {
                 $comment = new Comment;
                 $comment->user_id = $input['user_id'];
@@ -45,19 +45,22 @@ class CommentController extends Controller
                 $comment->content = $input['content'];
                 $comment->save();
                 $htmlComment = view('comment', compact('comment'))->render();
-            $result = [
-                'success' => true,
-                'htmlComment' => $htmlComment,
-            ];
+                $result = [
+                    'success' => true,
+                    'htmlComment' => $htmlComment,
+                ];
             } catch (Exception $e) {
                 $result = [
                     'success' => false,
                     'message' => trans('label.comment_fail'),
                 ];
+
                 return response()->json($result);
             }
+
             return response()->json($result);
         }
+
         return redirect()->back();
     }
 
@@ -109,6 +112,7 @@ class CommentController extends Controller
             return redirect()->back()
                 ->with('success', trans('auth.delete-comment-successfully'));
         } catch (Exception $e) {
+
             return redirect()->back()
                 ->with('errors', trans('auth.delete-comment-fail'));
         }
@@ -119,23 +123,58 @@ class CommentController extends Controller
         if ($request->ajax()) {
             $input = $request->only('id', 'content');
             try {
-            $comment = Comment::findOrFail($input['id']);
-            $comment->content = $input['content'];
-            $comment->save();
-            $htmlComment = view('comment', compact('comment'))->render();
-            $result = [
-                'success' => true,
-                'htmlComment' => $htmlComment,
-            ];
+                $comment = Comment::findOrFail($input['id']);
+                $comment->content = $input['content'];
+                $comment->save();
+                $htmlComment = view('comment', compact('comment'))->render();
+                $result = [
+                    'success' => true,
+                    'htmlComment' => $htmlComment,
+                ];
             } catch (Exception $e) {
                 $result = [
                     'success' => false,
                     'message' => trans('label.edit_comment_fail'),
                 ];
+
                 return response()->json($result);
             }
+
             return response()->json($result);
         }
+
+        return redirect()->back();
+    }
+
+    public function replyComment(Request $request)
+    {
+        if ($request->ajax()) {
+            $input = $request->only('product_id', 'comment_parent_id', 'user_id', 'content');
+            try {
+                $comment = new Comment;
+                $comment->user_id = $input['user_id'];
+                $comment->product_id = $input['product_id'];
+                $comment->comment_parent_id = $input['comment_parent_id'];
+                $comment->content = $input['content'];
+                $comment->save();
+                $htmlComment = view('reply_comment', compact('comment'))->render();
+
+                $result = [
+                    'success' => true,
+                    'htmlComment' => $htmlComment,
+                ];
+            } catch (Exception $e) {
+                $result = [
+                    'success' => false,
+                    'message' => trans('label.reply_comment_fail'),
+                ];
+
+                return response()->json($result);
+            }
+
+            return response()->json($result);
+        }
+
         return redirect()->back();
     }
 }

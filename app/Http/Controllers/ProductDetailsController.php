@@ -19,6 +19,11 @@ class ProductDetailsController extends Controller
     public function getDetails($product_id)
     {
         $comments = Comment::where('product_id', $product_id)
+            ->whereNull('comment_parent_id')
+            ->orderBy('created_at', 'desc')
+            ->paginate(6);
+        $repcomments = Comment::where('product_id', $product_id)
+            ->where('comment_parent_id', '<>', NULL)
             ->orderBy('created_at', 'desc')
             ->paginate(6);
         $product = Product::findOrFail($product_id);
@@ -26,7 +31,7 @@ class ProductDetailsController extends Controller
         $group = "";
         $name = "";
 
-        return view('product_details', compact('product', 'order','comments', 'group', 'name'));
+        return view('product_details', compact('product', 'order','comments','repcomments', 'group', 'name'));
     }
 
 }
