@@ -5,7 +5,7 @@
             <h1 class="animation-slideDown"><strong>{{ $product -> name }}</strong></h1>
         </div>
     </section>
-    @endsection
+@endsection
 @section('content')
     <section class="site-content site-section">
         <div class="container">
@@ -35,10 +35,11 @@
                     <div class="row" data-toggle="lightbox-gallery">
                         <!-- Images -->
                         <div class="col-sm-6 push-bit">
-                            <a href="{{ $product -> images[0] -> link }}" class="gallery-link">@if(isset($product -> images[0]))
+                            <a href="{{ $product -> images[0] -> link }}" class="gallery-link">
+                            @if(isset($product -> images[0]))
                                 {{ Html::image(($product->images[0]->hasImage()) ? '/assets/uploads/' . $product->images[0]->link : $product->images[0]->link, trans('title.this-is-image'), [
-                                                'class' => 'img-responsive',
-                                            ]) }}
+                                    'class' => 'img-responsive',
+                                ]) }}
                             @else
                                 <img src="https://parts.ippin.com/resized_images/shops/43/28d4ee6c49a9c0785b2a15b059e17c10.png" alt="" class="img-responsive">
                             @endif
@@ -59,8 +60,8 @@
                                     <a href="{{ $product -> images[0] -> link }}" class="gallery-link">
                                     @if(isset($product -> images[0]))
                                         {{ Html::image(($product->images[0]->hasImage()) ? '/assets/uploads/' . $product->images[0]->link : $product->images[0]->link, trans('title.this-is-image'), [
-                                                'class' => 'img-responsive',
-                                            ]) }}
+                                            'class' => 'img-responsive',
+                                        ]) }}
                                     @else
                                         <img src="https://parts.ippin.com/resized_images/shops/43/28d4ee6c49a9c0785b2a15b059e17c10.png" alt="" class="img-responsive">
                                     @endif
@@ -181,10 +182,10 @@
                                             </a><br>
                                             <span class="text-muted pull-right">
                                             @if (auth()->check() && (Auth::user()->id == $comment->user_id))
-                                            <a href="" class=" text-muted edit-comment" id="{{ $comment->comment_id }}"> <i class="fa fa-pencil"></i></a>
-                                            <a href="{{ action('CommentController@destroy', $comment->comment_id) }}" class="delete-comment text-muted"> <i class="fa fa-trash"></i></a>
-                                            <a href="" class=" text-muted reply-comment" id="{{ $comment->comment_id }}">{{ trans('comment.reply') }}</a>
+                                                <a href="" class=" text-muted edit-comment" id="{{ $comment->comment_id }}"> <i class="fa fa-pencil"></i></a>
+                                                <a href="{{ action('CommentController@destroy', $comment->comment_id) }}" class="delete-comment text-muted"> <i class="fa fa-trash"></i></a>
                                             @endif
+                                            <a href="" class=" text-muted reply-comment" id="{{ $comment->comment_id }}">{{ trans('comment.reply') }}</a>
                                             </span>
                                             <span class="text-muted"><small><em>{{ $comment->created_at }}</em></small></span>
                                             <div id='content-comment' data-content-comment = "{{ $comment->content }}"></div>
@@ -207,8 +208,7 @@
                                         </div>
                                         <div id="before-reply-comment{{ $comment->comment_id }}"></div>
                                         @foreach($comment->replies as $rep1)
-
-                                            <div id='location-comment{{ $rep1->comment_id }}' class="reply">
+                                            <div id='location-comment{{ $rep1->comment_id }}' class="reply1">
                                                 <div class="media">
                                                     <a href="javascript:void(0)" class="pull-left">
                                                     {{ Html::image(($rep1->user->avatar_image_link) ? '/assets/uploads/' . $rep1->user->avatar_image_link : config('settings.avatar_default_path'), trans('title.this-is-avatar'), ['class' => 'customer-avatar ',]) }}
@@ -241,7 +241,7 @@
             </div>
         </div>
     </section>
-    @endsection
+@endsection
 
 
 

@@ -1,4 +1,4 @@
-<div id='location-comment{{ $comment->comment_id }}' class="reply">
+<div id='location-comment{{ $comment->comment_id }}' class="reply1">
     <div class="media">
         <a href="javascript:void(0)" class="pull-left">
             {{ Html::image(($comment->user->avatar_image_link) ? '/assets/uploads/' . $comment->user->avatar_image_link : config('settings.avatar_default_path'), trans('title.this-is-avatar'), ['class' => 'customer-avatar ',]) }}

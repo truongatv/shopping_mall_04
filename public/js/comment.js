@@ -104,9 +104,8 @@ $(document).ready(function () {
             var route2 = $('.urlreplycomment').data('route');
             var content = $('.aria-reply-comment ').val();
             var productId = $('#product_id').val();
-            var commentParentId = $('#comment_parent_id').val();
+            var commentParentId = $(this).attr('id');
             var userId = $('#user_reply_id').val();
-
             $.ajax({
                 type: 'GET',
                 url: route2,
