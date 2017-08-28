@@ -119,7 +119,7 @@ Route::post('checkout_confirm/{user_id}/{order_id}', 'CheckOutController@checkou
 //add product
 Route::get('plus_product/{order_detail_id}', 'AddCartController@plus_product')->name('add_product');
 
-Route::get('minus_prodct/{order_detail_id}', 'AddCartController@minus_product')->name('minus_product');
+Route::get('minus_product/{order_detail_id}', 'AddCartController@minus_product')->name('minus_product');
 
 //history
 Route::get('view_cart/order/{id}', 'ViewCartController@viewCartWithId')->name('view_cart_id')->middleware('auth');
@@ -140,3 +140,8 @@ Route::get('/replyComment', 'CommentController@replyComment');
 Route::resource('rate', 'RateController', [
         'only' => ['store']
     ]);
+//productShop
+Route::get('product_shop/{shop_product_id}', 'ShopProductController@show_product')->name('product_shop');
+//Contact
+Route::get('contact', 'ContactController@get_contact')->name('get_contact');
+Route::post('contact', 'ContactController@post_contact')->name('post_contact');
