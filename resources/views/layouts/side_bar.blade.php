@@ -1,6 +1,7 @@
 <div class="sidebar-block">
     <ul class="store-menu" id="menu">
         <li class="{{ $group == "beauty" ? 'open':'' }}" >
+        {{-- {{dd($group)}} --}}
             <a href="#" class="submenu "><i class="fa fa-angle-right"></i>{{ trans('title.beauty') }}</a>
             <ul>
                 <li class="submenuli"><a href="{{ url('category/beauty/cosmetics') }}" class="{{ $name == "cosmetics" ? 'active':'' }}">{{ trans('title.cosmetics') }}</a></li>
@@ -96,5 +97,4 @@
         </div>
     @endif
 </div>
-
 

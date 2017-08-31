@@ -56,10 +56,10 @@ class AdminController extends Controller
             ]);
         $category = new Category;
         $category->name = $request->name;
-        $category->category_parent_id = $request->category_parent_id == 0 ? null : $request->category_parent_id;
+        $category->category_parent_id = $request->category_parent_id;
         $category->save();
 
-        return redirect('admin/category/add')->with('thongbao', trans('title.Add_category_success'));
+        return redirect('admin/category/add')->with('thongbao', 'add sucess !');
     }
 
     public function getEdit($id)

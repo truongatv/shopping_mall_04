@@ -15,10 +15,9 @@ Route::get('/', 'WelcomeController@index')->name('welcome');
 Auth::routes();
 Route::get('/redirect/{social}', 'SocialAuthController@redirect');
 Route::get('/callback/{social}', 'SocialAuthController@callback');
-Route::get('category', 'CategoryController@index');
-Route::get('category/NewArrival', 'CategoryController@newArrival');
-Route::get('category/TopSell', 'CategoryController@topSell');
-Route::get('category/{group}/{name}', 'CategoryController@typeCategory');
+Route::get('category/NewArrival', 'ProductController@getNewArrival');
+Route::get('category/TopSell', 'ProductController@getTopSell');
+Route::get('category/{group}/{name}', 'ProductController@getCategoryProduct');
 Route::get('test/{id}', 'CategoryController@test');
 
 Route::post('upload', 'UploadController@upload');
@@ -38,23 +37,19 @@ Route::get('edit_profile', [
 ]);
 
 //product_details
-Route::get('/product_details/{product_id}', 'ProductDetailsController@getDetails')->name('product_details');
+Route::get('/product_details/{product_id}', 'ProductController@getProductDetails')->name('product_details');
 //shop_details
 Route::get('/shop_details/{shop_product_id}', 'ShopDetailsController@getDetails')->name('shop_details');
 
 
 
 //search
-Route::post('search', 'CategoryController@search')->name('search');
-Route::get('search/{name}', 'CategoryController@searchName')->name('search_name');
-// Route::get('/test', 'CategoryController@searchFilter')->name('search_filter');
+Route::post('search', 'ProductController@search')->name('search');
+Route::get('search/{name}', 'ProductController@searchName')->name('search_name');
 
-//add cart
 Route::post('/add_cart/{produc_id}', 'AddCartController@create')->name('add_cart');
 
-
 Route::get('view_cart/{user_id}', 'ViewCartController@viewCart')->name('view_cart');
-
 // Route to admin
 Route::group(['prefix' => 'admin'], function(){
     Route::get('/', function () {
