@@ -87,20 +87,20 @@ class OrderRepository extends BaseRepository implements OrderRepositoryInterface
         $order = Order::where('user_id', Auth::user()->id)->orderBy('order_id',  'DESC')->first();
             if (count($order) == 0 || $order->status == 1) {
                 DB::transaction(function () {
-                $payment_type = new PaymentType;
-                $payment_type->information = "1";
-                $payment_type->save();
-                $payment_type = PaymentType::orderBy('payment_type_id', 'DESC')->first();
-                $payment = new Payment;
-                $payment->payment_type_id = $payment_type->payment_type_id;
-                $payment->save();
-                $payment = Payment::orderBy('payment_id', 'desc')->first();
-                $order = new Order;
-                $order->total_price = 0;
-                $order->content = 'null';
-                $order->user_id = Auth::user()->id;
-                $order->payment_id = $payment->payment_id;
-                $order->save();
+                    $payment_type = new PaymentType;
+                    $payment_type->information = "1";
+                    $payment_type->save();
+                    $payment_type = PaymentType::orderBy('payment_type_id', 'DESC')->first();
+                    $payment = new Payment;
+                    $payment->payment_type_id = $payment_type->payment_type_id;
+                    $payment->save();
+                    $payment = Payment::orderBy('payment_id', 'desc')->first();
+                    $order = new Order;
+                    $order->total_price = 0;
+                    $order->content = 'null';
+                    $order->user_id = Auth::user()->id;
+                    $order->payment_id = $payment->payment_id;
+                    $order->save();
                 });
             }
         return $order;

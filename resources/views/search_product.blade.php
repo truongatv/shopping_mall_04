@@ -39,7 +39,7 @@
                                     </a>
                                 </div>
                                 <div class="store-item-info clearfix">
-                                    <span class="store-item-price themed-color-dark pull-right">{{ $product->unit_price }}</span>
+                                    <span class="store-item-price themed-color-dark pull-right">${{ number_format($product->unit_price,2) }}</span>
                                     <a href="ecom_product.html"><strong>{{$product->name}}</strong></a><br>
                                     <small><i class="fa fa-shopping-cart text-muted"></i> <a href="javascript:void(0)" class="text-muted">Add to cart</a></small>
                                 </div>
@@ -54,6 +54,3 @@
         </div>
     </section>
     @endsection
-
-
-

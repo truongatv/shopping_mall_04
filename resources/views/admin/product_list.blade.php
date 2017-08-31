@@ -36,7 +36,7 @@
                 <tr class="odd gradeX" align="center">
                     <td>{{ $sp->product_id }}</td>
                     <td>{{ $sp->name }}</td>
-                    <td>{{ $sp->unit_price }}</td>
+                    <td>${{ number_format($sp->unit_price, 2) }}</td>
                     <td>{{ $sp->total_quanity }}</td>
                     <td>{{ ($sp->category) ? $sp->category->name : ''}} </td>
                     <td>{{ ($sp->shopProduct) ? $sp->shopProduct->shop_product_name : ''}}</td>

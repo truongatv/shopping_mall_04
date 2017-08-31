@@ -10,3 +10,4 @@
 {!! Html::script('/assets/bootstrap-star-rating/js/star-rating.min.js') !!}
 {!! Html::script('/js/comment.js') !!}
 {!! Html::script('/js/contact.js') !!}
+{!! Html::script('/js/payment.js') !!}

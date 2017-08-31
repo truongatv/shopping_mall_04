@@ -17,7 +17,7 @@
     @endif
         <div class="container">
             <div class="site-block">
-                <form id="checkout-wizard" action="{{ route('checkout_payment_confirm',['user_id'=>Auth::user()->id,'order_id' => Request::segment(2)]) }}" method="post">
+                <form id="payment-form"" action="{{ route('checkout_payment_confirm',['user_id'=>Auth::user()->id,'order_id' => Request::segment(2)]) }}" method="post">
                 {{ csrf_field() }}
                     <!-- Third Step -->
                     <div id="checkout-third" class="step">
@@ -29,29 +29,22 @@
                         </ul>
                         <!-- END Step Info -->
                         <div class="row">
+                          <span class="payment-errors"></span>
                             <div class="col-sm-6">
-                                <h4 class="page-header address"><i class="fa fa-credit-card"></i> Add Credit Card</h4>
-                                <div class="form-group address">
-                                    <label for="checkout-payment-name">Name</label>
-                                    <input type="text" id="checkout-payment-name" name="checkout_payment_name" class="form-control" placeholder="Full Name">
-                                </div>
-                                <div class="form-group address">
-                                    <label for="checkout-payment-number">Card Number</label>
-                                    <input type="text" id="checkout-payment-number" name="checkout_payment_number" class="form-control" placeholder="0000-0000-0000-0000">
-                                </div>
-                                <div class="form-group address">
-                                    <div class="row">
-                                        <div class="col-xs-6">
-                                            <label for="checkout-payment-cvc">CVC</label>
-                                            <input type="text" id="checkout-payment-cvc" name="checkout_payment_cvc" class="form-control" placeholder="000">
-                                        </div>
-                                        <div class="col-xs-6">
-                                            <label for="checkout-payment-expire">Expiration Date</label>
-                                            <input type="text" id="checkout-payment-expire" name="checkout_payment_expire" class="form-control" placeholder="MM/YYYY">
+                                <h4 class="page-header"><i class="fa fa-credit-card"></i> Add Credit Card</h4>
+                                <div class="form-row" id="credit_card">
+                                    <label>
+                                        <label for="checkout-payment-name">Name</label>
+                                        <input name="cardholder_name" class="field" placeholder="Jane Doe" />
+                                    </label>
+                                    <div>
+                                        <label for="checkout-payment-name">Credit Card</label>
+                                        <div id="card-element">
                                         </div>
                                     </div>
+                                    <div id="card-errors" role="alert"></div>
+                                  </div>
                                 </div>
-                            </div>
                             <div class="col-sm-6">
                                 <h4 class="page-header address">Other Payment Methods</h4>
                                 <div class="form-group">
@@ -70,6 +63,8 @@
                     </div>
                     <!-- END Third Step -->
                     <!-- Form Buttons -->
+                    <br>
+                    <br>
                     <div class="form-group text-right">
                         <a href="{{ URL::previous() }}" type="reset" class="btn btn-danger buton2" id="back" value="Previous Step">Previous Step</a>
                         <input type="submit" class="btn btn-primary" id="next" value="Next Step">
@@ -80,4 +75,6 @@
             </div>
         </div>
     </section>
+<script src="https://js.stripe.com/v3/"></script>
+<script src="https://checkout.stripe.com/checkout.js"></script>
 @endsection

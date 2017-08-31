@@ -58,7 +58,7 @@
                                     <a href="{{ route('product_details', $product->product_id) }}"><strong>{{ $product->name }}</strong></a><br>
                                     </div>
                                     <div class="col-sm-04">
-                                        <span class="store-item-price themed-color-dark pull-right" >${{ $product->unit_price }}</span>
+                                        <span class="store-item-price themed-color-dark pull-right" >${{ number_format($product->unit_price,2) }}</span>
                                     </div>
                                     <i class="fa fa-shopping-cart text-muted bigicon"></i> <small><a href="javascript:void(0)" class="text-muted">Add to cart</a></small>
                                 </div>
@@ -95,7 +95,7 @@
                                         <a href="{{ route('product_details', $product->product_id) }}"><strong>{{ $product->name }}</strong></a><br>
                                         </div>
                                         <div class="col-sm-04">
-                                            <span class="store-item-price themed-color-dark pull-right" >${{ $product->unit_price }}</span>
+                                        <span class="store-item-price themed-color-dark pull-right" >${{ number_format($product->unit_price,2) }}</span>
                                         </div>
                                         <small><i class="fa fa-shopping-cart text-muted bigicon"></i> <a href="javascript:void(0)" class="text-muted">Add to cart</a></small>
                                     </div>
@@ -113,5 +113,3 @@
         </div>
     </section>
     @endsection
-
-

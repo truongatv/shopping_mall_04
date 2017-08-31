@@ -47,10 +47,6 @@
                                 </div>
                                 @endif
                                 <div class="form-group address">
-                                    <label for="checkout-shipping-postal">Postal Code</label>
-                                    <input type="text" id="checkout-shipping-postal" name="checkout-shipping-postal" class="form-control">
-                                </div>
-                                <div class="form-group address">
                                     <label for="checkout-shipping-phone">Phone</label>
                                     <input type="text" id="checkout-shipping-phone" name="checkout-shipping-phone" value="{{ Auth::user()->phone }}" class="form-control">
                                 </div>

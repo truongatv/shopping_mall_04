@@ -86,12 +86,13 @@
                                         <img src="https://parts.ippin.com/resized_images/shops/43/28d4ee6c49a9c0785b2a15b059e17c10.png" alt="" class="img-responsive">
 
                                     @endif
-                                </a>
-                            </div>
-                            <div class="store-item-info clearfix">
-                                <span class="store-item-price themed-color-dark pull-right">{{ $product->unit_price }}</span>
-                                <a href=""><strong>{{ $product->name }}</strong></a><br>
-                                <small><i class="fa fa-shopping-cart text-muted"></i> <a href="javascript:void(0)" class="text-muted">Add to cart</a></small>
+                                    </a>
+                                </div>
+                                <div class="store-item-info clearfix">
+                                    <span class="store-item-price themed-color-dark pull-right">{{ number_format($product->unit_price,2) }}</span>
+                                    <a href=""><strong>{{ $product->name }}</strong></a><br>
+                                    <small><i class="fa fa-shopping-cart text-muted"></i> <a href="javascript:void(0)" class="text-muted">Add to cart</a></small>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -99,9 +100,7 @@
                 <div class="col-md-12 text-right">
                     <a href="{{url('category/TopSell')}}"><strong>View All</strong> <i class="fa fa-arrow-right"></i></a>
                 </div>
+            </div>
         </div>
     </section>
 @endsection
-
-
-
