@@ -43,14 +43,14 @@
                             </div>
                         </div>
                         <div class="form-group form-actions">
-                            <div class="col-xs-6">
+                            <div class="">
                                 <label class="switch switch-primary">
                                     <input type="checkbox" id="login-remember-me" name="remember" "checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}><span></span>
                                 </label>
-                                <small>{{ trans('auth.remember_me') }}</small>
+                                <small id="remember" >{{ trans('auth.remember_me') }}</small>
                             </div>
-                            <div class="col-xs-6 text-right">
-                                {!!Form::submit(trans('auth.login'), ['class' => 'btn btn-sm btn-primary'])!!}
+                            <div class=" login">
+                                {!!Form::submit(trans('auth.login'), ['class' => 'btn btn-sm btn-primary login'])!!}
                             </div>
                         </div>
                         <div class="text-center">

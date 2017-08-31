@@ -30,30 +30,29 @@
                         <!-- END Step Info -->
                         <div class="row row-centered">
                             <div class="col-sm-6 col-centered">
-                                <h4 class="page-header">Shipping Address</h4>
-                                <div class="form-group">
+                                <h4 class="page-header address">Shipping Address</h4>
+                                <div class="form-group address">
                                     <label for="checkout-shipping-name">Name</label>
-                                    <input type="text" id="checkout-shipping-name" name="checkout-shipping-name" class="form-control">
+                                    <input type="text" id="checkout-shipping-name" name="checkout-shipping-name" value="{{ Auth::user()->name }}" class="form-control">
                                 </div>
-                                <div class="form-group">
-                                    <label for="checkout-shipping-address1">Address 1</label>
-                                    <input type="text" id="checkout-shipping-address1" name="checkout-shipping-address1" class="form-control">
+                                @if(isset($address->address))
+                                <div class="form-group address">
+                                    <label for="checkout-shipping-address1">Address </label>
+                                    <input type="text" id="checkout-shipping-address1" name="checkout-shipping-address1" value="{{ $address->address }}" class="form-control">
                                 </div>
-                                <div class="form-group">
-                                    <label for="checkout-shipping-address1">Address 2</label>
-                                    <input type="text" id="checkout-shipping-address2" name="checkout-shipping-address2" class="form-control">
+                                @else
+                                <div class="form-group address">
+                                    <label for="checkout-shipping-address1">Address </label>
+                                    <input type="text" id="checkout-shipping-address1" name="checkout-shipping-address1" value="" class="form-control">
                                 </div>
-                                <div class="form-group">
+                                @endif
+                                <div class="form-group address">
                                     <label for="checkout-shipping-postal">Postal Code</label>
                                     <input type="text" id="checkout-shipping-postal" name="checkout-shipping-postal" class="form-control">
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group address">
                                     <label for="checkout-shipping-phone">Phone</label>
-                                    <input type="text" id="checkout-shipping-phone" name="checkout-shipping-phone" class="form-control">
-                                </div>
-                                <div class="form-group">
-                                    <label for="checkout-shipping-address1">City</label>
-                                    <input type="text" id="checkout-shipping-city" name="checkout-shipping-city" class="form-control">
+                                    <input type="text" id="checkout-shipping-phone" name="checkout-shipping-phone" value="{{ Auth::user()->phone }}" class="form-control">
                                 </div>
                             </div>
                         </div>

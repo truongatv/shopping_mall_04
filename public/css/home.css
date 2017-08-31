@@ -15,10 +15,12 @@
 }
 .submenu{
     font-size: 125%;
+    font-family: 'Sniglet', cursive;
 }
 .store-menu ul li{
     background-color: #fff;
     font-size: 100%;
+    font-family: 'Sniglet', cursive;
 }
 .container　{
     padding-left: 0px;
@@ -26,12 +28,17 @@
 .store-menu > li > a.submenua{
     padding: 10px;
     border-top: 1px solid #f0ebeb;
+    font-family: 'Sniglet', cursive;
 }
 .store-menu ul li.submenuli{
     border-bottom: dashed 1px #e2e5ea;
     background-color: #fff;
+    font-family: 'Sniglet', cursive;
 }
 .reply1 {　
     padding-left: 55px;
     padding-left: 55px;
+}
+.site-logo{
+    font-family: 'Sniglet', cursive;
 }

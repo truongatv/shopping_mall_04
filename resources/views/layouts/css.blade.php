@@ -16,3 +16,4 @@
 {!! Html::style('css/themes.css') !!}
 {!! Html::style('css/product.css') !!}
 {!! Html::style('css/home.css') !!}
+{!! Html::style('css/contact.css') !!}

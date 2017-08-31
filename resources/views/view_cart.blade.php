@@ -44,6 +44,7 @@
                                 @if( $order->status == 0 )
                                     <a href="{{ route('add_product', $order_detail->order_detail_id) }}" class="btn btn-xs btn-success" data-toggle="tooltip" title="Add"><i class="fa fa-plus"></i></a>
                                     <a href="{{ route('minus_product', $order_detail->order_detail_id) }}" class="btn btn-xs btn-danger" data-toggle="tooltip" title="Remove"><i class="fa fa-minus"></i></a>
+                                    <a href="{{ route('delete_product', $order_detail->order_detail_id) }}" class="btn btn-xs btn-warning" data-toggle="tooltip" title="Delete"><i class="fa fa-trash-o  fa-fw"></i></a>
                                 @endif
                             </td>
                             <td class="text-right">${{ $order_detail->product->unit_price }}</td>

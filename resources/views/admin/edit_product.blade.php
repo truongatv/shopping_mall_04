@@ -2,7 +2,7 @@
 @section('product')
     <div class="row">
         <div class="col-lg-12">
-            <h1 class="page-header">Product
+            <h1 class="page-header header2">{{ trans('admin.product') }}
                 <small>{{ $product->name }}</small>
             </h1>
         </div>
@@ -22,20 +22,20 @@
                 <input type="hidden" name="_token" value="{{csrf_token()}}" />
 
                 <div class="form-group">
-                    <label> Name</label>
-                    <input class="form-control" name="name" placeholder="Please Enter Product Name" value=" {{$product->name}}"/>
+                    <label>{{ trans('admin.name') }}</label>
+                    <input class="form-control" name="name" placeholder="{{ trans('admin.please_enter_product_name') }}" value=" {{$product->name}}"/>
                 </div>
                 <div class="form-group">
                     <label>Unit Price</label>
-                    <input class="form-control" name="unit_price" placeholder="Please Enter Unit Price" value=" {{$product->unit_price}}"/>
+                    <input class="form-control" name="unit_price" placeholder="{{ trans('admin.please_enter_unit_price') }}" value=" {{$product->unit_price}}"/>
                 </div>
                 <div class="form-group">
                     <label>Total Quanity</label>
-                    <input class="form-control" name="total_quanity" placeholder="Please Enter Quanity" value=" {{$product->total_quanity}}"/>
+                    <input class="form-control" name="total_quanity" placeholder="{{ trans('admin.please_enter_quanity') }}" value=" {{$product->total_quanity}}"/>
                 </div>
                 <div class="form-group">
                     <label>Top</label>
-                    <input class="form-control" name="top_product" placeholder="Please Enter Top" value="{{$product->top_product}}"/>
+                    <input class="form-control" name="top_product" placeholder="{{ trans('admin.please_enter_top') }}" value="{{$product->top_product}}"/>
                 </div>
                 <div class="form-group">
                     <label>Image</label>
@@ -45,8 +45,8 @@
                     <input type="file" name="image_link" class="form-control">
                 </div>
 
-                <button type="submit" class="btn btn-default">Edit</button>
-                <button type="reset" class="btn btn-default">Reset</button>
+                <button type="submit" class="btn btn-default">{{ trans('admin.edit') }}</button>
+                <button type="reset" class="btn btn-default">{{ trans('admin.reset') }}</button>
             </form>
         </div>
     </div>

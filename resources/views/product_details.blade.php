@@ -121,7 +121,7 @@
                             <hr>
                             <p>{{ $product->information }}</p>
                             <hr>
-                            <form action="{{ route('add_cart', $product->product_id) }}" method="post" class="form-inline push-bit text-right">
+                            <form action="{{ route('add_cart', $product->product_id) }}" method="post" class="form-inline push-bit ">
                             {{ csrf_field() }}
                                 {{-- <select id="ecom-addcart-size" name="ecom-addcart-size" class="form-control" size="1">
                                     <option value="0" disabled selected>SIZE</option>
@@ -133,7 +133,7 @@
                                     <option value="xxl">XXL</option>
                                 </select> --}}
                                 <div class="row">
-                                <span>{{ trans('title.Quality') }} : </span>
+                                <span id ="quality">{{ trans('title.Quality') }} : </span>
                                 <input type="text" name="ecom-addcart-quality" value="1">
                                 <button type="submit" class="btn btn-primary">Add to Cart</button>
                                 </div>
@@ -185,13 +185,16 @@
                                                 <a href="" class=" text-muted edit-comment" id="{{ $comment->comment_id }}"> <i class="fa fa-pencil"></i></a>
                                                 <a href="{{ action('CommentController@destroy', $comment->comment_id) }}" class="delete-comment text-muted"> <i class="fa fa-trash"></i></a>
                                             @endif
+                                            @if (auth()->check())
                                             <a href="" class=" text-muted reply-comment" id="{{ $comment->comment_id }}">{{ trans('comment.reply') }}</a>
+                                            @endif
                                             </span>
                                             <span class="text-muted"><small><em>{{ $comment->created_at }}</em></small></span>
                                             <div id='content-comment' data-content-comment = "{{ $comment->content }}"></div>
                                             <p id="content-comment{{ $comment->comment_id }}">{{ $comment->content }}</p>
                                         </div>
                                     </div>
+                                    @if (auth()->check())
                                     {!! Form::open() !!}
                                         <div class="urlreplycomment" data-route="{{ url('replyComment') }}"></div>
                                         {!! Form::hidden('user_reply_id', Auth::user()->id, [
@@ -202,7 +205,7 @@
                                             'id' => 'comment_parent_id',
                                         ]) !!}
                                     {!! Form::close() !!}
-
+                                    @endif
                                     @if ( $comment->replies )
                                         <div id="reply-comment-aria{{ $comment->comment_id  }}">
                                         </div>

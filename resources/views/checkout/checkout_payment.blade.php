@@ -30,16 +30,16 @@
                         <!-- END Step Info -->
                         <div class="row">
                             <div class="col-sm-6">
-                                <h4 class="page-header"><i class="fa fa-credit-card"></i> Add Credit Card</h4>
-                                <div class="form-group">
+                                <h4 class="page-header address"><i class="fa fa-credit-card"></i> Add Credit Card</h4>
+                                <div class="form-group address">
                                     <label for="checkout-payment-name">Name</label>
                                     <input type="text" id="checkout-payment-name" name="checkout_payment_name" class="form-control" placeholder="Full Name">
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group address">
                                     <label for="checkout-payment-number">Card Number</label>
                                     <input type="text" id="checkout-payment-number" name="checkout_payment_number" class="form-control" placeholder="0000-0000-0000-0000">
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group address">
                                     <div class="row">
                                         <div class="col-xs-6">
                                             <label for="checkout-payment-cvc">CVC</label>
@@ -53,14 +53,14 @@
                                 </div>
                             </div>
                             <div class="col-sm-6">
-                                <h4 class="page-header">Other Payment Methods</h4>
+                                <h4 class="page-header address">Other Payment Methods</h4>
                                 <div class="form-group">
                                     <label>Choose</label>
                                     <div>
-                                        <label class="radio-inline" for="checkout-payment-prepaid">
+                                        <label class="radio-inline address" for="checkout-payment-prepaid">
                                             <input type="radio" id="checkout-payment-prepaid" name="checkout_payments" value="prepaid"> Direct payment
                                         </label>
-                                        <label class="radio-inline" for="checkout-payment-cash">
+                                        <label class="radio-inline address radio2" for="checkout-payment-cash">
                                             <input type="radio" id="checkout-payment-cash" name="checkout_payments" value="cash"> Credit Card
                                         </label>
                                     </div>
@@ -71,7 +71,7 @@
                     <!-- END Third Step -->
                     <!-- Form Buttons -->
                     <div class="form-group text-right">
-                        <a href="{{ URL::previous() }}" type="reset" class="btn btn-danger" id="back" value="Previous Step">Previous Step</a>
+                        <a href="{{ URL::previous() }}" type="reset" class="btn btn-danger buton2" id="back" value="Previous Step">Previous Step</a>
                         <input type="submit" class="btn btn-primary" id="next" value="Next Step">
                     </div>
                     <!-- END Form Buttons -->

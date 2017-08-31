@@ -22,7 +22,7 @@
                         </ul>
                         <!-- END Step Info -->
                         <div class="table-responsive">
-                            <table class="table table-bordered table-vcenter">
+                            <table class="table table-bordered table-vcenter address">
                             <thead>
                                 <tr>
                                     <th colspan="2">Product</th>
@@ -53,7 +53,7 @@
                                         <?php
                                             $total = $order_detail->quality * $order_detail->product->unit_price;
                                             $sub_total += $total;
-                                            $vat += $total*20/100;  
+                                            $vat += $total*20/100;
                                             $sum += $sub_total + $vat;
                                         ?>
                                     <td class="text-right"><strong>${{ $total }}</strong></td>
@@ -78,7 +78,7 @@
                     <!-- END Fourth Step -->
                     <!-- Form Buttons -->
                     <div class="form-group text-right">
-                        <a href="{{ URL::previous() }}" type="reset" class="btn btn-danger" id="back" value="Previous Step">Previous Step</a>
+                        <a href="{{ URL::previous() }}" type="reset" class="btn btn-danger buton2" id="back" value="Previous Step">Previous Step</a>
                         <input type="submit" class="btn btn-primary" id="next" value="Confirm Order">
                     </div>
                     <!-- END Form Buttons -->

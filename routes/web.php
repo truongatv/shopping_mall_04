@@ -95,9 +95,7 @@ Route::group(['prefix' => 'admin'], function(){
     });
 });
 
-Route::get('checkout_addresses/{order_id}', function() {
-    return view('checkout/checkout_addresses');
-})->name('checkout_addresses')->middleware(['auth', 'cart']);
+Route::get('checkout_addresses/{order_id}', 'CheckOutController@get_checkout_addresses')->name('checkout_addresses')->middleware(['auth', 'cart']);
 
 Route::post('checkout_addresses/{user_id}/{order_id}', 'CheckOutController@checkout_addresses' )->name('checkout_addresses_confirm');
 
@@ -115,6 +113,7 @@ Route::post('checkout_confirm/{user_id}/{order_id}', 'CheckOutController@checkou
 Route::get('plus_product/{order_detail_id}', 'AddCartController@plus_product')->name('add_product');
 
 Route::get('minus_product/{order_detail_id}', 'AddCartController@minus_product')->name('minus_product');
+Route::get('delete_product/{order_detail_id}', 'AddCartController@delete_product')->name('delete_product');
 
 //history
 Route::get('view_cart/order/{id}', 'ViewCartController@viewCartWithId')->name('view_cart_id')->middleware('auth');
@@ -138,5 +137,6 @@ Route::resource('rate', 'RateController', [
 //productShop
 Route::get('product_shop/{shop_product_id}', 'ShopProductController@show_product')->name('product_shop');
 //Contact
-Route::get('contact', 'ContactController@get_contact')->name('get_contact');
-Route::post('contact', 'ContactController@post_contact')->name('post_contact');
+Route::get('contact', 'ContactController@getContact')->name('get_contact');
+Route::post('contact', 'ContactController@postContact')->name('post_contact');
+

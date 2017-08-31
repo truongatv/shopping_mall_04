@@ -9,3 +9,4 @@
 {!! Html::script('/assets/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js') !!}
 {!! Html::script('/assets/bootstrap-star-rating/js/star-rating.min.js') !!}
 {!! Html::script('/js/comment.js') !!}
+{!! Html::script('/js/contact.js') !!}

@@ -37,7 +37,7 @@
                     <a href="{{ url('/') }}"></i>{{ trans('title.home') }}</a>
                 </li>
                 <li>
-                    <a href="#">{{ trans('title.contact') }}</a>
+                    <a href="{{ url('contact') }}">{{ trans('title.contact') }}</a>
                 </li>
                 <li>
                     <a href="#">{{ trans('title.about') }}</a>

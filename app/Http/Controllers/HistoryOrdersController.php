@@ -23,9 +23,8 @@ class HistoryOrdersController extends Controller
     }
 
     public function showHistory(){
-
     	$order = $this->orderRepository->history();
-        $topSells = $this->productRepository->topSells();
+        $topSells = $this->productRepository->topSells()->paginate(3);
 
     	return view('history_orders', compact(
             'order',

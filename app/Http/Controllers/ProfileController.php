@@ -8,17 +8,30 @@ use App\Models\User;
 use Illuminate\Support\Facades\File;
 use App\Models\Address;
 use App\Models\Order;
+use App\Models\Product;
+use App\Contracts\OrderRepositoryInterface;
+use App\Contracts\ProductRepositoryInterface;
 
 class ProfileController extends Controller
 {
+    protected $orderRepository;
+    protected $productRepository;
+
+    public function __construct(OrderRepositoryInterface $orderRepository,
+        ProductRepositoryInterface $productRepository)
+    {
+        $this->orderRepository = $orderRepository;
+        $this->productRepository = $productRepository;
+    }
+
     public function getProfile()
     {
         $profile = Auth::user();
         $address = Address::where('user_id',$profile->id)->get();
         $order = Order::where('user_id',$profile->id)->get();
+        $topSells = $this->productRepository->topSells()->paginate(3);
 
-
-        return view('profile', compact('profile', 'address', 'order'));
+        return view('profile', compact('profile', 'address', 'order', 'topSells'));
     }
 
     public function getEditProfile()
