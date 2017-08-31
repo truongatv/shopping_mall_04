@@ -23,7 +23,7 @@
 
                 <!-- Products -->
                 <div class="col-md-8 col-lg-9">
-                    <h2 class="site-heading"><strong>{{ $type }}</strong></h2>
+                    <h2 class="site-heading"><strong>{{ trans('title.New_Arrival') }}</strong></h2>
                     <hr>
                     <div class="row store-items">
                     @foreach($products as $product)

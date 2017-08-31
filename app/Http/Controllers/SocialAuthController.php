@@ -7,7 +7,6 @@ use App\Http\Requests;
 use App\Services\SocialAccountService;
 use Illuminate\Support\Facades\Log;
 use Socialite;
-use Auth;
 
 class SocialAuthController extends Controller
 {
@@ -19,7 +18,7 @@ class SocialAuthController extends Controller
     public function callback($social)
     {
         $user = SocialAccountService::createOrGetUser(Socialite::driver($social)->user(), $social);
-        Auth::login($user);
+        auth()->login($user);
 
         return redirect()->to('/');
     }

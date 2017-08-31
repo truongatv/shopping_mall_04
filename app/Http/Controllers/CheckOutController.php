@@ -88,7 +88,7 @@ class CheckOutController extends Controller
 				DB::transaction(function () use($payment_types) {
 					$payment_types->save();
 				});
-				
+
 				return redirect()->route('checkout_confirm', $order_id);
     		} catch(\Exception $e) {
     			return redirect()->back()->withErrors('errors.add_payment');
@@ -102,7 +102,7 @@ class CheckOutController extends Controller
     	$order_details = $order->order_details()->get();
 
     	return view('checkout/checkout_confirm',compact('order_details'));
-    } 
+    }
 
     public function checkout_comfirm_done(Request $request, $user_id, $order_id)
     {
@@ -134,7 +134,7 @@ class CheckOutController extends Controller
 	                    ->paginate(3);
 	        $topSells = Product::orderBy('products.top_product')
 	                    ->paginate(6);
-	        
+
     		return redirect()->route('welcome')->with(compact('counts', 'newArrivals', 'topSells', 'order'))->with('done_payment', trans('success.done_payment'));
     	} catch(\Exception $e) {
     		return redirect()->back()->withErrors(trans('errors.confirm'));

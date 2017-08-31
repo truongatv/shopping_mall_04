@@ -7,16 +7,30 @@ use Auth;
 use App\Models\Order;
 use App\Models\User;
 use App\Models\Product;
+use App\Contracts\OrderRepositoryInterface;
+use App\Contracts\ProductRepositoryInterface;
 
 class HistoryOrdersController extends Controller
 {
-    //
+    protected $orderRepository;
+    protected $productRepository;
+
+    public function __construct(OrderRepositoryInterface $orderRepository,
+        ProductRepositoryInterface $productRepository)
+    {
+        $this->orderRepository = $orderRepository;
+        $this->productRepository = $productRepository;
+    }
+
     public function showHistory(){
 
-    	$user_id = Auth::user()->id;
-    	$order = Order::where('user_id', $user_id)->orderBy('updated_at', 'DESC')->get();
-    	$topSells = Product::orderBy('products.top_product')->paginate(3);
-    	
-    	return view('history_orders', compact('order', 'topSells'));
+    	$order = $this->orderRepository->history();
+        $topSells = $this->productRepository->topSells();
+
+    	return view('history_orders', compact(
+            'order',
+            'topSells'
+            )
+        );
     }
 }

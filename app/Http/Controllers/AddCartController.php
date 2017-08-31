@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\OrderDetail;
 use App\Models\Order;
 use App\Models\Product;
+use App\Contracts\OrderRepositoryInterface;
 
 class AddCartController extends Controller
 {
@@ -16,6 +17,13 @@ class AddCartController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    protected $orderRepository;
+
+    public function __construct(OrderRepositoryInterface $orderRepository)
+    {
+        $this->orderRepository = $orderRepository;
+    }
+
     public function index()
     {
         //
@@ -28,39 +36,17 @@ class AddCartController extends Controller
      */
     public function create(Request $request, $product_id)
     {
-        //
-        // $id = $request->input('')
         if(Auth::check()) {
-            $id = $request->input('ecom-addcart-quality');
-                try
-            {
-                $product = Product::where('product_id', $product_id)->first();
-                $order  = Order::where('user_id', Auth::user()->id)->orderBy('order_id', 'DESC')->first();
-                $order_detail = new OrderDetail;
-                $order_detail->content = 'content';
-                $order_detail->quality = $id;
-                $order_detail->unit_price = $product->unit_price;
-                $order_detail->order_id = $order->order_id;
-                $order_detail->product_id = $product_id;
-                $order->total_price = $order->total_price + ($order_detail->unit_price * $id);
-                DB::transaction(function () use ($order,$order_detail) {
-                    $order_detail->save();
-                    $order->save();
-                });
-                echo("<script>console.log('".$order."');</script>");
-
-                return redirect()->back()->with('add_done', trans('success.add_done', [
-                        'id'=>$id ,
-                        'name'=> $product->name,
-                        ]
-                ));
-            } catch (\Exception $e)
-            {
-
+            $create = $this->orderRepository->createCart($request, $product_id);
+            if($create) {
+                return redirect()->back()->with('add_done', trans('success.add_done')
+                );
+            }
+            else{
                 return redirect()->back()->with('errors',trans('errors.add_cart'));
             }
         }
-        else {
+        else{
             return redirect('login');
         }
     }
@@ -68,37 +54,20 @@ class AddCartController extends Controller
     public function plus_product($order_detail_id)
     {
         try {
-            $order_detail = OrderDetail::where('order_detail_id', $order_detail_id)->first();
-            $order = Order::where('user_id', Auth::user()->id)->orderBy('order_id', 'DESC')->first();
-            $order->total_price = $order->total_price + $order_detail->unit_price;
-            $order_detail->quality = $order_detail->quality + 1;
-            DB::transaction(function () use($order_detail, $order) {
-                $order->save();
-                $order_detail->save();
-            });
-        
-            return redirect()->back();    
+        $this->orderRepository->plusProduct($order_detail_id);
+            return redirect()->back();
         } catch(\Exception $e) {
             return redirect()->back()->withErrors(trans('errors.plus_product'));
-        }   
+        }
     }
 
     public function minus_product($order_detail_id)
     {
-        $order_detail = OrderDetail::where('order_detail_id', $order_detail_id)->first();
-        $order = Order::where('user_id', Auth::user()->id)->orderBy('order_id', 'DESC')->first();
-        if($order_detail->quality > 0) {
-            $order_detail->quality -= 1;
-            $order->total_price = $order->total_price - $order_detail->unit_price;
-            DB::transaction(function () use($order_detail, $order) {
-                $order_detail->save();
-                $order->save();
-            });
-
+        $minus = $this->orderRepository->minusProduct($order_detail_id);
+        if ($minus) {
             return redirect()->back();
         }
-
-        if($order_detail->quality == 0) {
+        else{
             return redirect()->back()->with('minus_error', trans('errors.minus_product'));
         }
     }
