@@ -2,7 +2,7 @@
 @section('category')
     <div class="row">
         <div class="col-lg-12">
-            <h1 class="page-header">Category
+            <h1 class="page-header header2">{{ trans('admin.category') }}
                 <small>{{ $category->name }}</small>
             </h1>
         </div>
@@ -26,11 +26,11 @@
                 <input type="hidden" name="_token" value="{{ csrf_token() }}" />
 
                 <div class="form-group">
-                    <label>Category Name</label>
-                    <input class="form-control" name="name" placeholder="Please Enter Category Name" value="{{ $category->name }}"/>
+                    <label>{{ trans('admin.category_name') }}</label>
+                    <input class="form-control" name="name" placeholder="{{ trans('admin.please_enter_category_name') }}" value="{{ $category->name }}"/>
                 </div>
-                <button type="submit" class="btn btn-default">Edit</button>
-                <button type="reset" class="btn btn-default">Reset</button>
+                <button type="submit" class="btn btn-default">{{ trans('admin.edit') }}</button>
+                <button type="reset" class="btn btn-default">{{ trans('admin.reset') }}</button>
             </form>
         </div>
     </div>

@@ -57,4 +57,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Rate::class);
     }
+
+    public function setPasswordAttribute($value)
+    {
+        $this->attributes['password'] = Hash::make($value);
+    }
 }

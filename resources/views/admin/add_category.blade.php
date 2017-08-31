@@ -2,8 +2,8 @@
 @section('category')
     <div class="row">
         <div class="col-lg-12">
-            <h1 class="page-header">Category
-                <small>Add</small>
+            <h1 class="page-header header2">{{ trans('admin.category') }}
+                <small>{{ trans('admin.add') }}</small>
             </h1>
         </div>
         <!-- /.col-lg-12 -->
@@ -22,24 +22,21 @@
                 </div>
             @endif
 
-            <form action= "{{ route('add_cate') }}" method="POST">
+            <form id="form2" action= "{{ route('add_cate') }}" method="POST">
                 {{ csrf_field() }}
-                <input type="hidden" name="_token" value="{{csrf_token()}}" />
+                <input type="hidden" name="_token" value="{{ csrf_token() }}" />
                 <div class="form-group">
-                    <label>Category Parent</label>
-                    <!-- <select class="form-control">
-                        <option value="">NONE</option>
-                    </select> -->
+                    <label>{{ trans('admin.category_parent') }}</label>
                     {!! Form::select('category_parent_id', $categoryParent, 0, [
                         'class' => 'form-control',
                     ]) !!}
                 </div>
                 <div class="form-group">
-                    <label>Category Name</label>
-                    <input class="form-control" name="name" placeholder="Please Enter Category Name" />
+                    <label>{{ trans('admin.category_name') }}</label>
+                    <input class="form-control" name="name" placeholder="{{ trans('admin.please_enter_category_name') }}" />
                 </div>
-                <button type="submit" class="btn btn-default">Category Add</button>
-                <button type="reset" class="btn btn-default">Reset</button>
+                <button type="submit" class="btn btn-success">{{ trans('admin.category_add') }}</button>
+                <button type="reset" class="btn btn-danger">{{ trans('admin.reset') }}</button>
             </form>
         </div>
     </div>

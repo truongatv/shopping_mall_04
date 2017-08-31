@@ -2,8 +2,8 @@
 @section('product')
     <div class="row">
         <div class="col-lg-12">
-            <h1 class="page-header">Product
-                <small>List</small>
+            <h1 class="page-header header2">{{ trans('admin.product') }}
+                <small>{{ trans('admin.list') }}</small>
             </h1>
         </div>
         <!-- /.col-lg-12 -->
@@ -20,15 +20,15 @@
         <table class="table table-striped table-bordered table-hover" id="dataTables-example">
             <thead>
                 <tr align="center">
-                    <th>ID</th>
-                    <th>Name</th>
-                    <th>Unit Price</th>
-                    <th>Total Quality</th>
-                    <th>Category</th>
-                    <th>Shop Product</th>
-                    <th>Image</th>
-                    <th>Delete</th>
-                    <th>Edit</th>
+                    <th>{{ trans('admin.id') }}</th>
+                    <th>{{ trans('admin.name') }}</th>
+                    <th>{{ trans('admin.unit_price') }}</th>
+                    <th>{{ trans('admin.total_quality') }}</th>
+                    <th>{{ trans('admin.category') }}</th>
+                    <th>{{ trans('admin.shop_product') }}</th>
+                    <th>{{ trans('admin.image') }}</th>
+                    <th>{{ trans('admin.delete') }}</th>
+                    <th>{{ trans('admin.edit') }}</th>
                 </tr>
             </thead>
             <tbody>
@@ -49,10 +49,8 @@
                             <img src="https://parts.ippin.com/resized_images/shops/43/28d4ee6c49a9c0785b2a15b059e17c10.png" alt="" class="img-responsive">
                         @endif
                     </td>
-                    <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="{{ action('AdminController@getDeleteProduct', $sp->product_id) }}" > Delete</a>
-                    </td>
-                    <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="{{ action('AdminController@getEditProduct', $sp->product_id) }}"> Edit </a>
-                    </td>
+                    <td class="center"><a href="{{ action('AdminController@getDeleteProduct', $sp->product_id) }}" class="btn btn-danger" data-toggle="tooltip" title="Delete"><i class="fa fa-trash-o  fa-fw"></i>{{ trans('admin.delete') }}</a></td>
+                    <td class="center"><a href="{{ action('AdminController@getEditProduct', $sp->product_id) }}" class="btn btn-warning" data-toggle="tooltip" title="Edit"><i class="fa fa-pencil fa-fw"></i>{{ trans('admin.edit') }}</a></td>
                 </tr>
                 @endforeach
             </tbody>

@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Contracts\Auth\Authenticatable;
+use DB;
+use Mail;
 
 class RegisterController extends Controller
 {
@@ -28,7 +30,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/';
+    protected $redirectTo = 'https://mail.google.com';
 
     /**
      * Create a new controller instance.
@@ -63,6 +65,17 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $home = 'http://localhost:8000/';
+        $data_user = [
+            'name' => $data['name'],
+            'mail' => $data['email'],
+            'messsage_notification' => "Bạn đã đăng kí thành công . Nhấn để xác thực và  Quay lại trang chủ ",
+            'link' => $home
+            ];
+        Mail::send('mail',$data_user, function($message) use ($data_user) {
+            $message->to($data_user['mail'], $data_user['name'])->subject('Shopping Mall');
+        });
+
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],

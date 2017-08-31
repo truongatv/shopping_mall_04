@@ -2,8 +2,8 @@
 @section('product')
     <div class="row">
         <div class="col-lg-12">
-            <h1 class="page-header">Product
-                <small>Add</small>
+            <h1 class="page-header header2">{{ trans('admin.product') }}
+                <small>{{ trans('admin.add') }}</small>
             </h1>
         </div>
         <!-- /.col-lg-12 -->
@@ -20,23 +20,23 @@
                 <input type="hidden" name="_token" value="{{ csrf_token() }}" />
                 <div class="form-group">
                     <label>Name</label>
-                    <input class="form-control" name="name" placeholder="Please Enter Category Name" />
+                    <input class="form-control" name="name" placeholder="{{ trans('admin.please_enter_product_name') }}" />
                 </div>
                 <div class="form-group">
                     <label>Unit Price</label>
-                    <input class="form-control" name="unit_price" placeholder="Please Enter Unit Price" />
+                    <input class="form-control" name="unit_price" placeholder="{{ trans('admin.please_enter_unit_price') }}" />
                 </div>
                 <div class="form-group">
                     <label>Quanity</label>
-                    <input class="form-control" name="total_quanity" placeholder="Please Enter Quanity" />
+                    <input class="form-control" name="total_quanity" placeholder="{{ trans('admin.please_enter_quanity') }}" />
                 </div>
                 <div class="form-group">
                     <label>Top</label>
-                    <input class="form-control" name="top_product" placeholder="Please Enter Top Product" />
+                    <input class="form-control" name="top_product" placeholder="{{ trans('admin.please_enter_top') }}" />
                 </div>
 
                 <div class="form-group">
-                    <label>Category Parent</label>
+                    <label>{{ trans('admin.category_parent') }}</label>
                     <select class="form-control" name="category_parent_id" id="category_parent">
                         @foreach($category_parent as $category_parent)
                             <option value="{{ $category_parent->category_id }}">
@@ -46,7 +46,7 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label>Category</label>
+                    <label>{{ trans('admin.category') }}</label>
                     <select class="form-control" name="category_id" id="category_child">
                         @foreach($category as $category)
                             <option value="{{ $category->category_id }}">
@@ -69,8 +69,8 @@
                     <label>Image</label>
                     <input type="file" name="image_link" class="form-control">
                 </div>
-                <button type="submit" class="btn btn-default">Product Add</button>
-                <button type="reset" class="btn btn-default">Reset</button>
+                <button type="submit" class="btn btn-success">{{ trans('admin.product_add') }}</button>
+                <button type="reset" class="btn btn-danger">{{ trans('admin.reset') }}</button>
             </form>
         </div>
     </div>
