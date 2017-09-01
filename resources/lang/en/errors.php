@@ -22,5 +22,8 @@ return [
     'expire' => 'Error! You do not input expire',
     'expire_number' => 'Error! Expire is not true!',
     'plus_product' => 'Error! Can add product !',
-    'minus_product' => 'Error! Can minus product !'
+    'minus_product' => 'You have 0 product. You can\'t minus product !',
+    'over_quanity' => 'Sorry! Quantity in stock not enough!',
+    'not_exist' => 'Sorry! product is not exist!',
+    'order_not_done' => 'Error! You can\'t view history this order. Because you not yet done this order!'
 ];

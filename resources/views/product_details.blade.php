@@ -123,15 +123,6 @@
                             <hr>
                             <form action="{{ route('add_cart', $product->product_id) }}" method="post" class="form-inline push-bit ">
                             {{ csrf_field() }}
-                                {{-- <select id="ecom-addcart-size" name="ecom-addcart-size" class="form-control" size="1">
-                                    <option value="0" disabled selected>SIZE</option>
-                                    <option value="xs">XS</option>
-                                    <option value="s">S</option>
-                                    <option value="m">M</option>
-                                    <option value="l">L</option>
-                                    <option value="xl">XL</option>
-                                    <option value="xxl">XXL</option>
-                                </select> --}}
                                 <div class="row">
                                 <span id ="quality">{{ trans('title.Quality') }} : </span>
                                 <input type="text" name="ecom-addcart-quality" value="1">

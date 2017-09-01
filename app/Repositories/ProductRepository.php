@@ -15,7 +15,7 @@ use App\Contracts\ProductRepositoryInterface;
 class ProductRepository extends BaseRepository implements ProductRepositoryInterface
 {
     public function productAll(){
-        $products = Product::paginate(6);
+        $products = Product::where('status', 1)->paginate(6);
 
         return $products;
     }
@@ -48,13 +48,13 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
     }
 
     public function newArrivals(){
-        $newArrivals = Product::orderBy('products.created_at');
+        $newArrivals = Product::orderBy('products.created_at')->where('status', 1);
 
         return $newArrivals;
     }
 
     public function topSells(){
-        $topSells = Product::orderBy('products.top_product');
+        $topSells = Product::orderBy('products.top_product')->where('status', 1);
 
         return $topSells;
     }

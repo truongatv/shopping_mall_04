@@ -49,9 +49,6 @@
                             </div>
                         </div>
                         @endforeach
-                        <div class="col-md-12 text-right">
-                            <a href="{{ url('category/NewArrival')}}"><strong>View All</strong> <i class="fa fa-arrow-right"></i></a>
-                        </div>
                     </div>
                     <!-- END New Arrivals -->
                     <h2 class="site-heading"><strong>Best</strong> Sellers</h2>
@@ -86,9 +83,6 @@
                             </div>
                         </div>
                     @endforeach
-                        <div class="col-md-12 text-right">
-                            <a href="{{url('category/TopSell')}}"><strong>View All</strong> <i class="fa fa-arrow-right"></i></a>
-                        </div>
                     </div>
                     <!-- END Best Sellers -->
                 </div>

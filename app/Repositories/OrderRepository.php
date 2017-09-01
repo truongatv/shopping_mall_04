@@ -47,6 +47,17 @@ class OrderRepository extends BaseRepository implements OrderRepositoryInterface
 
     public function plusProduct($order_detail_id)
     {
+        $order_detail = OrderDetail::where('order_detail_id', $order_detail_id)->first();
+        $product = $order_detail->product;
+        $temp = $product->total_quanity - $order_detail->quality;
+        //check if over quality in stock
+        if($temp <= 0) {
+            $out[0] = 0;
+            $out[1] = 'errors.over_quanity';
+            // return redirect()->back()->with('plus_error', trans('errors.over_quanity'));
+            return $out;
+        }
+        try {
             $order_detail = OrderDetail::where('order_detail_id', $order_detail_id)->first();
             $order = Order::where('user_id', Auth::user()->id)->orderBy('order_id', 'DESC')->first();
             $order->total_price = $order->total_price + $order_detail->unit_price;
@@ -55,6 +66,16 @@ class OrderRepository extends BaseRepository implements OrderRepositoryInterface
                 $order->save();
                 $order_detail->save();
             });
+            $out[0] = 1;
+            $out[1] = 1;
+
+            return $out;
+        } catch(\Exception $e) {
+            $out[0] = 0;
+            $out[1] = 'errors.plus_product';
+            
+            return $out;
+        }
     }
 
     public function minusProduct($order_detail_id)

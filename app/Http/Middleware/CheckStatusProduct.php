@@ -3,9 +3,9 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use App\Models\Order;
+use App\Models\Product;
 
-class checkCart
+class CheckStatusProduct
 {
     /**
      * Handle an incoming request.
@@ -16,9 +16,9 @@ class checkCart
      */
     public function handle($request, Closure $next)
     {
-        $order = Order::where('order_id', $request->order_id)->first();
-        if($order->total_price == 0){
-            return redirect()->back()->with('error', trans('errors.checkout'));
+        $product = Product::where('product_id', $request->product_id)->first();
+        if($product->status == 0) {
+            return response(trans('errors.not_exist'), 404);
         }
 
         return $next($request);

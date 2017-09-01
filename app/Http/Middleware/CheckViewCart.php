@@ -4,8 +4,10 @@ namespace App\Http\Middleware;
 
 use Closure;
 use App\Models\Order;
+use App\Models\User;
+use Auth;
 
-class checkCart
+class CheckViewCart
 {
     /**
      * Handle an incoming request.
@@ -16,9 +18,9 @@ class checkCart
      */
     public function handle($request, Closure $next)
     {
-        $order = Order::where('order_id', $request->order_id)->first();
-        if($order->total_price == 0){
-            return redirect()->back()->with('error', trans('errors.checkout'));
+        $order = Order::where('order_id', $request->id)->first();
+        if($order->status == 0) {
+            return response(trans('errors.order_not_done'));
         }
 
         return $next($request);

@@ -22,11 +22,13 @@ class ShopProductController extends Controller
     {
         $counts = Product::where('shop_product_id', $id) -> count();
         $newArrivals = Product::where('shop_product_id', $id)
+                    ->where('status', 1)
                     ->orderBy('products.created_at')
                     ->paginate(6);
         $topSells = Product::where('shop_product_id', $id)
+                    ->where('status', 1)
                     ->orderBy('products.top_product')
-                    ->paginate(12);
+                    ->paginate(6);
         if (Auth::check()) {
             $order = Order::where('user_id', Auth::user()->id)->orderBy('order_id',  'DESC')->first();
             if (count($order) == 0 || $order->status == 1) {
