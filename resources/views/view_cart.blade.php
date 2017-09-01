@@ -13,6 +13,11 @@
                 {{session('minus_error')}}
             </div>
         @endif
+        @if(session('plus_error'))
+            <div class="alert alert-danger">
+                {{session('plus_error')}}
+            </div>
+        @endif
         <div class="container">
             <div class="table-responsive">
                 <table class="table table-bordered table-vcenter">

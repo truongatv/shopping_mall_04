@@ -58,5 +58,7 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'admin' => \App\Http\Middleware\CheckAuth::class,
         'cart' => \App\Http\Middleware\checkCart::class,
+        'product_status' => \App\Http\Middleware\CheckStatusProduct::class,
+        'check_status_order' => \App\Http\Middleware\CheckViewCart::class,
     ];
 }

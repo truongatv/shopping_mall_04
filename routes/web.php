@@ -37,7 +37,7 @@ Route::get('edit_profile', [
 ]);
 
 //product_details
-Route::get('/product_details/{product_id}', 'ProductController@getProductDetails')->name('product_details');
+Route::get('/product_details/{product_id}', 'ProductController@getProductDetails')->name('product_details')->middleware('product_status');
 //shop_details
 Route::get('/shop_details/{shop_product_id}', 'ShopDetailsController@getDetails')->name('shop_details');
 
@@ -49,7 +49,7 @@ Route::get('search/{name}', 'ProductController@searchName')->name('search_name')
 
 Route::post('/add_cart/{produc_id}', 'AddCartController@create')->name('add_cart');
 
-Route::get('view_cart/{user_id}', 'ViewCartController@viewCart')->name('view_cart');
+Route::get('view_cart/{user_id}', 'ViewCartController@viewCart')->name('view_cart')->middleware('auth');
 // Route to admin
 Route::group(['prefix' => 'admin'], function(){
     Route::get('/', function () {
@@ -116,7 +116,7 @@ Route::get('minus_product/{order_detail_id}', 'AddCartController@minus_product')
 Route::get('delete_product/{order_detail_id}', 'AddCartController@delete_product')->name('delete_product');
 
 //history
-Route::get('view_cart/order/{id}', 'ViewCartController@viewCartWithId')->name('view_cart_id')->middleware('auth');
+Route::get('view_cart/order/{id}', 'ViewCartController@viewCartWithId')->name('view_cart_id')->middleware(['auth','check_status_order']);
 
 //show history orders
 Route::get('history_orders', 'HistoryOrdersController@showHistory');
