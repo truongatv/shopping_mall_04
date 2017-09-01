@@ -32,6 +32,7 @@ class WelcomeController extends Controller
         $counts = $this->productRepository->productCount();
         if (Auth::check()) {
             $order = $this->orderRepository->getUserOrder();
+            // dd($order);
             $group = "";
             $name = "";
 

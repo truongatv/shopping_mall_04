@@ -21,7 +21,7 @@
                 <tr class="odd gradeX" align="center">
                     <td class="center">{{ $orderdetail->order_detail_id }}</td>
                     <td class="center">{{ $orderdetail->product->name }}</td>
-                    <td class="center">{{ $orderdetail->unit_price }}</td>
+                    <td class="center">${{ number_format($orderdetail->unit_price,2) }}</td>
                     <td class="center">{{ $orderdetail->quality }}</td>
 
                 </tr>

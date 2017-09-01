@@ -40,4 +40,10 @@ return [
         'client_secret' => env('FACEBOOK_APP_SECRET'),
         'redirect' => env('FACEBOOK_APP_CALLBACK_URL'),
     ],
+    
+    'stripe' => [
+        'model'  => App\User::class,
+        'key' => env('STRIPE_KEY'),
+        'secret' => env('STRIPE_SECRET'),
+    ],
 ];

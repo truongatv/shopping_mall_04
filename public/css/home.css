@@ -42,3 +42,20 @@
 .site-logo{
     font-family: 'Sniglet', cursive;
 }
+.field {
+  background: transparent;
+  font-weight: 300;
+  border: 0;
+  color: #31325F;
+  outline: none;
+  padding-right: 10px;
+  padding-left: 10px;
+  cursor: text;
+  width: 70%;
+  height: 40px;
+  float: right;
+}
+
+.field::-webkit-input-placeholder { color: #CFD7E0; }
+.field::-moz-placeholder { color: #CFD7E0; }
+.field:-ms-input-placeholder { color: #CFD7E0; }

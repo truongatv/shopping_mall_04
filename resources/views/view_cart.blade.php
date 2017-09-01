@@ -47,7 +47,7 @@
                                     <a href="{{ route('delete_product', $order_detail->order_detail_id) }}" class="btn btn-xs btn-warning" data-toggle="tooltip" title="Delete"><i class="fa fa-trash-o  fa-fw"></i></a>
                                 @endif
                             </td>
-                            <td class="text-right">${{ $order_detail->product->unit_price }}</td>
+                            <td class="text-right">${{ number_format($order_detail->product->unit_price,2) }}</td>
                                 <?php
                                     $total = $order_detail->quality * $order_detail->product->unit_price;
                                     $sub_total += $total;
@@ -118,7 +118,7 @@
                             </a>
                         </div>
                         <div class="store-item-info clearfix">
-                            <span class="store-item-price themed-color-dark pull-right">{{ $product->unit_price }}</span>
+                            <span class="store-item-price themed-color-dark pull-right">${{ number_format($product->unit_price,2) }}</span>
                             <a href=""><strong>{{ $product->name }}</strong></a><br>
                             <small><i class="fa fa-shopping-cart text-muted"></i> <a href="javascript:void(0)" class="text-muted">Add to cart</a></small>
                         </div>
@@ -128,6 +128,3 @@
         </div>
     </section>
 @endsection
-
-
-

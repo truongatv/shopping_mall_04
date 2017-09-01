@@ -49,7 +49,7 @@
                                     <td class="text-center">
                                         <strong>{{ $order_detail->quality }}</strong>
                                     </td>
-                                    <td class="text-right">${{ $order_detail->product->unit_price }}</td>
+                                    <td class="text-right">${{ number_format($order_detail->product->unit_price,2) }}</td>
                                         <?php
                                             $total = $order_detail->quality * $order_detail->product->unit_price;
                                             $sub_total += $total;

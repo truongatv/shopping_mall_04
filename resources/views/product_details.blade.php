@@ -85,7 +85,7 @@
                         <div class="col-sm-6 push-bit">
                             <div class="clearfix">
                                 <div class="pull-right">
-                                    <span class="h2"><strong>${{ $product -> unit_price }}</strong></span>
+                                    <span class="h2"><strong>${{ number_format($product->unit_price,2) }}</strong></span>
                                 </div>
                                 <span class="h4">
                                     <strong class="text-success">{{ $product->name }}</strong><br>
@@ -245,6 +245,3 @@
         </div>
     </section>
 @endsection
-
-
-
