@@ -140,3 +140,6 @@ Route::get('product_shop/{shop_product_id}', 'ShopProductController@show_product
 Route::get('contact', 'ContactController@getContact')->name('get_contact');
 Route::post('contact', 'ContactController@postContact')->name('post_contact');
 
+//elasticsearch
+Route::get('essearch', 'ElasticsearchController@elasticSearch')->name('essearch');
+// Route::get('essearch/{name}', 'ElasticsearchController@elasticsearchName')->name('essearch_name');

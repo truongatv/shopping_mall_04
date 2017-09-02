@@ -4,7 +4,7 @@
         <a href="{{ url('/') }}" class="site-logo">
             <i class="gi gi-flash"></i> <strong>Shopping</strong>Mall
         </a>
-        <form action="{{ url('search') }}" method="post" class="quick-search">
+        <form action="{{ url('essearch') }}" method="get" class="quick-search">
             {{ csrf_field() }}
             <div class="input-group input-group-lg input_quick_search">
                 <input type="text" id="ecom-search" name="ecom-search" class="form-control text-center" placeholder="Search Store..">

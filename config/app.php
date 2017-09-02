@@ -179,7 +179,9 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         Barryvdh\Debugbar\ServiceProvider::class,
-        Laravel\Cashier\CashierServiceProvider::class
+        Laravel\Cashier\CashierServiceProvider::class,
+        Laravel\Scout\ScoutServiceProvider::class,
+        ScoutEngines\Elasticsearch\ElasticsearchProvider::class,
 
     ],
 

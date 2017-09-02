@@ -3,9 +3,12 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Laravel\Scout\Searchable;
 
 class Product extends Model
 {
+    use Searchable;
+
     protected $primaryKey = 'product_id';
     protected $fillable = [
         'name',
@@ -46,4 +49,5 @@ class Product extends Model
     {
         return $this->belongsTo(ShopProduct::class, 'shop_product_id', 'shop_product_id');
     }
+    
 }

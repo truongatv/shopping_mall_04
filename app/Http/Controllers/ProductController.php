@@ -12,9 +12,11 @@ use App\Models\Payment;
 use App\Models\PaymentType;
 use App\Contracts\OrderRepositoryInterface;
 use App\Contracts\ProductRepositoryInterface;
+use Elasticquent\ElasticquentTrait;
 
 class ProductController extends Controller
 {
+    use ElasticquentTrait;
     /**
      * Display a listing of the resource.
      *
@@ -124,7 +126,14 @@ class ProductController extends Controller
     }
 
     public function search(Request $request){
+        $this->validate($request, [
+            'ecom-search' => 'regex:/(^([a-zA-z0-9]+)(\d+)?$)/u|min:1'
+            ],[
+            'ecom-search.required' => trans('errors.name'),
+            'ecom-search.min' => trans('errors.name')
+            ]);
         $name = $this->productRepository->search($request);
+
         return redirect()->route('search_name',$name);
     }
 
@@ -144,20 +153,20 @@ class ProductController extends Controller
             if($star == 0) {
                 if($beauty != null || $drink != null || $game != null || $electronic != null || $home != null || $home != null || $hobby != null){
                     $products = Product::whereIn('category_id',  function($query) use ($beauty, $drink, $game, $electronic, $home, $hobby) {
-                                    $query->select('category_id')->from('categories')->where('name',  $beauty)
-                                                    ->orWhere('name', $drink)
-                                                    ->orWhere('name', $game)
-                                                    ->orWhere('name', $electronic)
-                                                    ->orWhere('name', $home)
-                                                    ->orWhere('name', $hobby)->get();
+                                    $query->select('category_id')->from('categories')->where('name', 'LIKE',"{$beauty} & %")
+                                                    ->orWhere('name', 'LIKE', "{$drink} & %")
+                                                    ->orWhere('name', 'name', 'LIKE', "{$game} & %")
+                                                    ->orWhere('name', 'name', 'LIKE', "{$electronic} & %")
+                                                    ->orWhere('name', 'name', 'LIKE', "{$home} & %")
+                                                    ->orWhere('name', 'name', 'LIKE', "{$hobby} & %")->get();
                                 })
-                                ->where('name', $type)
+                                ->where('name', 'LIKE', "%$type%")
                                 ->where('unit_price', '>', $min)
                                 ->where('unit_price', '<', $max)
                                 ->paginate(6);
                 }
                 else {
-                    $products = Product::where('name', $type)
+                    $products = Product::where('name', 'LIKE', "%$type%")
                                 ->where('unit_price', '>', $min)
                                 ->where('unit_price', '<', $max)
                                 ->paginate(6);
@@ -166,21 +175,21 @@ class ProductController extends Controller
             else {
                 if($beauty != null || $drink != null || $game != null || $electronic != null || $home != null || $home != null || $hobby != null){
                     $products = Product::whereIn('category_id',  function($query) use ($beauty, $drink, $game, $electronic, $home, $hobby) {
-                                    $query->select('category_id')->from('categories')->where('name',  $beauty)
-                                                    ->orWhere('name', $drink)
-                                                    ->orWhere('name', $game)
-                                                    ->orWhere('name', $electronic)
-                                                    ->orWhere('name', $home)
-                                                    ->orWhere('name', $hobby)->get();
+                                    $query->select('category_id')->from('categories')->where('name', 'LIKE', "{$beauty} & %")
+                                                    ->orWhere('name', 'LIKE', "{$drink} & %")
+                                                    ->orWhere('name', 'LIKE', "{$game} & %")
+                                                    ->orWhere('name', 'LIKE', "{$electronic} & %")
+                                                    ->orWhere('name', 'LIKE', "{$home} & %")
+                                                    ->orWhere('name', 'LIKE', "{$hobby} & %")->get();
                                 })
-                                ->where('name', $type)
+                                ->where('name', 'LIKE', "%$type%")
                                 ->where('unit_price', '>', $min)
                                 ->where('unit_price', '<', $max)
                                 ->where('rate_count', $star)
                                 ->paginate(6);
                 }
                 else {
-                    $products = Product::where('name', $type)
+                    $products = Product::where('name', 'LIKE', "%$type%")
                                 ->where('unit_price', '>', $min)
                                 ->where('unit_price', '<', $max)
                                 ->where('rate_count', $star)
@@ -192,13 +201,12 @@ class ProductController extends Controller
                     'success' => true,
                     'search_result' => $htmlFilter
             ];
-
             return response()->json($result);
         }
-       $products = Product::where('name',  $name)->paginate(6);
+       $products = Product::where('name', 'LIKE',  '%'.$name.'%')->paginate(6);
         if (count($products) == config('settings.error')) {
             $products = Product::whereIn('shop_product_id',  function($query) use ($name) {
-                $query->select('shop_product_id')->from('shop_products')->where('shop_product_name',  $name)->get();
+                $query->select('shop_product_id')->from('shop_products')->where('shop_product_name', 'LIKE', '%'.$name.'%')->get();
             })->paginate(6);
         }
         $type = $name;

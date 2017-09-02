@@ -9,14 +9,17 @@
         "aws/aws-sdk-php": "~3.0",
         "barryvdh/laravel-debugbar": "^2.4",
         "doctrine/dbal": "^2.5",
+        "elasticsearch/elasticsearch": "^5.3",
         "fzaninotto/faker": "~1.4",
         "guzzlehttp/guzzle": "^6.3",
         "laravel/cashier": "~7.0",
         "laravel/framework": "5.4.*",
+        "laravel/scout": "^3.0",
         "laravel/socialite": "^3.0",
         "laravel/tinker": "~1.0",
         "laravelcollective/html": "^5.4.0",
-        "stripe/stripe-php": "5.*"
+        "stripe/stripe-php": "5.*",
+        "tamayo/laravel-scout-elastic": "^3.0"
     },
     "require-dev": {
         "mockery/mockery": "0.9.*",
