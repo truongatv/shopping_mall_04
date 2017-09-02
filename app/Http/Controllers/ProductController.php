@@ -12,6 +12,9 @@ use App\Models\Payment;
 use App\Models\PaymentType;
 use App\Contracts\OrderRepositoryInterface;
 use App\Contracts\ProductRepositoryInterface;
+use Elasticquent\ElasticquentTrait;
+use Elasticsearch\ClientBuilder;
+use App\Models\Category;
 
 class ProductController extends Controller
 {
@@ -135,57 +138,63 @@ class ProductController extends Controller
             $min = $request['min'];
             $max = $request['max'];
             $star = $request['star'];
-            $beauty = $request['beauty'];
-            $drink = $request['drink'];
-            $game = $request['game'];
-            $electronic = $request['electronic'];
-            $home = $request['home'];
-            $hobby = $request['hobby'];
             if($star == 0) {
-                if($beauty != null || $drink != null || $game != null || $electronic != null || $home != null || $home != null || $hobby != null){
-                    $products = Product::whereIn('category_id',  function($query) use ($beauty, $drink, $game, $electronic, $home, $hobby) {
-                                    $query->select('category_id')->from('categories')->where('name',  $beauty)
-                                                    ->orWhere('name', $drink)
-                                                    ->orWhere('name', $game)
-                                                    ->orWhere('name', $electronic)
-                                                    ->orWhere('name', $home)
-                                                    ->orWhere('name', $hobby)->get();
-                                })
-                                ->where('name', $type)
-                                ->where('unit_price', '>', $min)
-                                ->where('unit_price', '<', $max)
-                                ->paginate(6);
-                }
-                else {
-                    $products = Product::where('name', $type)
-                                ->where('unit_price', '>', $min)
-                                ->where('unit_price', '<', $max)
-                                ->paginate(6);
-                }
+                $products = Product::complexSearchAndPaginate(array(
+                    'body' => array(
+                        'query' => array(
+                            'bool' => array(
+                                'must' => array(
+                                    array(
+                                        'multi_match' => array(
+                                            'fields' => ['information', 'name'],
+                                            'query' => $type
+                                        )
+                                    ),
+                                    array(
+                                        'range' => array(
+                                            'unit_price' => array(
+                                                'from' => $min,
+                                                'to' => $max
+                                            )
+                                        )
+                                    ),
+                                )
+                            )
+                        )
+                    )
+                ),6);
             }
             else {
-                if($beauty != null || $drink != null || $game != null || $electronic != null || $home != null || $home != null || $hobby != null){
-                    $products = Product::whereIn('category_id',  function($query) use ($beauty, $drink, $game, $electronic, $home, $hobby) {
-                                    $query->select('category_id')->from('categories')->where('name',  $beauty)
-                                                    ->orWhere('name', $drink)
-                                                    ->orWhere('name', $game)
-                                                    ->orWhere('name', $electronic)
-                                                    ->orWhere('name', $home)
-                                                    ->orWhere('name', $hobby)->get();
-                                })
-                                ->where('name', $type)
-                                ->where('unit_price', '>', $min)
-                                ->where('unit_price', '<', $max)
-                                ->where('rate_count', $star)
-                                ->paginate(6);
-                }
-                else {
-                    $products = Product::where('name', $type)
-                                ->where('unit_price', '>', $min)
-                                ->where('unit_price', '<', $max)
-                                ->where('rate_count', $star)
-                                ->paginate(6);
-                }
+                $products = Product::complexSearchAndPaginate(array(
+                    'body' => array(
+                        'query' => array(
+                            'bool' => array(
+                                'must' => array(
+                                    array(
+                                        'multi_match' => array(
+                                            'fields' => ['information', 'name'],
+                                            'query' => $type
+                                        )
+                                    ),
+                                    array(
+                                        'match' => array(
+                                            'rate_count' => $star
+                                        )
+                                    ),
+                                    array(
+                                        'range' => array(
+                                            'unit_price' => array(
+                                                'from' => $min,
+                                                'to' => $max
+                                            ),
+                                        )
+                                    ),
+
+                                )
+                            )
+                        )
+                    )
+                ),6);
             }
             $htmlFilter = view('search.filter', compact('type', 'products'))->render();
             $result = [
@@ -195,12 +204,17 @@ class ProductController extends Controller
 
             return response()->json($result);
         }
-       $products = Product::where('name',  $name)->paginate(6);
-        if (count($products) == config('settings.error')) {
-            $products = Product::whereIn('shop_product_id',  function($query) use ($name) {
-                $query->select('shop_product_id')->from('shop_products')->where('shop_product_name',  $name)->get();
-            })->paginate(6);
-        }
+
+        $products = Product::complexSearchAndPaginate(array(
+            'body' => array(
+                'query' => array(
+                    'multi_match' => array(
+                        'fields' => ["name", "information"],
+                        'query' => $name
+                    )
+                )
+            )
+        ),6);
         $type = $name;
         $group = $name = "";
         if (!Auth::check()) {

@@ -3,9 +3,11 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Elasticquent\ElasticquentTrait;
 
 class Category extends Model
 {
+    use ElasticquentTrait;
     protected $primaryKey = 'category_id';
 
     protected $fillable = [
