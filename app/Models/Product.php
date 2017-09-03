@@ -3,9 +3,13 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Elasticquent\ElasticquentTrait;
+
 
 class Product extends Model
 {
+    use ElasticquentTrait;
+
     protected $primaryKey = 'product_id';
     protected $fillable = [
         'name',
@@ -16,6 +20,17 @@ class Product extends Model
         'category_id',
         'shop_product_id',
     ];
+
+    protected $mappingProperties = array(
+       'name' => array(
+            'type' => 'string',
+            'analyzer' => 'standard'
+        ),
+       'information' => array(
+            'type' => 'string',
+            'analyzer' => 'standard'
+        )
+    );
 
     public function order_details()
     {

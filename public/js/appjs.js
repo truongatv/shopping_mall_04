@@ -1,6 +1,6 @@
 var App = function() {
     /* Initialization UI Code */
-    function check_cost_filter(cost_filter1, cost_filter2, cost_filter3) {
+    function check_cost_filter(cost_filter1, cost_filter2, cost_filter3, cost_filter4) {
         var myArray = new Array(2)
         if(cost_filter1.checked){
             myArray[0] = 0;
@@ -17,56 +17,30 @@ var App = function() {
             myArray[1] = 10000000;
             return myArray;
         }
-        else{
+        else if(cost_filter4.checked){
+            myArray[0] = 0;
+            myArray[1] = 10000000;
+            return myArray;
+        }
+        else {
             myArray[0] = 0;
             myArray[1] = 10000000;
             return myArray;
         }
     }
 
-    function check_category(category_beauty, category_drink, category_game, category_electronic, category_home, category_hobby) {
-        var myArray = new Array(6)
-        if(category_beauty.checked){
-            myArray[0] = 'beauty';
-        }
-        if(category_drink.checked) {
-            myArray[1] = 'drink';
-        }
-        if(category_game.checked) {
-            myArray[2] = 'game';
-        }
-        if(category_electronic.checked) {
-            myArray[3] = 'electronic';
-        }
-        if(category_home.checked) {
-            myArray[4] = 'home';
-        }
-        if(category_hobby.checked) {
-            myArray[5] = 'hobby';
-        }
-
-        return myArray;
-    }
-
     function searchFilter() {
         var cost_filter1 = document.getElementById('inline_radio1');
         var cost_filter2 = document.getElementById('inline_radio2');
         var cost_filter3 = document.getElementById('inline_radio3');
+        var cost_filter4 = document.getElementById('inline_radio4');
         var filter_rating = document.getElementById('filter_rating');
         var name = document.getElementById('product_name').textContent;
-        var category_beauty = document.getElementById('category_beauty');
-        var category_drink = document.getElementById('category_drink');
-        var category_game = document.getElementById('category_game');
-        var category_electronic = document.getElementById('category_electronic');
-        var category_home = document.getElementById('category_home');
-        var category_hobby = document.getElementById('category_hobby');
 
         cost_filter1.addEventListener('click', function() {
-            array_cost = check_cost_filter(cost_filter1, cost_filter2, cost_filter3);
+            array_cost = check_cost_filter(cost_filter1, cost_filter2, cost_filter3, cost_filter4);
             min = array_cost[0];
             max = array_cost[1];
-            array_category = check_category(category_beauty, category_drink, category_game, category_electronic, category_home, category_hobby);
-            console.log(max);
             if(filter_rating.selected){
                 star = filter_rating.value;
             }
@@ -80,12 +54,6 @@ var App = function() {
                     min: min,
                     max: max,
                     star: star,
-                    beauty: array_category[0],
-                    drink: array_category[1],
-                    game: array_category[2],
-                    electronic: array_category[3],
-                    home: array_category[4],
-                    hobby: array_category[5],
                     keyword: name
                 },
                  success :function (result) {
@@ -98,11 +66,9 @@ var App = function() {
                 });
         });
         cost_filter2.addEventListener('click', function() {
-            array_cost = check_cost_filter(cost_filter1, cost_filter2, cost_filter3);
+            array_cost = check_cost_filter(cost_filter1, cost_filter2, cost_filter3, cost_filter4);
             min = array_cost[0];
             max = array_cost[1];
-            array_category = check_category(category_beauty, category_drink, category_game, category_electronic, category_home, category_hobby);
-            console.log(max);
             if(filter_rating.selected){
                 star = filter_rating.value;
             }
@@ -116,12 +82,6 @@ var App = function() {
                     min: min,
                     max: max,
                     star: star,
-                    beauty: array_category[0],
-                    drink: array_category[1],
-                    game: array_category[2],
-                    electronic: array_category[3],
-                    home: array_category[4],
-                    hobby: array_category[5],
                     keyword: name
                 },
                  success :function (result) {
@@ -134,11 +94,9 @@ var App = function() {
             });
         });
         cost_filter3.addEventListener('click', function() {
-            array_cost = check_cost_filter(cost_filter1, cost_filter2, cost_filter3);
+            array_cost = check_cost_filter(cost_filter1, cost_filter2, cost_filter3, cost_filter4);
             min = array_cost[0];
             max = array_cost[1];
-            array_category = check_category(category_beauty, category_drink, category_game, category_electronic, category_home, category_hobby);
-            console.log(max);
             if(filter_rating.selected){
                 star = filter_rating.value;
             }
@@ -152,12 +110,35 @@ var App = function() {
                     min: min,
                     max: max,
                     star: star,
-                    beauty: array_category[0],
-                    drink: array_category[1],
-                    game: array_category[2],
-                    electronic: array_category[3],
-                    home: array_category[4],
-                    hobby: array_category[5],
+                    keyword: name
+                },
+                 success :function (result) {
+                    if(result.success) {
+                        var content = document.getElementById('search_content');
+                        content.innerHTML = result.search_result;
+                    }
+
+                }
+            });
+        });
+
+        cost_filter4.addEventListener('click', function() {
+            array_cost = check_cost_filter(cost_filter1, cost_filter2, cost_filter3, cost_filter4);
+            min = array_cost[0];
+            max = array_cost[1];
+            if(filter_rating.selected){
+                star = filter_rating.value;
+            }
+            else {
+                star = 0;
+            }
+            $.ajax({
+                type: "GET",
+                url: "{{route('search_name')}}",
+                data: {
+                    min: min,
+                    max: max,
+                    star: star,
                     keyword: name
                 },
                  success :function (result) {
@@ -172,25 +153,16 @@ var App = function() {
 
         filter_rating.addEventListener('change', function() {
             var star = filter_rating.value;
-            // console.log(star);
-            array_cost = check_cost_filter(cost_filter1, cost_filter2, cost_filter3);
+            array_cost = check_cost_filter(cost_filter1, cost_filter2, cost_filter3, cost_filter4);
             min = array_cost[0];
             max = array_cost[1];
-            array_category = check_category(category_beauty, category_drink, category_game, category_electronic, category_home, category_hobby);
-            console.log(max);
-             $.ajax({
+            $.ajax({
                 type: "GET",
                 url: "{{route('search_name')}}",
                 data: {
                     min: min,
                     max: max,
                     star: star,
-                    beauty: array_category[0],
-                    drink: array_category[1],
-                    game: array_category[2],
-                    electronic: array_category[3],
-                    home: array_category[4],
-                    hobby: array_category[5],
                     keyword: name
                 },
                  success :function (result) {
@@ -202,420 +174,6 @@ var App = function() {
 
                 }
             });
-        });
-
-        category_beauty.addEventListener('change', function() {
-            var star = filter_rating.value;
-            if(category_beauty.checked){
-                array_cost = check_cost_filter(cost_filter1, cost_filter2, cost_filter3);
-                min = array_cost[0];
-                max = array_cost[1];
-                array_category = check_category(category_beauty, category_drink, category_game, category_electronic, category_home, category_hobby);
-                console.log(max);
-                console.log("star");
-                console.log(star);
-                // if(filter_rating.selected){
-                //     console.log("star");
-                //     star = filter_rating.value;
-                // }
-                // else {
-                //     star = 0;
-                // }
-                console.log(star);
-                $.ajax({
-                    type: "GET",
-                    url: "{{route('search_name')}}",
-                    data: {
-                        min: min,
-                        max: max,
-                        star: star,
-                        beauty: array_category[0],
-                        drink: array_category[1],
-                        game: array_category[2],
-                        electronic: array_category[3],
-                        home: array_category[4],
-                        hobby: array_category[5],
-                        keyword: name
-                    },
-                     success :function (result) {
-                        if(result.success) {
-                            var content = document.getElementById('search_content');
-                            content.innerHTML = result.search_result;
-                        }
-
-                    }
-                });
-            }
-
-            else {
-                console.log('check');
-                array_cost = check_cost_filter(cost_filter1, cost_filter2, cost_filter3);
-                min = array_cost[0];
-                max = array_cost[1];
-                array_category = check_category(category_beauty, category_drink, category_game, category_electronic, category_home, category_hobby);
-                $.ajax({
-                    type: "GET",
-                    url: "{{route('search_name')}}",
-                    data: {
-                        min: min,
-                        max: max,
-                        star: star,
-                        beauty: array_category[0],
-                        drink: array_category[1],
-                        game: array_category[2],
-                        electronic: array_category[3],
-                        home: array_category[4],
-                        hobby: array_category[5],
-                        keyword: name
-                    },
-                     success :function (result) {
-                        if(result.success) {
-                            var content = document.getElementById('search_content');
-                            content.innerHTML = result.search_result;
-                        }
-
-                    }
-                });
-            }
-        });
-
-        category_drink.addEventListener('change', function() {
-            var star = filter_rating.value;
-            if(category_drink.checked){
-                array_cost = check_cost_filter(cost_filter1, cost_filter2, cost_filter3);
-                min = array_cost[0];
-                max = array_cost[1];
-                array_category = check_category(category_beauty, category_drink, category_game, category_electronic, category_home, category_hobby);
-                $.ajax({
-                    type: "GET",
-                    url: "{{route('search_name')}}",
-                    data: {
-                        min: min,
-                        max: max,
-                        star: star,
-                        beauty: array_category[0],
-                        drink: array_category[1],
-                        game: array_category[2],
-                        electronic: array_category[3],
-                        home: array_category[4],
-                        hobby: array_category[5],
-                        keyword: name
-                    },
-                     success :function (result) {
-                        if(result.success) {
-                            var content = document.getElementById('search_content');
-                            content.innerHTML = result.search_result;
-                        }
-
-                    }
-                });
-            }
-
-            else {
-                console.log('check');
-                array_cost = check_cost_filter(cost_filter1, cost_filter2, cost_filter3);
-                min = array_cost[0];
-                max = array_cost[1];
-                array_category = check_category(category_beauty, category_drink, category_game, category_electronic, category_home, category_hobby);
-                console.log(max);
-                $.ajax({
-                    type: "GET",
-                    url: "{{route('search_name')}}",
-                    data: {
-                        min: min,
-                        max: max,
-                        star: star,
-                        beauty: array_category[0],
-                        drink: array_category[1] ,
-                        game: array_category[2],
-                        electronic: array_category[3],
-                        home: array_category[4],
-                        hobby: array_category[5],
-                        keyword: name
-                    },
-                     success :function (result) {
-                        if(result.success) {
-                            var content = document.getElementById('search_content');
-                            content.innerHTML = result.search_result;
-                        }
-
-                    }
-                });
-            }
-        });
-
-        category_game.addEventListener('change', function() {
-            var star = filter_rating.value;
-            if(category_game.checked){
-                console.log('check');
-                array_cost = check_cost_filter(cost_filter1, cost_filter2, cost_filter3);
-                min = array_cost[0];
-                max = array_cost[1];
-                array_category = check_category(category_beauty, category_drink, category_game, category_electronic, category_home, category_hobby);
-                console.log(max);
-                $.ajax({
-                    type: "GET",
-                    url: "{{route('search_name')}}",
-                    data: {
-                        min: min,
-                        max: max,
-                        star: star,
-                        beauty: array_category[0],
-                        drink: array_category[1],
-                        game: array_category[2],
-                        electronic: array_category[3],
-                        home: array_category[4],
-                        hobby: array_category[5],
-                        keyword: name
-                    },
-                     success :function (result) {
-                        if(result.success) {
-                            var content = document.getElementById('search_content');
-                            content.innerHTML = result.search_result;
-                        }
-
-                    }
-                });
-            }
-
-            else {
-                console.log('check');
-                array_cost = check_cost_filter(cost_filter1, cost_filter2, cost_filter3);
-                min = array_cost[0];
-                max = array_cost[1];
-                array_category = check_category(category_beauty, category_drink, category_game, category_electronic, category_home, category_hobby);
-                $.ajax({
-                    type: "GET",
-                    url: "{{route('search_name')}}",
-                    data: {
-                        min: min,
-                        max: max,
-                        star: star,
-                        beauty: array_category[0],
-                        drink: array_category[1],
-                        game: array_category[2] ,
-                        electronic: array_category[3],
-                        home: array_category[4],
-                        hobby: array_category[5],
-                        keyword: name
-                    },
-                     success :function (result) {
-                        if(result.success) {
-                            var content = document.getElementById('search_content');
-                            content.innerHTML = result.search_result;
-                        }
-
-                    }
-                });
-            }
-        });
-
-        category_electronic.addEventListener('change', function() {
-            var star = filter_rating.value;
-            if(category_electronic.checked){
-                console.log('check');
-                array_cost = check_cost_filter(cost_filter1, cost_filter2, cost_filter3);
-                min = array_cost[0];
-                max = array_cost[1];
-                array_category = check_category(category_beauty, category_drink, category_game, category_electronic, category_home, category_hobby);
-                $.ajax({
-                    type: "GET",
-                    url: "{{route('search_name')}}",
-                    data: {
-                        min: min,
-                        max: max,
-                        star: star,
-                        beauty: array_category[0],
-                        drink: array_category[1],
-                        game: array_category[2],
-                        electronic: array_category[3],
-                        home: array_category[4],
-                        hobby: array_category[5],
-                        keyword: name
-                    },
-                     success :function (result) {
-                        if(result.success) {
-                            var content = document.getElementById('search_content');
-                            content.innerHTML = result.search_result;
-                        }
-
-                    }
-                });
-            }
-
-            else {
-                console.log('check');
-                array_cost = check_cost_filter(cost_filter1, cost_filter2, cost_filter3);
-                min = array_cost[0];
-                max = array_cost[1];
-                array_category = check_category(category_beauty, category_drink, category_game, category_electronic, category_home, category_hobby);
-                $.ajax({
-                    type: "GET",
-                    url: "{{route('search_name')}}",
-                    data: {
-                        min: min,
-                        max: max,
-                        star: star,
-                        beauty: array_category[0],
-                        drink: array_category[1],
-                        game: array_category[2],
-                        electronic: array_category[3] ,
-                        home: array_category[4],
-                        hobby: array_category[5],
-                        keyword: name
-                    },
-                     success :function (result) {
-                        if(result.success) {
-                            var content = document.getElementById('search_content');
-                            content.innerHTML = result.search_result;
-                        }
-
-                    }
-                });
-            }
-        });
-
-        category_home.addEventListener('change', function() {
-            var star = filter_rating.value;
-            if(category_home.checked){
-                console.log('check');
-                array_cost = check_cost_filter(cost_filter1, cost_filter2, cost_filter3);
-                min = array_cost[0];
-                max = array_cost[1];
-                array_category = check_category(category_beauty, category_drink, category_game, category_electronic, category_home, category_hobby);
-                $.ajax({
-                    type: "GET",
-                    url: "{{route('search_name')}}",
-                    data: {
-                        min: min,
-                        max: max,
-                        star: star,
-                        beauty: array_category[0],
-                        drink: array_category[1],
-                        game: array_category[2],
-                        electronic: array_category[3],
-                        home: array_category[4],
-                        hobby: array_category[5],
-                        keyword: name
-                    },
-                     success :function (result) {
-                        if(result.success) {
-                            var content = document.getElementById('search_content');
-                            content.innerHTML = result.search_result;
-                        }
-
-                    }
-                });
-            }
-
-            else {
-                console.log('check');
-                array_cost = check_cost_filter(cost_filter1, cost_filter2, cost_filter3);
-                min = array_cost[0];
-                max = array_cost[1];
-                array_category = check_category(category_beauty, category_drink, category_game, category_electronic, category_home, category_hobby);
-                $.ajax({
-                    type: "GET",
-                    url: "{{route('search_name')}}",
-                    data: {
-                        min: min,
-                        max: max,
-                        star: star,
-                        beauty: array_category[0],
-                        drink: array_category[1],
-                        game: array_category[2],
-                        electronic: array_category[3],
-                        home: array_category[4] ,
-                        hobby: array_category[5],
-                        keyword: name
-                    },
-                     success :function (result) {
-                        if(result.success) {
-                            var content = document.getElementById('search_content');
-                            content.innerHTML = result.search_result;
-                        }
-
-                    }
-                });
-            }
-        });
-
-        category_hobby.addEventListener('change', function() {
-            if(category_hobby.checked){
-                console.log('check');
-                array_cost = check_cost_filter(cost_filter1, cost_filter2, cost_filter3);
-                min = array_cost[0];
-                max = array_cost[1];
-                array_category = check_category(category_beauty, category_drink, category_game, category_electronic, category_home, category_hobby);
-                console.log(max);
-                if(filter_rating.selected){
-                    star = filter_rating.value;
-                }
-                else {
-                    star = 0;
-                }
-                $.ajax({
-                    type: "GET",
-                    url: "{{route('search_name')}}",
-                    data: {
-                        min: min,
-                        max: max,
-                        star: star,
-                        beauty: array_category[0],
-                        drink: array_category[1],
-                        game: array_category[2],
-                        electronic: array_category[3],
-                        home: array_category[4],
-                        hobby: array_category[5],
-                        keyword: name
-                    },
-                     success :function (result) {
-                        if(result.success) {
-                            var content = document.getElementById('search_content');
-                            content.innerHTML = result.search_result;
-                        }
-
-                    }
-                });
-            }
-
-            else {
-                console.log('check');
-                array_cost = check_cost_filter(cost_filter1, cost_filter2, cost_filter3);
-                min = array_cost[0];
-                max = array_cost[1];
-                array_category = check_category(category_beauty, category_drink, category_game, category_electronic, category_home, category_hobby);
-                console.log(max);
-                if(filter_rating.selected){
-                    star = filter_rating.value;
-                }
-                else {
-                    star = 0;
-                }
-                $.ajax({
-                    type: "GET",
-                    url: "{{route('search_name')}}",
-                    data: {
-                        min: min,
-                        max: max,
-                        star: star,
-                        beauty: array_category[0],
-                        drink: array_category[1],
-                        game: array_category[2],
-                        electronic: array_category[3],
-                        home: array_category[4],
-                        hobby: array_category[5] ,
-                        keyword: name
-                    },
-                     success :function (result) {
-                        if(result.success) {
-                            var content = document.getElementById('search_content');
-                            content.innerHTML = result.search_result;
-                        }
-
-                    }
-                });
-            }
         });
     }
 

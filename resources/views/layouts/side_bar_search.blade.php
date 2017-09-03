@@ -4,14 +4,19 @@
         <div class="form-group push-bit">
             <div class="col-xs-12">
             <form action="{{ url('search') }}" method="post" class="quick-search">
-                <label class="radio-inline" for="inline_radio1" >
+                <div>
+                    <label class="radio-inline" for="inline_radio1" >
                     <input type="radio" class="cost_filter" id="inline_radio1" name="inline_radios" value="option1"> $0 - $99
                 </label>
                 <label class="radio-inline" for="inline_radio2">
                     <input type="radio" class="cost_filter" id="inline_radio2" name="inline_radios" value="option2"> $100 - $299
                 </label>
+                </div>
                 <label class="radio-inline" for="inline_radio3">
                     <input type="radio" class="cost_filter" id="inline_radio3" name="inline_radios" value="option3"> > $300
+                </label>
+                <label class="radio-inline" for="inline_radio4" >
+                    <input type="radio" class="cost_filter" id="inline_radio4" name="inline_radios" value="option4"> All Products
                 </label>
                 </form>
             </div>
@@ -21,6 +26,7 @@
             <div class="col-sm-8">
                 <select id="filter_rating" name="ecom-filter-rating" class="form-control" size="1">
                     <option value="0" disabled selected>{{ trans('title.Rating') }}</option>
+                    <option value="0">All Products</option>
                     <option value="5">5 Stars</option>
                     <option value="4">4 Stars</option>
                     <option value="3">3 Stars</option>
@@ -29,6 +35,8 @@
                 </select>
             </div>
         </div>
+        <br>
+        <br>
         <h4 class="-header"><strong>{{ trans('title.Categories') }}</strong></h4>
         <div class="form-group">
             <div class="col-xs-12">
