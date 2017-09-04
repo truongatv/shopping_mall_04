@@ -3,10 +3,12 @@
 namespace App\Repositories;
 
 use Auth;
+use DB;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Product;
 use App\Models\Order;
+use App\Models\Category;
 use App\Models\Comment;
 use App\Models\Payment;
 use App\Models\PaymentType;
@@ -61,7 +63,7 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
 
     public function categoryProduct($group, $name){
         $products = Product::whereIn('category_id',  function($query) use ($name) {
-            $query->select('category_id')->from('categories')->where('name',  $name)->get();
+            $query->select('category_id')->from('categories')->where('name', 'LIKE', "% & {$name}")->get();
         })->paginate(6);
 
         return $products;

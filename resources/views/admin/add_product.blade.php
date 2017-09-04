@@ -36,6 +36,11 @@
                 </div>
 
                 <div class="form-group">
+                    <label>Information</label>
+                    <input class="form-control" name="info_product" placeholder="{{ trans('admin.please_enter_information') }}" />
+                </div>
+
+                <div class="form-group">
                     <label>{{ trans('admin.category_parent') }}</label>
                     <select class="form-control" name="category_parent_id" id="category_parent">
                         @foreach($category_parent as $category_parent)

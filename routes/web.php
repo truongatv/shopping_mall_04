@@ -52,18 +52,16 @@ Route::post('/add_cart/{produc_id}', 'AddCartController@create')->name('add_cart
 Route::get('view_cart/{user_id}', 'ViewCartController@viewCart')->name('view_cart')->middleware('auth');
 // Route to admin
 Route::group(['prefix' => 'admin'], function(){
-    Route::get('/', function () {
-        return view('admin.category_master');
-    });
+    Route::get('/', 'AdminController@getView')->middleware(['admin']);
     Route::group(['prefix' => 'category'],function(){
         //admin/category/cate_list
-        Route::get('cate_list', 'AdminController@getList');
-        Route::get('cate_list_child/{category_id}', 'AdminController@getListChild')->name('cate_list_child');
-        Route::get('add', 'AdminController@getAdd');
-        Route::post('add_cate', 'AdminController@postAdd')->name('add_cate');
-        Route::get('cate_list/{id}/edit', 'AdminController@getEdit');
-        Route::post('edit_category/{id}', 'AdminController@postEdit');
-        Route::get('delete/{id}', 'AdminController@getDelete');
+        Route::get('cate_list', 'AdminController@getList')->middleware(['admin']);
+        Route::get('cate_list_child/{category_id}', 'AdminController@getListChild')->name('cate_list_child')->middleware(['admin']);
+        Route::get('add', 'AdminController@getAdd')->middleware(['admin']);
+        Route::post('add_cate', 'AdminController@postAdd')->name('add_cate')->middleware(['admin']);
+        Route::get('cate_list/{id}/edit', 'AdminController@getEdit')->middleware(['admin']);
+        Route::post('edit_category/{id}', 'AdminController@postEdit')->middleware(['admin']);
+        Route::get('delete/{id}', 'AdminController@getDelete')->middleware(['admin']);
     });
     Route::group(['prefix' => 'product'],function(){
         //admin/product/product_list

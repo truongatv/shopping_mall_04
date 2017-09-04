@@ -3,9 +3,10 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use App\Models\Product;
+use Auth;
+use App\Models\User;
 
-class CheckStatusProduct
+class CheckAdmin
 {
     /**
      * Handle an incoming request.
@@ -16,9 +17,8 @@ class CheckStatusProduct
      */
     public function handle($request, Closure $next)
     {
-        $product = Product::where('product_id', $request->product_id)->first();
-        if($product->status == 0) {
-            return response(trans('errors.not_admin'), 404);
+        if(Auth::user()->id != 1){
+            return response(trans('errors.not_exist'), 404);
         }
 
         return $next($request);

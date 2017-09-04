@@ -19,7 +19,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="index.html">{{ trans('admin.admin_area') }} - <span class="admin_name">{{ Auth::user()->name }}</span></a>
+                    <a class="navbar-brand" href="#">{{ trans('admin.admin_area') }} - <span class="admin_name">{{ Auth::user()->name }}</span></a>
                 </div>
                 <!-- /.navbar-header -->
                 <!-- /.navbar-top-links -->

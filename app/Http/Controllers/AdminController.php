@@ -22,6 +22,11 @@ class AdminController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function getView()
+    {
+        return view('admin.category_master');
+    }
+
     public function getList()
     {
         $category = Category::all();
@@ -106,7 +111,7 @@ class AdminController extends Controller
     //Controller Product
     public function getProductList()
     {
-        $product = Product::all();
+        $product = Product::where('status', 1)->get();
 
         return view('admin.product_list', ['product'=>$product]);
     }
@@ -125,10 +130,14 @@ class AdminController extends Controller
     {
         $this->validate($request,
             [
-            'name' => 'required'
+            'name' => 'required',
+            'unit_price' => 'numeric',
+            'total_quanity' => 'numeric|min:1'
             ],
             [
-            'name.requied' => 'Bạn chưa nhập category'
+            'name.requied' => trans('errors.product_name'),
+            'unit_price.numeric' => trans('errors.unit_price'),
+            'total_quanity' => trans('errors.total_quanity')
             ]);
         $product = new Product;
         $product->name = $request->name;
@@ -138,6 +147,13 @@ class AdminController extends Controller
         $product->category_id = $request->category_id;
         $product->rate_count = 0 ;
         $product->top_product = $request->top_product;
+        $product->information = $request->info_product;
+        if(!$product->top_product) {
+            $product->top_product = 100;
+        }
+        if(!$product->information) {
+            $product->information = " ";
+        }
 
         $product->save();
 
@@ -174,11 +190,14 @@ class AdminController extends Controller
     {
         $this->validate($request,
             [
-                'name' => 'required'
+            'name' => 'required',
+            'unit_price' => 'numeric',
+            'total_quanity' => 'numeric|min:1'
             ],
             [
-                'name.required' => 'Bạn Chưa nhập tên Product',
-
+            'name.requied' => trans('errors.product_name'),
+            'unit_price.numeric' => trans('errors.unit_price'),
+            'total_quanity' => trans('errors.total_quanity')
             ]);
         $product =Product::find($id);
         if ($request->name){
@@ -188,6 +207,13 @@ class AdminController extends Controller
         $product->unit_price = $request->unit_price;
         $product->total_quanity = $request->total_quanity;
         $product->top_product = $request->top_product;
+        $product->information = $request->info_product;
+        if(!$product->top_product) {
+            $product->top_product = 100;
+        }
+        if(!$product->information) {
+            $product->information = " ";
+        }
 
         if ($request->image_link) {
             $file = $request->file('image_link');
@@ -212,8 +238,11 @@ class AdminController extends Controller
 
     public function getDeleteProduct($id)
     {
-        $product =  Product::find($id);
-        $product->delete();
+        DB::transaction(function() use ($id) {
+            $product =  Product::find($id);
+            $product->status = 0;
+            $product->save();
+        });
 
         return redirect('admin/product/product_list')->with('thongbao1', 'Delete Success !');
     }

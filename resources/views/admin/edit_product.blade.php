@@ -38,6 +38,10 @@
                     <input class="form-control" name="top_product" placeholder="{{ trans('admin.please_enter_top') }}" value="{{$product->top_product}}"/>
                 </div>
                 <div class="form-group">
+                    <label>Information</label>
+                    <textarea class="form-control" name="info_product" placeholder="{{ trans('admin.please_enter_information') }}">{{$product->information}}</textarea>
+                </div>
+                <div class="form-group">
                     <label>Image</label>
                     {{ Html::image($product->images[0]->link, trans('title.this-is-avatar'), [
                         'class' => 'avatar  ',
