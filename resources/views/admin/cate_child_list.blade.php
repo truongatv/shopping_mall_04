@@ -32,7 +32,7 @@
                 <td>{{ $cate->category_id }}</td>
                 <td>{{ $cate->name }}</td>
                 <td class="center"><a href="{{ action('AdminController@getDelete', $cate->category_id) }}" class="btn btn-danger" data-toggle="tooltip" title="Delete"><i class="fa fa-trash-o  fa-fw"></i>{{ trans('admin.delete') }}</a></td>
-                <td class="center"><a href="{{ action('AdminController@getEdit', $cate->category_id) }}" class="btn btn-warning" data-toggle="tooltip" title="Edit"><i class="fa fa-pencil fa-fw"></i>{ trans('admin.edit') }}</a></td>
+                <td class="center"><a href="{{ action('AdminController@getEdit', $cate->category_id) }}" class="btn btn-warning" data-toggle="tooltip" title="Edit"><i class="fa fa-pencil fa-fw"></i>{{ trans('admin.edit') }}</a></td>
             </tr>
             @endforeach
         </tbody>

@@ -25,5 +25,10 @@ return [
     'minus_product' => 'You have 0 product. You can\'t minus product !',
     'over_quanity' => 'Sorry! Quantity in stock not enough!',
     'not_exist' => 'Sorry! product is not exist!',
-    'order_not_done' => 'Error! You can\'t view history this order. Because you not yet done this order!'
+    'order_not_done' => 'Error! You can\'t view history this order. Because you not yet done this order!',
+    'unit_price' => 'Please input unit price !',
+    'product_name' => 'Please input product name !',
+    'total_quanity' => 'Please input total quality!',
+    'not_admin' => 'Error! Please login to admin !',
+    'confirm_order' => 'Error! Order cant success!'
 ];

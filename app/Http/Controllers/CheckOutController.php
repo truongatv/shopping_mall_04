@@ -98,60 +98,84 @@ class CheckOutController extends Controller
 
     public function checkout_comfirm_done(Request $request, $user_id, $order_id)
     {
-        $order = Order::where('order_id', $order_id)->first();
-        $price = $order->total_price;
-        $order->status = 1;
-        $order_details = $order->order_details;
-        //remove quality of products when order success
-        foreach ($order_details as $order_detail) {
-            DB::transaction(function() use($order_detail) {
-                $product = $order_detail->product;
-                $product->total_quanity -= $order_detail->quality;
-                $product->save();
-            });
-        }
-        DB::transaction(function () use($order) {
-            $order->save();
-        });
-        //create new session for use when order success
-        $payment_type = new PaymentType;
-        $payment = new Payment;
-        DB::transaction(function () use($order, $payment_type, $payment) {
-        	$payment_type->information = "1";
-            $payment_type->save();
-            $payment_type = PaymentType::orderBy('payment_type_id','DESC')->first();
-            $payment->payment_type_id = $payment_type->payment_type_id;
-            $payment->save();
-            $payment = Payment::orderBy('payment_id', 'desc')->first();
-            $order->total_price = 0;
-            $order->content = 'null';
-            $order->user_id = Auth::user()->id;
-            $order->payment_id = $payment->payment_id;
-            $order->save();
+        try {
+            $order = Order::where('order_id', $order_id)->first();
+            $price = $order->total_price;
+            $order->status = 1;
             $order_details = $order->order_details;
-            $name = Auth::user()->name;
-            $mail = Auth::user()->email;
-            $data = ['name' => $name, 'mail' => $mail, 'order_details' => $order_details, 'order' => $order
-            ];
-            //send mail notification for user
-            Mail::send('mail_order', $data, function($message) use ($data) {
-                $message->to($data['mail'], $data['name'])->subject('Shopping Mall');
+            try {
+                \Stripe\Stripe::setApiKey("sk_test_YTLjkolnAVb1Y8SR20tRnIjI");
+                $charge = \Stripe\Charge::create(array(
+                    "amount" => (int)$price,
+                    "currency" => "usd",
+                    "source" => "tok_amex", // obtained with Stripe.js
+                    "description" => "Charge for nguyentientruong95@gmail.com and user id ".$user_id ."" 
+                ));
+            } catch(Stripe_CardError $e) {
+                return redirect()->back();
+            } catch (Stripe_InvalidRequestError $e) {
+              // Invalid parameters were supplied to Stripe's API
+                return redirect()->back();
+            } catch (Stripe_AuthenticationError $e) {
+              // Authentication with Stripe's API failed
+                return redirect()->back();
+            } catch (Stripe_ApiConnectionError $e) {
+              // Network communication with Stripe failed
+                return redirect()->back();
+            } catch (Stripe_Error $e) {
+              // Display a very generic error to the user, and maybe send
+              // yourself an email
+                return redirect()->back();
+            } catch (Exception $e) {
+              // Something else happened, completely unrelated to Stripe
+                return redirect()->back();
+            }
+            //remove quality of products when order success
+            foreach ($order_details as $order_detail) {
+                DB::transaction(function() use($order_detail) {
+                    $product = $order_detail->product;
+                    $product->total_quanity -= $order_detail->quality;
+                    $product->save();
+                });
+            }
+            DB::transaction(function () use($order) {
+                $order->save();
             });
-        });
-        $counts = Product::all() -> count();
-        $newArrivals = Product::orderBy('products.created_at')
-                    ->paginate(3);
-        $topSells = Product::orderBy('products.top_product')
-                    ->paginate(6);
-        \Stripe\Stripe::setApiKey("sk_test_YTLjkolnAVb1Y8SR20tRnIjI");
-        $charge = \Stripe\Charge::create(array(
-            "amount" => (int)$price,
-            "currency" => "usd",
-            "source" => "tok_amex", // obtained with Stripe.js
-            "description" => "Charge for emily.brown@example.com"
-        ));
+            //create new session for use when order success
+            $payment_type = new PaymentType;
+            $payment = new Payment;
+            DB::transaction(function () use($order, $payment_type, $payment) {
+            	$payment_type->information = "1";
+                $payment_type->save();
+                $payment_type = PaymentType::orderBy('payment_type_id','DESC')->first();
+                $payment->payment_type_id = $payment_type->payment_type_id;
+                $payment->save();
+                $payment = Payment::orderBy('payment_id', 'desc')->first();
+                $order->total_price = 0;
+                $order->content = 'null';
+                $order->user_id = Auth::user()->id;
+                $order->payment_id = $payment->payment_id;
+                $order->save();
+                $order_details = $order->order_details;
+                $name = Auth::user()->name;
+                $mail = Auth::user()->email;
+                $data = ['name' => $name, 'mail' => $mail, 'order_details' => $order_details, 'order' => $order
+                ];
+                //send mail notification for user
+                Mail::send('mail_order', $data, function($message) use ($data) {
+                    $message->to($data['mail'], $data['name'])->subject('Shopping Mall');
+                });
+            });
+            $counts = Product::all() -> count();
+            $newArrivals = Product::orderBy('products.created_at')
+                        ->paginate(3);
+            $topSells = Product::orderBy('products.top_product')
+                        ->paginate(6);
 
-        return redirect()->route('welcome')->with(compact('counts', 'newArrivals', 'topSells', 'order'))->with('done_payment', trans('success.done_payment'));
+            return redirect()->route('welcome')->with(compact('counts', 'newArrivals', 'topSells', 'order'))->with('done_payment', trans('success.done_payment'));
+        } catch (\Exception $e) {
+            return redirect()->back()->withErrors( trans('errors.confirm_order'));
+        }
 
     }
 }

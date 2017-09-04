@@ -76,8 +76,18 @@ form{
     margin: 0 auto;
     position: relative;
 }
+
+.name-label {
+    display: inline-block;
+    width: 100%;
+}
+
+.name-label > label {
+    margin-top: 10px;
+}
+
 label, textarea{
-    display: block;
+    display: inline-block;
 }
 
 input, textarea{

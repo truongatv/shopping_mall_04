@@ -3,21 +3,27 @@
         <h4><strong>{{ trans('title.Price_Range') }}</strong></h4>
         <div class="form-group push-bit">
             <div class="col-xs-12">
-            <form action="{{ url('search') }}" method="post" class="quick-search">
-                <div>
-                    <label class="radio-inline" for="inline_radio1" >
-                    <input type="radio" class="cost_filter" id="inline_radio1" name="inline_radios" value="option1"> $0 - $99
-                </label>
-                <label class="radio-inline" for="inline_radio2">
-                    <input type="radio" class="cost_filter" id="inline_radio2" name="inline_radios" value="option2"> $100 - $299
-                </label>
-                </div>
-                <label class="radio-inline" for="inline_radio3">
-                    <input type="radio" class="cost_filter" id="inline_radio3" name="inline_radios" value="option3"> > $300
-                </label>
-                <label class="radio-inline" for="inline_radio4" >
-                    <input type="radio" class="cost_filter" id="inline_radio4" name="inline_radios" value="option4"> All Products
-                </label>
+                <form action="{{ url('search') }}" method="post" class="quick-search">
+                    <div>
+                        <label class="radio-inline" for="inline_radio1" >
+                            <input type="radio" class="cost_filter" id="inline_radio1" name="inline_radios" value="option1"> $0 - $99
+                        </label>
+                    </div>
+                    <div>
+                        <label class="radio-inline" for="inline_radio2">
+                            <input type="radio" class="cost_filter" id="inline_radio2" name="inline_radios" value="option2"> $100 - $299
+                        </label>
+                    </div>
+                    <div>
+                        <label class="radio-inline" for="inline_radio3">
+                            <input type="radio" class="cost_filter" id="inline_radio3" name="inline_radios" value="option3"> > $300
+                        </label>
+                    </div>
+                    <div>
+                        <label class="radio-inline" for="inline_radio4" >
+                            <input type="radio" class="cost_filter" id="inline_radio4" name="inline_radios" value="option4"> All Products
+                        </label>
+                    </div>
                 </form>
             </div>
         </div>
@@ -35,43 +41,12 @@
                 </select>
             </div>
         </div>
-        <br>
-        <br>
-        <h4 class="-header"><strong>{{ trans('title.Categories') }}</strong></h4>
-        <div class="form-group">
-            <div class="col-xs-12">
-                <label class="checkbox-inline" for="ecom-filter-category1">
-                    <input type="checkbox" id="category_beauty" name="ecom-filter-category1" value="1"> <strong>{{ trans('title.beauty') }}</strong>
-                </label>
-            </div>
-            <div class="col-xs-12">
-                <label class="checkbox-inline" for="ecom-filter-category2">
-                    <input type="checkbox" id="category_drink" name="ecom-filter-category2" value="2"> <strong>{{ trans('title.food_drink') }}</strong>
-                </label>
-            </div>
-            <div class="col-xs-12">
-                <label class="checkbox-inline" for="ecom-filter-category3">
-                    <input type="checkbox" id="category_game" name="ecom-filter-category3" value="3"> <strong>{{ trans('title.Games') }}</strong>
-                </label>
-            </div>
-             <div class="col-xs-12">
-                <label>
-                    <input type="checkbox" id="category_electronic" name="ecom-filter-category4" value="4"> <strong>{{ trans('title.electronic') }}</strong>
-                </label>
-            </div>
-            <div class="col-xs-12">
-                <label class="checkbox-inline" for="ecom-filter-category5">
-                    <input type="checkbox" id="category_home" name="ecom-filter-category5" value="5"> <strong>{{ trans('title.Home_&_Living') }}</strong>
-                </label>
-            </div>
-            <div class="col-xs-12">
-                <label class="checkbox-inline" for="ecom-filter-category6">
-                    <input type="checkbox" id="category_hobby" name="ecom-filter-category6" value="6"> <strong>{{ trans('title.Hobby_&_Crafts') }}</strong>
-                </label>
-            </div>
-        </div>
     </form>
+    <br>
+    <br>
+    <br>
 </div>
+
 <div class="sidebar-block">
     @if(Auth::check())
         <div class="row">

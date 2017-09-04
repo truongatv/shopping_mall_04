@@ -9,6 +9,13 @@
 @section('content')
     <section class="site-content site-section">
         <div class="container">
+            @if(count($errors) > 0)
+                <div class="alert alert-danger">
+                    @foreach($errors->all() as $err)
+                        {{$err}} <br>
+                    @endforeach
+                </div>
+            @endif
             <div class="site-block">
                 <form id="checkout-wizard" action="{{ route('checkout_confirm_done',['user_id'=>Auth::user()->id,'order_id' => Request::segment(2)]) }}" method="post">
                 {{ csrf_field() }}

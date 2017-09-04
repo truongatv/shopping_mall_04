@@ -127,6 +127,12 @@ class ProductController extends Controller
     }
 
     public function search(Request $request){
+        $this->validate($request, [
+            'ecom-search' => 'regex:/(^([a-zA-z0-9]+)(\d+)?$)/u|min:1'
+            ],[
+            'ecom-search.required' => trans('errors.name'),
+            'ecom-search.min' => trans('errors.name')
+            ]);
         $name = $this->productRepository->search($request);
         return redirect()->route('search_name',$name);
     }
@@ -201,7 +207,6 @@ class ProductController extends Controller
                     'success' => true,
                     'search_result' => $htmlFilter
             ];
-
             return response()->json($result);
         }
 

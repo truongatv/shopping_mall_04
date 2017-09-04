@@ -33,10 +33,10 @@
                             <div class="col-sm-6">
                                 <h4 class="page-header"><i class="fa fa-credit-card"></i> Add Credit Card</h4>
                                 <div class="form-row" id="credit_card">
-                                    <label>
+                                    <div class="name-label">
                                         <label for="checkout-payment-name">Name</label>
                                         <input name="cardholder_name" class="field" placeholder="Jane Doe" />
-                                    </label>
+                                    </div>
                                     <div>
                                         <label for="checkout-payment-name">Credit Card</label>
                                         <div id="card-element">
