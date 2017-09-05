@@ -1,5 +1,14 @@
 <div class="sidebar-block">
     <form action="{{ route('search', 'filter_99') }}" method="get" class="form-horizontal">
+        <h4><strong>{{ trans('title.order_by') }}</strong></h4>
+        <div class="form-group">
+            <div class="col-sm-8">
+                <select id="filter_orderby" name="ecom-filter-rating" class="form-control" size="1" value = "asc">
+                    <option value="asc">Low to High</option>
+                    <option value="desc">High to Low</option>
+                </select>
+            </div>
+        </div>
         <h4><strong>{{ trans('title.Price_Range') }}</strong></h4>
         <div class="form-group push-bit">
             <div class="col-xs-12">
@@ -30,7 +39,7 @@
         <h4><strong>{{ trans('title.filtes') }}</strong></h4>
         <div class="form-group">
             <div class="col-sm-8">
-                <select id="filter_rating" name="ecom-filter-rating" class="form-control" size="1">
+                <select id="filter_rating" name="ecom-filter-rating" class="form-control" size="1" value = "0">
                     <option value="0" disabled selected>{{ trans('title.Rating') }}</option>
                     <option value="0">All Products</option>
                     <option value="5">5 Stars</option>

@@ -35,22 +35,20 @@ var App = function() {
         var cost_filter3 = document.getElementById('inline_radio3');
         var cost_filter4 = document.getElementById('inline_radio4');
         var filter_rating = document.getElementById('filter_rating');
+        var filter_orderby = document.getElementById('filter_orderby');
         var name = document.getElementById('product_name').textContent;
 
         cost_filter1.addEventListener('click', function() {
             array_cost = check_cost_filter(cost_filter1, cost_filter2, cost_filter3, cost_filter4);
             min = array_cost[0];
             max = array_cost[1];
-            if(filter_rating.selected){
-                star = filter_rating.value;
-            }
-            else {
-                star = 0;
-            }
+            var star = filter_rating.value;
+            var order = filter_orderby.value;
             $.ajax({
                 type: "GET",
                 url: "{{route('search_name')}}",
                 data: {
+                    order: order,
                     min: min,
                     max: max,
                     star: star,
@@ -69,16 +67,13 @@ var App = function() {
             array_cost = check_cost_filter(cost_filter1, cost_filter2, cost_filter3, cost_filter4);
             min = array_cost[0];
             max = array_cost[1];
-            if(filter_rating.selected){
-                star = filter_rating.value;
-            }
-            else {
-                star = 0;
-            }
+            var star = filter_rating.value;
+            var order = filter_orderby.value;
             $.ajax({
                 type: "GET",
                 url: "{{route('search_name')}}",
                 data: {
+                    order: order,
                     min: min,
                     max: max,
                     star: star,
@@ -97,16 +92,13 @@ var App = function() {
             array_cost = check_cost_filter(cost_filter1, cost_filter2, cost_filter3, cost_filter4);
             min = array_cost[0];
             max = array_cost[1];
-            if(filter_rating.selected){
-                star = filter_rating.value;
-            }
-            else {
-                star = 0;
-            }
+            var star = filter_rating.value;
+            var order = filter_orderby.value;
             $.ajax({
                 type: "GET",
                 url: "{{route('search_name')}}",
                 data: {
+                    order: order,
                     min: min,
                     max: max,
                     star: star,
@@ -126,16 +118,13 @@ var App = function() {
             array_cost = check_cost_filter(cost_filter1, cost_filter2, cost_filter3, cost_filter4);
             min = array_cost[0];
             max = array_cost[1];
-            if(filter_rating.selected){
-                star = filter_rating.value;
-            }
-            else {
-                star = 0;
-            }
+            var star = filter_rating.value;
+            var order = filter_orderby.value;
             $.ajax({
                 type: "GET",
                 url: "{{route('search_name')}}",
                 data: {
+                    order: order,
                     min: min,
                     max: max,
                     star: star,
@@ -156,10 +145,43 @@ var App = function() {
             array_cost = check_cost_filter(cost_filter1, cost_filter2, cost_filter3, cost_filter4);
             min = array_cost[0];
             max = array_cost[1];
+            var order = filter_orderby.value;
+            console.log(star);
+            console.log(order);
             $.ajax({
                 type: "GET",
                 url: "{{route('search_name')}}",
                 data: {
+                    order: order,
+                    min: min,
+                    max: max,
+                    star: star,
+                    keyword: name
+                },
+                 success :function (result) {
+                    if(result.success) {
+                        console.log(result.success);
+                        var content = document.getElementById('search_content');
+                        content.innerHTML = result.search_result;
+                    }
+
+                }
+            });
+        });
+
+        filter_orderby.addEventListener('change', function() {
+            var star = filter_rating.value;
+            array_cost = check_cost_filter(cost_filter1, cost_filter2, cost_filter3, cost_filter4);
+            min = array_cost[0];
+            max = array_cost[1];
+            var order = filter_orderby.value;
+            console.log(star);
+            console.log(order);
+            $.ajax({
+                type: "GET",
+                url: "{{route('search_name')}}",
+                data: {
+                    order: order,
                     min: min,
                     max: max,
                     star: star,

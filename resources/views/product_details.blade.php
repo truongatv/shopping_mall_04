@@ -35,7 +35,7 @@
                     <div class="row" data-toggle="lightbox-gallery">
                         <!-- Images -->
                         <div class="col-sm-6 push-bit">
-                            <a href="{{ $product -> images[0] -> link }}" class="gallery-link">
+                            <a href="{{ $product -> images[0] -> link }} " onclick="return false;" class="gallery-link">
                             @if(isset($product -> images[0]))
                                 {{ Html::image(($product->images[0]->hasImage()) ? '/assets/uploads/' . $product->images[0]->link : $product->images[0]->link, trans('title.this-is-image'), [
                                     'class' => 'img-responsive',
@@ -45,39 +45,19 @@
                             @endif
                             </a>
                             <div class="row push-bit">
-                                <div class="col-xs-4">
-                                    <a href="{{ $product -> images[0] -> link }}" class="gallery-link">
-                                    @if(isset($product -> images[0]))
-                                        {{ Html::image(($product->images[0]->hasImage()) ? '/assets/uploads/' . $product->images[0]->link : $product->images[0]->link, trans('title.this-is-image'), [
-                                            'class' => 'img-responsive',
-                                        ]) }}
-                                    @else
-                                        <img src="https://parts.ippin.com/resized_images/shops/43/28d4ee6c49a9c0785b2a15b059e17c10.png" alt="" class="img-responsive">
-                                    @endif
-                                    </a>
-                                </div>
-                                <div class="col-xs-4">
-                                    <a href="{{ $product -> images[0] -> link }}" class="gallery-link">
-                                    @if(isset($product -> images[0]))
-                                        {{ Html::image(($product->images[0]->hasImage()) ? '/assets/uploads/' . $product->images[0]->link : $product->images[0]->link, trans('title.this-is-image'), [
-                                            'class' => 'img-responsive',
-                                        ]) }}
-                                    @else
-                                        <img src="https://parts.ippin.com/resized_images/shops/43/28d4ee6c49a9c0785b2a15b059e17c10.png" alt="" class="img-responsive">
-                                    @endif
-                                    </a>
-                                </div>
-                                <div class="col-xs-4">
-                                    <a href="{{ $product -> images[0] -> link }}" class="gallery-link">
-                                        @if(isset($product -> images[0]))
-                                            {{ Html::image(($product->images[0]->hasImage()) ? '/assets/uploads/' . $product->images[0]->link : $product->images[0]->link, trans('title.this-is-image'), [
+                                @for($i = 0; $i<count($product -> images) &&  $i < 3; $i++)
+                                    <div class="col-xs-4">
+                                        <a href="{{ $product -> images[$i] -> link }}" onclick="return false;" class="gallery-link">
+                                        @if(isset($product -> images[$i]))
+                                            {{ Html::image(($product -> images[$i]->hasImage()) ? '/assets/uploads/' . $product -> images[$i] -> link : $product -> images[$i] -> link, trans('title.this-is-image'), [
                                                 'class' => 'img-responsive',
                                             ]) }}
                                         @else
                                             <img src="https://parts.ippin.com/resized_images/shops/43/28d4ee6c49a9c0785b2a15b059e17c10.png" alt="" class="img-responsive">
                                         @endif
-                                    </a>
-                                </div>
+                                        </a>
+                                    </div>
+                                @endfor
                             </div>
                         </div>
                         <!-- END Images -->

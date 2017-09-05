@@ -128,7 +128,7 @@ class ProductController extends Controller
 
     public function search(Request $request){
         $this->validate($request, [
-            'ecom-search' => 'regex:/(^([a-zA-z0-9]+)(\d+)?$)/u|min:1'
+            'ecom-search' => 'regex:/(^([a-zA-z0-9]+)+(\d+)*)/u|min:1'
             ],[
             'ecom-search.required' => trans('errors.name'),
             'ecom-search.min' => trans('errors.name')
@@ -144,9 +144,15 @@ class ProductController extends Controller
             $min = $request['min'];
             $max = $request['max'];
             $star = $request['star'];
+            $order = $request['order'];
             if($star == 0) {
                 $products = Product::complexSearchAndPaginate(array(
                     'body' => array(
+                        'sort' => array(
+                            array(
+                                'unit_price' => $order
+                            )
+                        ),
                         'query' => array(
                             'bool' => array(
                                 'must' => array(
@@ -154,6 +160,11 @@ class ProductController extends Controller
                                         'multi_match' => array(
                                             'fields' => ['information', 'name'],
                                             'query' => $type
+                                        )
+                                    ),
+                                    array(
+                                        'match' => array(
+                                            'status' => 1
                                         )
                                     ),
                                     array(
@@ -188,6 +199,11 @@ class ProductController extends Controller
                                         )
                                     ),
                                     array(
+                                        'match' => array(
+                                            'status' => 1
+                                        )
+                                    ),
+                                    array(
                                         'range' => array(
                                             'unit_price' => array(
                                                 'from' => $min,
@@ -212,10 +228,26 @@ class ProductController extends Controller
 
         $products = Product::complexSearchAndPaginate(array(
             'body' => array(
+                'sort' => array(
+                    array(
+                        'unit_price' => 'asc'
+                    )
+                ),
                 'query' => array(
-                    'multi_match' => array(
-                        'fields' => ["name", "information"],
-                        'query' => $name
+                    'bool' => array(
+                        'must' => array(
+                            array(
+                                'multi_match' => array(
+                                    'fields' => ['information', 'name'],
+                                    'query' => $name
+                                )
+                            ),
+                            array(
+                                'match' => array(
+                                    'status' => 1
+                                )
+                            ),
+                        )
                     )
                 )
             )
