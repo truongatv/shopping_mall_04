@@ -156,7 +156,7 @@ class AdminController extends Controller
         }
 
         $product->save();
-
+        $product->addToIndex();
         $category = Category::find($product->category_id);
         $shop_product = ShopProduct::find($product->shop_product_id);
 
@@ -231,6 +231,7 @@ class AdminController extends Controller
         }
 
         $product->save();
+        $product->addToIndex();
 
         return redirect('admin/product/product_list')->with('thongbao', 'Edit success !');
 
